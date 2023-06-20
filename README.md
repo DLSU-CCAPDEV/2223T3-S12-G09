@@ -4,6 +4,7 @@
 <br>
 
 Specs checklist
+<pre>
 w - work in progress
 x - done
 [ ] View Slot Availability
@@ -20,3 +21,4 @@ x - done
 [ ] Search for users / free slots
 [ ] General
   [ ] Good UI and UX
+</pre>
