@@ -2,12 +2,6 @@ var emailArray = [];
 var passwordArray = [];
 var acc_typeArray = [];
 
-function outputArrays() {
-    console.log(emailArray);
-    console.log(passwordArray);
-    console.log(acc_typeArray);
-}
-
 function handleRegister(event) {
     event.preventDefault();
 
@@ -32,11 +26,7 @@ function handleRegister(event) {
     console.log("Email registered: " + email);
     console.log("Password registered: " + password);
     console.log("Account type registered: " + acc_Type);
-
-    outputArrays();
 }
-
-outputArrays();
 
 var register_acc = document.getElementById("register_acc");
 register_acc.addEventListener("submit", handleRegister);
