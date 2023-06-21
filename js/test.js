@@ -8,6 +8,7 @@ function handleRegister(event) {
     var emailInput = document.getElementById("reg_email_ID");
     var passwordInput = document.getElementById("reg_password_ID");
     var acc_TypeInput = document.querySelector("input[name='reg_acc_type']:checked");
+
     if (!emailInput.value || !passwordInput.value || !acc_TypeInput) {
         alert("Unable to register account. One or more details are missing!");
         return;
@@ -16,6 +17,7 @@ function handleRegister(event) {
         var password = passwordInput.value;
         var acc_Type = acc_TypeInput.value;
     }
+
 
     emailArray.push(email);
     emailInput.value = "";
@@ -26,11 +28,4 @@ function handleRegister(event) {
     console.log("Email registered: " + email);
     console.log("Password registered: " + password);
     console.log("Account type registered: " + acc_Type);
-
-    console.log(emailArray);
-    console.log(passwordArray);
-    console.log(acc_typeArray);
 }
-
-var register_acc = document.getElementById("register_acc");
-register_acc.addEventListener("submit", handleRegister);
