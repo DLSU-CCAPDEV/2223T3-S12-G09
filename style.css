@@ -1,19 +1,22 @@
 #header{
     position: sticky;
     top: 0;
-    display: flexbox;
+    display: flex;
     flex-direction: row;
     background-color: cyan; 
     border: solid 1px gray;
+    align-items: center;
 }
 
 .htext{
     font-weight: bold;
     font-size: 1.4rem;
+    flex-grow: 1;
 }
 
 .hnav{
-    align-items: flex-end;
+    border: solid 1px gray;
+    margin: 1.5px;
 }
 
 
