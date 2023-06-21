@@ -1,0 +1,22 @@
+#header{
+    position: sticky;
+    top: 0;
+    display: flexbox;
+    flex-direction: row;
+    background-color: cyan; 
+    border: solid 1px gray;  
+     
+}
+
+.htext{
+    font-weight: bold;
+    
+    font-size: 1.4rem;
+    
+    
+}
+
+.hnav{
+    align-items: flex-end;
+    
+}
