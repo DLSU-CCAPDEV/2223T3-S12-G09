@@ -4,19 +4,22 @@
     display: flexbox;
     flex-direction: row;
     background-color: cyan; 
-    border: solid 1px gray;  
-     
+    border: solid 1px gray;
 }
 
 .htext{
     font-weight: bold;
-    
     font-size: 1.4rem;
-    
-    
 }
 
 .hnav{
     align-items: flex-end;
-    
+}
+
+p {
+    font-family: sans-serif;
+}
+
+ul li {
+    font-family: sans-serif;
 }
