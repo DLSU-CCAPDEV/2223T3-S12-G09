@@ -16,10 +16,40 @@
     align-items: flex-end;
 }
 
-p {
+
+p, h2 {
     font-family: sans-serif;
 }
 
 ul li {
     font-family: sans-serif;
+}
+
+p {
+}
+
+.days-container{
+    display: flex;
+    border: 5px dashed red;
+}
+
+.days {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.days p, .days ul{
+    border: 3px dashed pink;
+/*     width: 500px; */
+}
+
+.days ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.days ul > li {
+    border: 3px dashed red;
 }
