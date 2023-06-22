@@ -28,31 +28,21 @@ ul li {
     font-family: sans-serif;
 }
 
-p {
+.seats-container, .lab-seat {
+    padding: 5px 10px;
 }
 
-.days-container{
+.seats-container {
     display: flex;
-    border: 5px dashed red;
-}
-
-.days {
-    display: flex;
+    border: 1px solid black;
     flex-direction: column;
-    flex-grow: 1;
 }
 
-.days p, .days ul{
-    border: 3px dashed pink;
-/*     width: 500px; */
+.seats-container > .bottom-div {
+    display: flex;
+    flex-direction: row;
 }
 
-.days ul {
-    list-style-type: none;
-    padding: 0px;
-    margin: 0px;
-}
-
-.days ul > li {
-    border: 3px dashed red;
+.top-div-items {
+    margin: 5px 10px;
 }
