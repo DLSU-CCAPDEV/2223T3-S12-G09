@@ -25,7 +25,12 @@ function handleRegister(event) {
     passwordInput.value = "";
     acc_typeArray.push(acc_Type);
 
+
     console.log("Email registered: " + email);
     console.log("Password registered: " + password);
     console.log("Account type registered: " + acc_Type);
 }
+
+var register_acc = document.getElementById("register_acc");
+register_acc.addEventListener("submit", handleRegister);
+
