@@ -9,7 +9,7 @@ class Links {
 const links = [
     new Links("index.html", "Home", "_self"),
     new Links("register.html", "Register", "_blank"),
-    new Links("login.html", "Login", "_blank"),
+    new Links("login.html", "Login", "_blank")
 ];
 
 /*
