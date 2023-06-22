@@ -1,14 +1,28 @@
 const daysContainer = document.querySelectorAll(".days-container");
 
 daysContainer.forEach(function(container, index, array) {
+    const formSlot = document.createElement("form");
+    const dateSlot = document.createElement("input");
+
+    formSlot.classList.add("form-slot");
+    formSlot.name = "filter-slot";
+    formSlot.appendChild(dateSlot);
+
+    dateSlot.type = "date";
+    container.appendChild(formSlot);
+
+    const dayItem = document.createElement("div");
+    dayItem.classList.add("slot-grid");
+
+
     for (let i = 1; i <= 7; i++) {
-        const dayItem = document.createElement("div");
         const id = "lab-" + (index + 1) + "-day-" + i + "-slots";
         const dayLabel = document.createElement("p");
         const slotList = document.createElement("ul");
         const slotListItem = [];
 
-        dayItem.classList.add("days");
+
+
         dayItem.id = id;
         dayLabel.innerText = "Day " + i;
 
@@ -23,3 +37,7 @@ daysContainer.forEach(function(container, index, array) {
         container.appendChild(dayItem);
     }
 });
+
+function updateGrid() {
+
+}
