@@ -114,9 +114,13 @@ containers.forEach(function(container, index, array) {
             checkbox.id = "seat-" + (i + 1) + "-lab-" + (index + 1) + "-time-" + (j + 1);
 
             const label = document.createElement("label");
-            slotDiv.appendChild(label);
+            const labelLink = document.createElement("a");
+            slotDiv.appendChild(labelLink);
+            labelLink.appendChild(label);
             label.htmlFor = checkbox.id;
             label.innerText = h + ":";
+
+            labelLink.href = "#";
 
             if (half == true) {
                 label.innerText += "30";
