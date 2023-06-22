@@ -1,13 +1,3 @@
-class User{
-    constructor(email, password, acc_type){
-        this.email = email;
-        this.password = password;
-        this.acc_type = acc_type;
-    }
-}
-
-var user_array = [];
-
 function handleRegister(event) {
     event.preventDefault();
 
@@ -24,7 +14,7 @@ function handleRegister(event) {
     }
 
     var new_user = new User(email, password, acc_Type);
-    user_array.push(new_user);
+    store_user(new_user);
 
     console.log("Email registered: " + new_user.email);
     console.log("Password registered: " + new_user.password);
