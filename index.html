@@ -21,6 +21,8 @@
             <ul class="nav-ul">
                 <li><button id="register-button">Register</button></li>
                 <li><button id="login-button">Login</button></li>
+                <li><button id="logout-button">Logout</button></li>
+                <li><button id="delete-button">Delete</button></li>
             </ul>
 
         </div>
@@ -51,6 +53,30 @@
                     <input type="email" id="log_email_ID" placeholder="Enter your email"><br>
                     <input type="password" id="log_password_ID" placeholder="Enter your password"><br>
                     <input type="submit" value="Login">
+                </form>
+                <script src="js/registerAndLogin.js"></script>
+            </div>
+
+        </div>
+        <div id="logout-modal" class="modal">
+
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Logout!</h2>
+                <form id="logout_acc">
+                    <input type="submit" id="logout_ID" value="Logout">
+                </form>
+                <script src="js/registerAndLogin.js"></script>
+            </div>
+
+        </div>
+        <div id="delete-modal" class="modal">
+
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Delete!</h2>
+                <form id="delete_acc">
+                    <input type="submit" id="delete_ID" value="Delete">
                 </form>
                 <script src="js/registerAndLogin.js"></script>
             </div>
