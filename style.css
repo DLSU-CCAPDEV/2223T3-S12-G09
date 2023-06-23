@@ -76,11 +76,16 @@ ul li {
     flex-direction: column;
 }
 
-.seats-item {
+.seats-status {
     display: inline-block;
     width: 10px;
     height: 10px;
     background-color: lightgray;
+    margin-right: 10px;
+}
+
+.reserve-button {
+    margin-left: 10px;
 }
 
 button.view {
@@ -128,3 +133,4 @@ button.view {
     text-decoration: none;
     cursor: pointer;
 }
+

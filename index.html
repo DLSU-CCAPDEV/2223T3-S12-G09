@@ -2,25 +2,24 @@
 
 <html>
     <head>
-        <title>Laboratory</title>
+        <title>Laboratory | Contacts</title>
         <script src="js/registerAndLogin.js"></script>
         <script src="js/test.js" type="text/javascript"></script>
-        <script src="js/nav.js" type="text/javascript"></script>
+        <script src="js/jquery-3.7.0.js"></script>
         <link  rel="stylesheet" type="text/css" href="style.css">
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body onload="loadLinks()">
-        
+    <body>
+
         <div id="header">
             <span class="htext">Lab Reservation</span>
-            <ul class="nav-ul">
-                <li><a href="#index">Home</a></li>
-                <li><a href="#lab">Labs</a></li>
-                <li><a href="#contact">Contact</a></li>
-                
+            <ul class="nav-ul" id="nav-ul">
+
+
             </ul>
+            <script src="js/nav.js" type="text/javascript"></script>
             <ul class="nav-ul">
                 <li><button id="register-button">Register</button></li>
                 <li><button id="login-button">Login</button></li>
@@ -61,107 +60,7 @@
             </div>
 
         </div>
-
-        <h1>Seat Availability</h1>
-        <div class="lab-container">
-            <div class="lab-item">
-                <h2 id="lab-1">Lab 1</h2>
-                <div class="avail-container">
-                    <input type="datetime-local">
-                    <button class="view">View</button>
-                    <div class="seats-list">
-                        <h2>
-                            <div class="seats-item"></div>
-                            Seat 1
-                            <button>Reserve</button>
-                        </h2>
-                        <h2>
-                            <div class="seats-item"></div>
-                            Seat 2
-                            <button>Reserve</button>
-                        </h2>
-                        <h2>
-                            <div class="seats-item"></div>
-                            Seat 3
-                            <button>Reserve</button>
-                        </h2>
-                        <h2>
-                            <div class="seats-item"></div>
-                            Seat 3
-                            <button>Reserve</button>
-                        </h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="lab-item">
-                <h2 id="lab-2">Lab 2</h2>
-                <div class="avail-container">
-                    <input type="datetime-local">
-                    <button class="view">View</button>
-                    <div class="seats-list">
-                        <h2>
-                            <div class="seats-item"></div>
-                            Seat 1
-                            <button>Reserve</button>
-                        </h2>
-                        <h2>
-                            <div class="seats-item"></div>
-                            Seat 2
-                            <button>Reserve</button>
-                        </h2>
-                        <h2>
-                            <div class="seats-item"></div>
-                            Seat 3
-                            <button>Reserve</button>
-                        </h2>
-                        <h2>
-                            <div class="seats-item"></div>
-                            Seat 3
-                            <button>Reserve</button>
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="lab-item">
-                <h2 id="lab-3">Lab 3</h2>
-                <div class="avail-container">
-                    <input type="datetime-local">
-                    <button class="view">View</button>
-                    <div class="seats-list">
-                        <h2>
-                            <div class="seats-item"></div>
-                            Seat 1
-                            <button>Reserve</button>
-                        </h2>
-                        <h2>
-                            <div class="seats-item"></div>
-                            Seat 2
-                            <button>Reserve</button>
-                        </h2>
-                        <h2>
-                            <div class="seats-item"></div>
-                            Seat 3
-                            <button>Reserve</button>
-                        </h2>
-                        <h2>
-                            <div class="seats-item"></div>
-                            Seat 3
-                            <button>Reserve</button>
-                        </h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--<div class="seats-container" id="container-1-lab-1">
-        </div>
-
-        <div class="seats-container">
-        </div>
-
-        <div class="seats-container">
-        </div>-->
-
+        <h1> Home </h2>
 <!--         <script src="js/slots.js" type="text/javascript"></script> -->
     </body>
 </html>
