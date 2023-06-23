@@ -1,10 +1,11 @@
 #header{
     position: sticky;
     top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background: cyan; 
     display: flex;
-    flex-direction: row;
-    background-color: cyan; 
-    border: solid 1px gray;
     align-items: center;
 }
 
@@ -25,8 +26,8 @@ p, h2 {
 
 .nav-ul {
     list-style-type: none;
-    margin: 0;
-    padding:0;
+    margin: 0px;
+    padding: 0px;
     overflow: hidden;
     background-color: #333
 }
@@ -43,40 +44,46 @@ p, h2 {
     text-decoration: none;
 }
 
-.nav-ul li button {
-    display: block;
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
 
-.nav-ul li a:hover, .nav-ul li button:hover {
+.nav-ul li a:hover {
     background-color: cyan;
+    cursor: pointer;
 }
 
 ul li {
     font-family: sans-serif;
 }
 
-.seats-container, .lab-seat {
-    padding: 5px 10px;
+.lab-container {
+    display:flex;
+    justify-content: stretch;
+}
+
+.avail-container {
+    padding:1em 2em;
+/*     border: 3px solid black */
 }
 
 .seats-container {
     display: flex;
-    border: 1px solid black;
+    justify-content: space-evenly;
     flex-direction: column;
 }
 
-.seats-container > .bottom-div {
-    display: flex;
-    flex-direction: row;
+.seats-status {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: lightgray;
+    margin-right: 10px;
 }
 
-.top-div-items {
-    margin: 5px 10px;
+.reserve-button {
+    margin-left: 10px;
+}
+
+button.view {
+    padding: 0px 10px;
 }
 
 /*------------------------  MODAL LOGIN AND REGISTER -----------*/
@@ -120,3 +127,4 @@ ul li {
     text-decoration: none;
     cursor: pointer;
 }
+
