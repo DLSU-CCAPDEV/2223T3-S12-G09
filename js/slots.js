@@ -108,15 +108,33 @@ containers.forEach(function(container, index, array) {
         for (var j = 0, h = start_hour, half = false;
             h <= end_hour;
             j++, half = !half) {
-            const checkbox = document.createElement("input");
-            slotDiv.appendChild(checkbox);
-            checkbox.type = "checkbox";
-            checkbox.id = "seat-" + (i + 1) + "-lab-" + (index + 1) + "-time-" + (j + 1);
+            // const checkbox = document.createElement("input");
+            // slotDiv.appendChild(checkbox);
+            // checkbox.type = "checkbox";
+            // checkbox.id = "seat-" + (i + 1) + "-lab-" + (index + 1) + "-time-" + (j + 1);
+            const slotFlex = document.createElement("div");
+            slotDiv.appendChild(slotFlex);
+            slotFlex.style.display = "flex";
+            slotFlex.style.flexDirection = "row";
+            slotFlex.style.alignItems = "center";
 
-            const label = document.createElement("label");
-            slotDiv.appendChild(label);
-            label.htmlFor = checkbox.id;
+            const iconStatus = document.createElement("div");
+            iconStatus.style.display = "inline-block";
+            iconStatus.style.width = "10px";
+            iconStatus.style.height = "10px";
+            iconStatus.style.backgroundColor = "lime";
+            iconStatus.style.margin = "5px 10px";
+
+            slotFlex.appendChild(iconStatus);
+
+            const label = document.createElement("p");
+            const labelLink = document.createElement("a");
+            slotFlex.appendChild(labelLink);
+            labelLink.appendChild(label);
+            // label.htmlFor = checkbox.id;
             label.innerText = h + ":";
+
+            labelLink.href = "#";
 
             if (half == true) {
                 label.innerText += "30";
@@ -126,8 +144,8 @@ containers.forEach(function(container, index, array) {
                 label.innerText += "00";
             }
 
-            const br = document.createElement("br");
-            slotDiv.appendChild(br);
+            // const br = document.createElement("br");
+            // slotDiv.appendChild(br);
         }
 
     }

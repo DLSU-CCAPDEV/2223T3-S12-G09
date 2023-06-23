@@ -8,8 +8,8 @@ class Links {
 
 const links = [
     new Links("index.html", "Home", "_self"),
-    new Links("register.html", "Register", "_blank"),
-    new Links("login.html", "Login", "_blank"),
+    new Links("labs.html", "Labs", "_blank"),
+    new Links("contacts.html", "Contacts", "_blank")
 ];
 
 /*
@@ -21,24 +21,17 @@ const links = [
  <span class="hnav">Login</span>
  */
 
-function loadLinks() {
-    console.log(document.documentURI)
+const ul = document.querySelector("#nav-ul");
 
-    const spanNav = [];
-    const aNav = [];
-    const spanTarget = document.querySelector("#hlinks");
-    links.forEach(function(currentValue, index, array) {
-        spanNav.push(document.createElement("span"));
-        spanNav[index].classList = "hnav";
+links.forEach(function(currentValue, index, array) {
+    // <li><a href="#index">Home</a></li>
+    // <li><a href="#lab">Labs</a></li>
+    // <li><a href="#contact">Contact</a></li>
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = currentValue.links;
+    a.innerText = currentValue.name;
 
-        aNav.push(document.createElement("a"));
-        aNav[index].appendChild(document.createTextNode(currentValue.name));
-        aNav[index].href = currentValue.links;
-        aNav[index].target = currentValue.target;
-
-        spanNav[index].appendChild(aNav[index]);
-
-        spanTarget.appendChild(spanNav[index]);
-    });
-
-}
+    li.appendChild(a);
+    ul.appendChild(li);
+});
