@@ -4,7 +4,7 @@ class Links {
         this.name = name;
         this.target = target;
     }
-}
+};
 
 const links = [
     new Links("index.html", "Home", "_self"),
