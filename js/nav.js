@@ -21,7 +21,7 @@ const links = [
  <span class="hnav">Login</span>
  */
 
-const ul = document.querySelector("#nav-ul");
+const ul = document.querySelector("#menu");
 
 links.forEach(function(currentValue, index, array) {
     // <li><a href="#index">Home</a></li>
