@@ -4,7 +4,12 @@ var acc_typeArray = ["Student", "Student", "Lab Technician"];
 var currUser; // when logout do currUser = "";
 var currUserAccType; // when logout do currUserAccType = "";
 
+window.addEventListener("click", function(event) {
+    console.log(event.target);
+});
+
 document.addEventListener("DOMContentLoaded", function() {
+
     //register
     var modal_register = document.getElementById("register-modal");
 
@@ -17,21 +22,27 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     span_register.onclick = function(event) {
-       modal_register.style.display = "none";
+        modal_register.style.display = "none";
     }
 
-    window.onclick = function(event) {
-        if(event.target == modal_register){
+    // modal_register.onclick = function(event) {
+    //     modal_register.style.display = "none";
+    // }
+    window.addEventListener("click", function(event) {
+        if (event.target == modal_register) {
             modal_register.style.display = "none";
         }
-    }
+    });
+
+    // modal_register.childNodes[1].onclick = closeRegisterModal;
+
     //login
     var modal_login = document.getElementById("login-modal");
 
     var btn_login = document.getElementById("login-button");
 
     var span_login = document.getElementsByClassName("close")[1];
-    
+
     btn_login.onclick = function() {
         modal_login.style.display = "block";
     }
@@ -40,11 +51,13 @@ document.addEventListener("DOMContentLoaded", function() {
         modal_login.style.display = "none";
     }
 
-    window.onclick = function(event) {
-        if(event.target == modal_login){
+    window.addEventListener("click", function(event) {
+        if (event.target == modal_login) {
             modal_login.style.display = "none";
         }
-    }
+    });
+
+
     //logout 
     var modal_logout = document.getElementById("logout-modal");
 
@@ -57,14 +70,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     span_logout.onclick = function(event) {
-       modal_logout.style.display = "none";
+        modal_logout.style.display = "none";
     }
 
-    window.onclick = function(event) {
-        if(event.target == modal_logout){
+    window.addEventListener("click", function(event) {
+        if (event.target == modal_logout) {
             modal_logout.style.display = "none";
         }
-    }
+    });
+
     //delete
     var modal_delete = document.getElementById("delete-modal");
 
@@ -77,59 +91,60 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     span_delete.onclick = function(event) {
-       modal_delete.style.display = "none";
+        modal_delete.style.display = "none";
     }
 
-    window.onclick = function(event) {
-        if(event.target == modal_delete){
+    window.addEventListener("click", function(event) {
+        if (event.target == modal_delete) {
             modal_delete.style.display = "none";
         }
-    }
+    });
+
     logoutButton();
     deleteButton();
 });
 
-function loginButton(){
+function loginButton() {
     var btn_login = document.getElementById("login-button");
 
-    if(currUser){
+    if (currUser) {
         btn_login.style.display = "none";
-    }else{
+    } else {
         btn_login.style.display = "block";
     }
 }
 
-function registerButton(){
+function registerButton() {
     var btn_register = document.getElementById("register-button");
 
-    if(currUser){
+    if (currUser) {
         btn_register.style.display = "none";
-    }else{
+    } else {
         btn_register.style.display = "block";
     }
 }
 //check
-function logoutButton(){
+function logoutButton() {
     var btn_logout = document.getElementById("logout-button");
 
-    if(currUser){
+    if (currUser) {
         btn_logout.style.display = "block";
-    }else{
+    } else {
         btn_logout.style.display = "none";
     }
 }
 
-function deleteButton(){
+function deleteButton() {
     var btn_delete = document.getElementById("delete-button");
 
-    if(currUser){
+    if (currUser) {
         btn_delete.style.display = "block";
-    }else{
+    } else {
         btn_delete.style.display = "none";
     }
 }
 
-function emailExist(email){
+function emailExist(email) {
     return emailArray.includes(email);
 }
 
@@ -148,7 +163,7 @@ function handleRegister(event) {
         var acc_Type = acc_TypeInput.value;
     }
 
-    if(emailExist(email)){
+    if (emailExist(email)) {
         alert("Email already exist. Please use a different email.");
         return;
     }
@@ -166,7 +181,7 @@ function handleRegister(event) {
 }
 
 //login acc
-function handleLogin(event){
+function handleLogin(event) {
     event.preventDefault();
 
     var emailInput = document.getElementById("log_email_ID");
@@ -180,7 +195,7 @@ function handleLogin(event){
         var password = passwordInput.value;
     }
 
-    if(!emailExist(email)){//problems may occur here
+    if (!emailExist(email)) {//problems may occur here
         alert("Invalid email. Please use an existing email or register email before you login.");
         return;
     }
@@ -192,11 +207,11 @@ function handleLogin(event){
     var desPassword = passwordArray[emailIndex];
     var desAccType = acc_typeArray[emailIndex];
 
-    if(password == desPassword){
+    if (password == desPassword) {
         currUser = email;
         currUserAccType = desAccType;
         alert("User successfully logged in.")
-    }else{
+    } else {
         alert("Incorrect password. Please enter the correct password.");
         return;
     }
@@ -216,12 +231,12 @@ function handleLogin(event){
     deleteButton();
 }
 
-function handleLogout(event){
+function handleLogout(event) {
     event.preventDefault();
 
     var logout = document.getElementById("logout_ID");
-    if(logout){
-        currUser ="";
+    if (logout) {
+        currUser = "";
         currUserAccType = "";
     }
 
@@ -234,7 +249,7 @@ function handleLogout(event){
     deleteButton();
 }
 
-function handleDelete(event){
+function handleDelete(event) {
     event.preventDefault();
 
     var delete_Acc = document.getElementById("delete_ID");
@@ -242,11 +257,11 @@ function handleDelete(event){
     var emailIndex = emailArray.indexOf(currUser);
     var desAccType = acc_typeArray[emailIndex];
 
-    if(desAccType == "Lab Technician"){
+    if (desAccType == "Lab Technician") {
         alert("User account cannot be deleted.")
         return;
-    }else{
-        currUser ="";
+    } else {
+        currUser = "";
         currUserAccType = "";
 
         emailArray.splice(emailIndex, 1);
