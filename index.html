@@ -28,11 +28,14 @@
             </ul>
 
         </div>
+        <!-- <img src="https://images.freeimages.com/images/large-previews/b5e/laughing-otters-1408610.jpg" alt="otter pic" width="200" height="200"><br>
+        <img src="https://m.media-amazon.com/images/M/MV5BNGJmMWEzOGQtMWZkNS00MGNiLTk5NGEtYzg1YzAyZTgzZTZmXkEyXkFqcGdeQXVyMTE1MTYxNDAw._V1_FMjpg_UX1000_.jpg" alt="keanu pic" width="200" height="200"><br>
+        <img src="https://images.freeimages.com/images/large-previews/f41/sea-otters-2-1507561.jpg" alt="otter pic" width="200" height="200"><br> -->
         <div id="register-modal" class="modal">
 
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2>Register!</h2>
+                <h2>Register Account</h2>
                 <form id="register_acc">
                     <input type="email" id="reg_email_ID" placeholder="Enter your email"><br>
                     <input type="password" id="reg_password_ID" placeholder="Enter your password"><br>
@@ -50,7 +53,7 @@
 
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2>Login!</h2>
+                <h2>Login Account</h2>
                 <form id="login_acc">
                     <input type="email" id="log_email_ID" placeholder="Enter your email"><br>
                     <input type="password" id="log_password_ID" placeholder="Enter your password"><br>
@@ -89,16 +92,18 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Profile Account</h2>
+                <img id="acc-pic" src ="" alt="Profile Picture" width="250" height="250">
                 <p id="acc-desc"></p>
                 <form id="profile_acc">
-                    <input type="submit" id="profile_ID" value="Edit">
+                    <input type="submit" id="profile_ID" value="Edit Profile">
                 </form>
                 <script src="js/registerAndLogin.js"></script>
             </div>
-            <div id="edit-profile-modal">
-                <div class="modal-content">
+            <div id="edit-profile-modal" class="modal-edit">
+                <div class="modal-edit-content">
                     <form id="new_profile_acc">
-                        <input type="text" id="edit_prof_desc_ID" placeholder="Enter new account description"><br>
+                        <input type="text" id="edit_prof_pic_ID" placeholder="Enter new account picture url" style="width: 180px;"><br>
+                        <input type="text" id="edit_prof_desc_ID" placeholder="Enter new account description" style="width: 180px;"><br>
                         <input type="submit" value="Submit">
                     </form>
                     <script src="js/registerAndLogin.js"></script>

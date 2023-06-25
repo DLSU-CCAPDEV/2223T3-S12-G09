@@ -2,18 +2,16 @@ var emailArray = ["jj@dlsu.edu.ph", "jojo@dlsu.edu.ph", "jose@dlsu.edu.ph"];
 var passwordArray = ["123", "123", "123"];
 var acc_typeArray = ["Student", "Student", "Lab Technician"];
 var acc_descArray = ["ComSci Student", "ComSci Student", "DLSU Technician"];
-var acc_profpicArray = [];
-var currUser; // when logout do currUser = "";
-var currUserAccType; // when logout do currUserAccType = "";
+var acc_profpicArray = ["https://images.freeimages.com/images/large-previews/b5e/laughing-otters-1408610.jpg", "https://m.media-amazon.com/images/M/MV5BNGJmMWEzOGQtMWZkNS00MGNiLTk5NGEtYzg1YzAyZTgzZTZmXkEyXkFqcGdeQXVyMTE1MTYxNDAw._V1_FMjpg_UX1000_.jpg", "https://images.freeimages.com/images/large-previews/f41/sea-otters-2-1507561.jpg"];
+var currUser;
+var currUserAccType;
 var currUserAccDesc; 
 var currUserAccProfPic;
 
 document.addEventListener("DOMContentLoaded", function() {
     //register
     var modal_register = document.getElementById("register-modal");
-
     var btn_register = document.getElementById("register-button");
-
     var span_register = document.getElementsByClassName("close")[0];
 
     btn_register.onclick = function() {
@@ -29,11 +27,10 @@ document.addEventListener("DOMContentLoaded", function() {
             modal_register.style.display = "none";
         }
     }
+
     //login
     var modal_login = document.getElementById("login-modal");
-
     var btn_login = document.getElementById("login-button");
-
     var span_login = document.getElementsByClassName("close")[1];
     
     btn_login.onclick = function() {
@@ -49,11 +46,10 @@ document.addEventListener("DOMContentLoaded", function() {
             modal_login.style.display = "none";
         }
     }
+
     //logout 
     var modal_logout = document.getElementById("logout-modal");
-
     var btn_logout = document.getElementById("logout-button");
-
     var span_logout = document.getElementsByClassName("close")[2];
 
     btn_logout.onclick = function() {
@@ -69,11 +65,10 @@ document.addEventListener("DOMContentLoaded", function() {
             modal_logout.style.display = "none";
         }
     }
+
     //delete
     var modal_delete = document.getElementById("delete-modal");
-
     var btn_delete = document.getElementById("delete-button");
-
     var span_delete = document.getElementsByClassName("close")[3];
 
     btn_delete.onclick = function() {
@@ -89,11 +84,10 @@ document.addEventListener("DOMContentLoaded", function() {
             modal_delete.style.display = "none";
         }
     }
+
     //profile
     var modal_profile = document.getElementById("profile-modal");
-
     var btn_profile = document.getElementById("profile-button");
-
     var span_profile = document.getElementsByClassName("close")[4];
 
     btn_profile.onclick = function() {
@@ -101,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     span_profile.onclick = function(event) {
-       modal_profile.style.display = "none"; //changed from block to none
+       modal_profile.style.display = "none";
     }
 
     window.onclick = function(event) {
@@ -109,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function() {
             modal_profile.style.display = "none";
         }
     }
+
     logoutButton();
     deleteButton();
     profileButton();
@@ -133,7 +128,7 @@ function registerButton(){
         btn_register.style.display = "block";
     }
 }
-//check
+
 function logoutButton(){
     var btn_logout = document.getElementById("logout-button");
 
@@ -174,6 +169,7 @@ function handleRegister(event) {
     var emailInput = document.getElementById("reg_email_ID");
     var passwordInput = document.getElementById("reg_password_ID");
     var acc_TypeInput = document.querySelector("input[name='reg_acc_type']:checked");
+
     if (!emailInput.value || !passwordInput.value || !acc_TypeInput) {
         //alert("Unable to register account. One or more details are missing!");
         return;
@@ -203,7 +199,6 @@ function handleRegister(event) {
     modal_register.style.display = "none";
 }
 
-//login acc
 function handleLogin(event){
     event.preventDefault();
 
@@ -223,36 +218,39 @@ function handleLogin(event){
         return;
     }
 
-    //what now how do i say it is logged in or how do i proceed with it
-    //it will go to home page afterwards
-    //input here
     var emailIndex = emailArray.indexOf(email);
     var desPassword = passwordArray[emailIndex];
     var desAccType = acc_typeArray[emailIndex];
     var desAccDesc = acc_descArray[emailIndex];
+    var desAccPic = acc_profpicArray[emailIndex];
 
     if(password == desPassword){
         currUser = email;
         currUserAccType = desAccType;
         currUserAccDesc = desAccDesc;
+        currUserAccProfPic = desAccPic;
         //alert("User successfully logged in.")
     }else{
         //alert("Incorrect password. Please enter the correct password.");
         return;
     }
+
     //prof
     var acc_desc = document.getElementById("acc-desc");
-
+    var acc_pic = document.getElementById("acc-pic");
     var edit_modal_profile = document.getElementById("edit-profile-modal");
+    var modal_login = document.getElementById("login-modal");
 
     if(acc_desc){
         acc_desc.innerText = currUserAccDesc;
     }
+    if(acc_pic){
+        acc_pic.src = currUserAccProfPic;
+    }
     
     edit_modal_profile.style.display = "none";
+    modal_login.style.display = "none";
     
-
-    //currUser = email;
     emailInput.value = "";
     passwordInput.value = "";
 
@@ -260,9 +258,6 @@ function handleLogin(event){
     console.log("User successfully logged in.");
     console.log("Email registered: " + email);
     console.log("Password registered: " + password);
-
-    var modal_login = document.getElementById("login-modal");//remember this part
-    modal_login.style.display = "none";
 
     loginButton();
     registerButton();
@@ -275,17 +270,17 @@ function handleLogout(event){
     event.preventDefault();
 
     var logout = document.getElementById("logout_ID");
+
     if(logout){
         currUser ="";
         currUserAccType = "";
         currUserAccDesc = "";
     }
 
+    modal_logout.style.display = "none";
+
     //delete afterwards>
     console.log("User successfully logged out.");
-
-    var modal_logout = document.getElementById("logout-modal");
-    modal_logout.style.display = "none";
 
     loginButton();
     registerButton();
@@ -298,7 +293,7 @@ function handleDelete(event){
     event.preventDefault();
 
     var delete_Acc = document.getElementById("delete_ID");
-
+    var modal_delete = document.getElementById("delete-modal");
     var emailIndex = emailArray.indexOf(currUser);
     var desAccType = acc_typeArray[emailIndex];
 
@@ -316,12 +311,11 @@ function handleDelete(event){
         acc_typeArray.splice(emailIndex, 1);
     }
 
-    //delete afterwards?
-    console.log("User successfully deleted out.");
-
-    var modal_delete = document.getElementById("delete-modal");
     modal_delete.style.display = "none";
 
+    //delete afterwards?
+    console.log("User successfully deleted out."); 
+    
     loginButton();
     registerButton();
     logoutButton();
@@ -343,26 +337,28 @@ function handleProfileEdit(event){ //maybbe use onclick???
     event.preventDefault();
 
     var new_acc_desc = document.getElementById("edit_prof_desc_ID");
-
+    var new_acc_pic = document.getElementById("edit_prof_pic_ID");
     var acc_desc = document.getElementById("acc-desc");
-
+    var acc_pic = document.getElementById("acc-pic");
     var edit_modal_profile = document.getElementById("edit-profile-modal");
-    //var edit_modal_profile = document.getElementById("new_profile_acc");
-
     var emailIndex = emailArray.indexOf(currUser);
+    var modal_profile = document.getElementById("profile-modal");
     
-    if(new_acc_desc){
+    if(new_acc_desc.value != ""){
         currUserAccDesc = new_acc_desc.value;
         acc_desc.innerText = currUserAccDesc;
         acc_descArray[emailIndex] = new_acc_desc.value;
     }
 
+    if(new_acc_pic.value != ""){
+        currUserAccProfPic = new_acc_pic.value;
+        acc_pic.src = currUserAccProfPic;
+        acc_profpicArray[emailIndex] = new_acc_pic.value;
+    }
+
     edit_modal_profile.style.display = "none";
-    document.getElementById("new_profile_acc").reset();
-
-    var modal_profile = document.getElementById("profile-modal");
     modal_profile.style.display = "none";
-
+    document.getElementById("new_profile_acc").reset();  
 }
 
 var register_acc = document.getElementById("register_acc");
