@@ -35,10 +35,11 @@ labH1.id = "chosen-lab";
 //     seatH1.innerText = seatIdx;
 //     labH1.innerText = labIdx;
 // }
-function test(obj) {
-    alert(obj.idx);
-    obj.style.backgroundColor = "red";
+function test(labIdx) {
+    alert(labIdx["lab-radio"].value);
+    console.log(labIdx["lab-radio"].value);
+    // obj.style.backgroundColor = "red";
     reserveDiv.style.display = "block";
-    seatH1.innerText = seatIdx;
-    labH1.innerText = labIdx;
+    // seatH1.innerText = seatIdx;
+    // labH1.innerText = labIdx;
 }
