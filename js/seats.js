@@ -1,6 +1,16 @@
 const lab = document.querySelector("#lab-container");
 const seatNum = 5;
 
+class Seat {
+    constructor(idx, lab, div) {
+        this.idx = idx;
+        this.lab = lab;
+        this.div = div;
+    }
+}
+
+const seatArray = [];
+
 for (var labIdx = 0; labIdx < 3; labIdx++) {
     const labItem = document.createElement("div");
     lab.appendChild(labItem);
@@ -33,9 +43,10 @@ for (var labIdx = 0; labIdx < 3; labIdx++) {
     availCounter.appendChild(seatsList);
     availCounter.classList.add("seats-list");
 
-    const reserveButtonList = [];
+    // const reserveButtonList = [];
 
     for (var seatIdx = 0; seatIdx < seatNum; seatIdx++) {
+
         const seatsH2 = document.createElement("h2");
         seatsList.appendChild(seatsH2);
 
@@ -43,20 +54,20 @@ for (var labIdx = 0; labIdx < 3; labIdx++) {
         seatStatus.classList.add("seats-status");
         seatsH2.appendChild(seatStatus);
 
+
         seatsH2.appendChild(document.createTextNode("Seat " + (seatIdx + 1)));
 
+
         const reserveButton = document.createElement("button");
-        const aButton = document.createElement("a");
-        seatsH2.appendChild(aButton);
-        aButton.appendChild(reserveButton);
-        aButton.href = "register.html"
+        seatsH2.appendChild(reserveButton);
         reserveButton.classList.add("reserve-button");
         reserveButton.innerText = "Reserve";
         reserveButton.id = "lab-" + (labIdx + 1) + "-seat-" + (seatIdx + 1);
 
-        // reserveButton.addEventListener("click",
-        //     function() { alert(reserveButton.id) });
+        seatArray.push(new Seat(labIdx, seatIdx, seatsList));
 
-        reserveButtonList.push(reserveButton);
+        reserveButton.addEventListener("click", function() { test(labIdx, seatIdx) });
+
+        // reserveButtonList.push(reserveButton);
     }
 }
