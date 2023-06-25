@@ -21,8 +21,23 @@ labH1.id = "chosen-lab";
 //     labH1.innerText = obj.lab;
 // }
 
-function test(labIdx, seatIdx) {
-    alert(labIdx + ", " + seatIdx);
+// function test(labIdx, seatIdx) {
+//     alert(labIdx + ", " + seatIdx);
+//     reserveDiv.style.display = "block";
+//     seatH1.innerText = seatIdx;
+//     labH1.innerText = labIdx;
+// }
+
+// function test(obj) {
+//     alert(obj.idx);
+//     obj.style.backgroundColor = "red";
+//     reserveDiv.style.display = "block";
+//     seatH1.innerText = seatIdx;
+//     labH1.innerText = labIdx;
+// }
+function test(obj) {
+    alert(obj.idx);
+    obj.style.backgroundColor = "red";
     reserveDiv.style.display = "block";
     seatH1.innerText = seatIdx;
     labH1.innerText = labIdx;
