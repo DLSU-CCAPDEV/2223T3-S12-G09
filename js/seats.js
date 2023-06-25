@@ -88,5 +88,5 @@ for (var labIdx = 0; labIdx < 3; labIdx++) {
 
     // availCounter.appendChild(document.createTextNode(current.idx + 1))
 
-    reserveButton.addEventListener("click", function() { test(formSeat) });
+    reserveButton.addEventListener("click", function() { showReserve(formSeat, labIdx) });
 }

@@ -35,11 +35,17 @@ labH1.id = "chosen-lab";
 //     seatH1.innerText = seatIdx;
 //     labH1.innerText = labIdx;
 // }
-function test(labIdx) {
-    alert(labIdx["lab-radio"].value);
-    console.log(labIdx["lab-radio"].value);
-    // obj.style.backgroundColor = "red";
+function showReserve(labform) {
+    const radioForm = labform["lab-radio"];
+    const radioValue = radioForm.value;
+
+    alert(radioValue);
+    console.log(radioValue);
+
     reserveDiv.style.display = "block";
-    // seatH1.innerText = seatIdx;
-    // labH1.innerText = labIdx;
+
+    const labIdx = labform.id.substr(4, 1);
+    labH1.innerText = labIdx;
+
+    seatH1.innerText = radioValue;
 }
