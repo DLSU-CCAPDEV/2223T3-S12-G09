@@ -44,11 +44,20 @@ for (var labIdx = 0; labIdx < 3; labIdx++) {
     availCounter.classList.add("seats-list");
 
     // const reserveButtonList = [];
+    const formSeat = document.createElement("form");
+    seatsList.appendChild(formSeat);
+    formSeat.idx = "lab-" + labIdx + "-form";
 
     for (var seatIdx = 0; seatIdx < seatNum; seatIdx++) {
 
         const seatsH2 = document.createElement("h2");
-        seatsList.appendChild(seatsH2);
+        formSeat.appendChild(seatsH2);
+
+        const selectRadio = document.createElement("input");
+        seatsH2.appendChild(selectRadio);
+        selectRadio.type = "radio";
+        selectRadio.id = "lab-" + labIdx + "-seat-" + seatIdx + "-radio";
+        selectRadio.name = "lab-" + labIdx + "-radio";
 
         const seatStatus = document.createElement("div");
         seatStatus.classList.add("seats-status");
@@ -57,17 +66,20 @@ for (var labIdx = 0; labIdx < 3; labIdx++) {
 
         seatsH2.appendChild(document.createTextNode("Seat " + (seatIdx + 1)));
 
-
-        const reserveButton = document.createElement("button");
-        seatsH2.appendChild(reserveButton);
-        reserveButton.classList.add("reserve-button");
-        reserveButton.innerText = "Reserve";
-        reserveButton.id = "lab-" + (labIdx + 1) + "-seat-" + (seatIdx + 1);
-
-        seatArray.push(new Seat(labIdx, seatIdx, seatsList));
-
-        reserveButton.addEventListener("click", function() { test(labIdx, seatIdx) });
-
         // reserveButtonList.push(reserveButton);
     }
+
+    const reserveButton = document.createElement("button");
+    availCounter.appendChild(reserveButton);
+    reserveButton.classList.add("reserve-button");
+    reserveButton.innerText = "Reserve";
+    reserveButton.id = "lab-" + (labIdx + 1) + "-seat-" + (seatIdx + 1);
+
+    // seatArray.push(new Seat(seatIdx, labIdx, seatsList));
+
+    // const current = seatArray[seatArray.length - 1];
+
+    // availCounter.appendChild(document.createTextNode(current.idx + 1))
+
+    reserveButton.addEventListener("click", function() { test(labIdx) });
 }
