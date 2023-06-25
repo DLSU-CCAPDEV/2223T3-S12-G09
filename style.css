@@ -100,7 +100,7 @@ button.view {
     overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
-
+    
 }
 
 .modal-content {
@@ -153,3 +153,21 @@ button.view {
     cursor: pointer;
 }
 
+/*#edit-profile-modal .close {
+    color: #aaaaaa;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#edit-profile-modal .close:hover, #edit-profile-modal .close:focus {
+    color: #000;
+}
+
+#edit-profile-modal .close:hover, #edit-profile-modal .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}*/

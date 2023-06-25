@@ -25,12 +25,10 @@
                 <li><button id="logout-button">Logout</button></li>
                 <li><button id="delete-button">Delete</button></li>
                 <li><button id="profile-button">Profile</button></li>
+                <li><button id="edit-profile-button"></button></li>
             </ul>
 
         </div>
-        <!-- <img src="https://images.freeimages.com/images/large-previews/b5e/laughing-otters-1408610.jpg" alt="otter pic" width="200" height="200"><br>
-        <img src="https://m.media-amazon.com/images/M/MV5BNGJmMWEzOGQtMWZkNS00MGNiLTk5NGEtYzg1YzAyZTgzZTZmXkEyXkFqcGdeQXVyMTE1MTYxNDAw._V1_FMjpg_UX1000_.jpg" alt="keanu pic" width="200" height="200"><br>
-        <img src="https://images.freeimages.com/images/large-previews/f41/sea-otters-2-1507561.jpg" alt="otter pic" width="200" height="200"><br> -->
         <div id="register-modal" class="modal">
 
             <div class="modal-content">
@@ -43,7 +41,7 @@
                     <input type="radio" id="reg_student" name="reg_acc_type" value="Student">
                     <label for="lab_technician"> Lab Technician </label>
                     <input type="radio" id="reg_lab_technician" name="reg_acc_type" value="Lab Technician"><br>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Register" id="register_ID">
                 </form>
                 <script src="js/registerAndLogin.js"></script>
             </div>
@@ -57,7 +55,7 @@
                 <form id="login_acc">
                     <input type="email" id="log_email_ID" placeholder="Enter your email"><br>
                     <input type="password" id="log_password_ID" placeholder="Enter your password"><br>
-                    <input type="submit" value="Login">
+                    <input type="submit" value="Login" id="login_ID">
                 </form>
                 <script src="js/registerAndLogin.js"></script>
             </div>
@@ -101,10 +99,12 @@
             </div>
             <div id="edit-profile-modal" class="modal-edit">
                 <div class="modal-edit-content">
+                    <!--<button id="edit-profile-button"></button>-->
+                    <span class="close">&times;</span>
                     <form id="new_profile_acc">
                         <input type="text" id="edit_prof_pic_ID" placeholder="Enter new account picture url" style="width: 180px;"><br>
                         <input type="text" id="edit_prof_desc_ID" placeholder="Enter new account description" style="width: 180px;"><br>
-                        <input type="submit" value="Submit">
+                        <input type="submit" id="edit_profile_ID" value="Submit">
                     </form>
                     <script src="js/registerAndLogin.js"></script>
                 </div>
