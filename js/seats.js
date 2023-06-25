@@ -41,31 +41,38 @@ for (var labIdx = 0; labIdx < 3; labIdx++) {
     // seats-list
     const seatsList = document.createElement("div");
     availCounter.appendChild(seatsList);
-    availCounter.classList.add("seats-list");
+    seatsList.classList.add("seats-list");
 
     // const reserveButtonList = [];
     const formSeat = document.createElement("form");
     seatsList.appendChild(formSeat);
-    formSeat.idx = "lab-" + labIdx + "-form";
+    formSeat.id = "lab-" + (labIdx + 1) + "-form";
 
     for (var seatIdx = 0; seatIdx < seatNum; seatIdx++) {
-
-        const seatsH2 = document.createElement("h2");
-        formSeat.appendChild(seatsH2);
+        const seatDiv = document.createElement("div");
+        formSeat.appendChild(seatDiv);
+        seatDiv.style.display = "flex";
+        seatDiv.style.alignItems = "center";
 
         const selectRadio = document.createElement("input");
-        seatsH2.appendChild(selectRadio);
+        seatDiv.appendChild(selectRadio);
         selectRadio.type = "radio";
         selectRadio.id = "lab-" + labIdx + "-seat-" + seatIdx + "-radio";
-        selectRadio.name = "lab-" + labIdx + "-radio";
+        selectRadio.value = seatIdx + 1;
+        // selectRadio.name = "lab-" + labIdx + "-radio";
+        selectRadio.name = "lab-radio";
 
         const seatStatus = document.createElement("div");
         seatStatus.classList.add("seats-status");
-        seatsH2.appendChild(seatStatus);
+        seatDiv.appendChild(seatStatus);
 
+        const seatLabel = document.createElement("label");
+        seatDiv.appendChild(seatLabel);
+        seatLabel.htmlFor = selectRadio.id;
 
+        const seatsH2 = document.createElement("h2");
+        seatLabel.appendChild(seatsH2);
         seatsH2.appendChild(document.createTextNode("Seat " + (seatIdx + 1)));
-
         // reserveButtonList.push(reserveButton);
     }
 
@@ -81,5 +88,5 @@ for (var labIdx = 0; labIdx < 3; labIdx++) {
 
     // availCounter.appendChild(document.createTextNode(current.idx + 1))
 
-    reserveButton.addEventListener("click", function() { test(labIdx) });
+    reserveButton.addEventListener("click", function() { test(formSeat) });
 }
