@@ -87,9 +87,88 @@
         <div class="lab-container" id="lab-container"></div>
 
         <div id="reserve-container">
-            <!--<h1>Reserve <span id="chosen-seat"></span> at <span id="chosen-lab"></span></h1>
+            <h1>Reserve Seat <span id="chosen-seat">1</span> at Lab <span id="chosen-lab">1</span></h1>
             <form>
-            </form>-->
+                <label>From: </label>
+                <select class="crap-time" id="from-time">
+                    <option disabled>Select time</option>
+                </select>
+
+                <label>To: </label>
+                <select class="crap-time" id="to-time">
+                    <option disabled>Select time</option>
+                </select>
+                <input type="button" onclick="test()" value="Same time"> <br>
+
+                <input type="submit" value="Reserve">
+                <script>
+                    const list = document.querySelectorAll(".crap-time");
+                    // console.log(list);
+
+                    list.forEach(function(listElement, index, array) {
+                        listElement.addEventListener("change", checkValidTimeRange);
+                        listUp(listElement);
+                    });
+
+                    function checkValidTimeRange() {
+                        const fromTime = document.getElementById("from-time");
+                        const toTime = document.getElementById("to-time");
+
+                        const fromValue = Number(fromTime.value);
+                        const toValue = Number(toTime.value);
+
+                        console.log(fromValue);
+                        console.log(toValue);
+
+                        if (fromValue > toValue) {
+                            toTime.value = fromTime.value;
+                        }
+                    }
+
+                    function test() {
+                        const fromTime = document.getElementById("from-time");
+                        const toTime = document.getElementById("to-time");
+                        fromTime.value = toTime.value;
+                    }
+
+                    function listUp(listItem) {
+                        for (var i = 7; i < 21; i++) {
+                            console.log(i);
+                            var hour = i;
+                            var hourOutput = hour;
+                            var amPM = "am";
+                            if (hour > 11) {
+                                amPM = "pm";
+
+                                if (hour > 12)
+                                    hourOutput -= 12;
+                            }
+                            for (var j = 0; j < 2; j++) {
+                                const option = document.createElement("option");
+                                const minute = j * 30;
+                                var minuteOutput;
+
+                                option.value = hour + "" + minuteOutput;
+
+                                if (minute < 9) {
+                                    minuteOutput = "0" + minute;
+                                }
+                                else {
+                                    minuteOutput = minute;
+                                }
+
+                                const output = hourOutput + ":" + minuteOutput + amPM;
+
+
+                                listItem.appendChild(option);
+                                option.appendChild(document.createTextNode(output));
+
+                                option.value = hour + "" + minuteOutput;
+                            }
+                        }
+                    }
+                </script>
+            </form>
         </div>
 
         <script src="js/seats.js" type="text/javascript"></script>
