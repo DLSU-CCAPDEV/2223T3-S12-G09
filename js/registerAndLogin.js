@@ -4,6 +4,7 @@ var acc_typeArray = ["Student", "Student", "Student", "Student", "Lab Technician
 var acc_descArray = ["ComSci Student", "ComSci Student", "ComSci Student", "ComSci Student", "DLSU Technician"];
 var acc_profpicArray = ["https://images.freeimages.com/images/large-previews/b5e/laughing-otters-1408610.jpg", "", "https://myfox8.com/wp-content/uploads/sites/17/2022/08/All-Three-Best.jpg", 
                         "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Bruce_Wayne_%28The_Dark_Knight_Trilogy%29.jpg/220px-Bruce_Wayne_%28The_Dark_Knight_Trilogy%29.jpg", "https://m.media-amazon.com/images/M/MV5BNGJmMWEzOGQtMWZkNS00MGNiLTk5NGEtYzg1YzAyZTgzZTZmXkEyXkFqcGdeQXVyMTE1MTYxNDAw._V1_FMjpg_UX1000_.jpg"];
+var acc_reservationsArray = [[], [], [], [], []];
 var currUser;
 var currUserAccType;
 var currUserAccDesc;
@@ -429,10 +430,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 prof_desc.innerText = acc_descArray[i];
                 prof_desc.style.fontSize = "smaller";
 
+                var prof_res = document.createElement("p");
+                prof_res.style.fontSize = "smaller";
+                prof_res.innerText = "Current Reservation: None"
+
                 prof_container.appendChild(prof_pic);
                 prof_container.appendChild(prof_email);
                 prof_container.appendChild(prof_type);
                 prof_container.appendChild(prof_desc);
+                prof_container.appendChild(prof_res);
 
                 other_profile_content.appendChild(prof_container);
             }
@@ -591,6 +597,21 @@ function emailExist(email) {
     return emailArray.includes(email);
 }
 
+/*var btn_res_l1_s1 = document.getElementById("lab-1-seat-1");
+var btn_res_l1_s2 = document.getElementById("lab-1-seat-2");
+var btn_res_l1_s3 = document.getElementById("lab-1-seat-3");
+var btn_res_l1_s4 = document.getElementById("lab-1-seat-4");
+var btn_res_l1_s5 = document.getElementById("lab-1-seat-5");
+var btn_res_l2_s1 = document.getElementById("lab-2-seat-1");
+var btn_res_l2_s2 = document.getElementById("lab-2-seat-2");
+var btn_res_l2_s3 = document.getElementById("lab-2-seat-3");
+var btn_res_l2_s4 = document.getElementById("lab-2-seat-4");
+var btn_res_l2_s5 = document.getElementById("lab-2-seat-5");
+var btn_res_l3_s1 = document.getElementById("lab-3-seat-1");
+var btn_res_l3_s2 = document.getElementById("lab-3-seat-2");
+var btn_res_l3_s3 = document.getElementById("lab-3-seat-3");
+var btn_res_l3_s4 = document.getElementById("lab-3-seat-4");
+var btn_res_l3_s5 = document.getElementById("lab-3-seat-5");*/
 
 
 
