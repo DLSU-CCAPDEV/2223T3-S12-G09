@@ -1,6 +1,16 @@
 const lab = document.querySelector("#lab-container");
 const seatNum = 5;
 
+class Seat {
+    constructor(idx, lab, div) {
+        this.idx = idx;
+        this.lab = lab;
+        this.div = div;
+    }
+}
+
+const seatArray = [];
+
 for (var labIdx = 0; labIdx < 3; labIdx++) {
     const labItem = document.createElement("div");
     lab.appendChild(labItem);
@@ -31,32 +41,46 @@ for (var labIdx = 0; labIdx < 3; labIdx++) {
     // seats-list
     const seatsList = document.createElement("div");
     availCounter.appendChild(seatsList);
-    availCounter.classList.add("seats-list");
+    seatsList.classList.add("seats-list");
 
-    const reserveButtonList = [];
+    // const reserveButtonList = [];
+    const formSeat = document.createElement("form");
+    seatsList.appendChild(formSeat);
+    formSeat.id = "lab-" + (labIdx + 1) + "-form";
 
     for (var seatIdx = 0; seatIdx < seatNum; seatIdx++) {
-        const seatsH2 = document.createElement("h2");
-        seatsList.appendChild(seatsH2);
+        const seatDiv = document.createElement("div");
+        formSeat.appendChild(seatDiv);
+        seatDiv.style.display = "flex";
+        seatDiv.style.alignItems = "center";
+
+        const selectRadio = document.createElement("input");
+        seatDiv.appendChild(selectRadio);
+        selectRadio.type = "radio";
+        selectRadio.id = "lab-" + labIdx + "-seat-" + seatIdx + "-radio";
+        selectRadio.value = seatIdx + 1;
+        // selectRadio.name = "lab-" + labIdx + "-radio";
+        selectRadio.name = "lab-radio";
 
         const seatStatus = document.createElement("div");
         seatStatus.classList.add("seats-status");
-        seatsH2.appendChild(seatStatus);
+        seatDiv.appendChild(seatStatus);
 
+        const seatLabel = document.createElement("label");
+        seatDiv.appendChild(seatLabel);
+        seatLabel.htmlFor = selectRadio.id;
+
+        const seatsH2 = document.createElement("h2");
+        seatLabel.appendChild(seatsH2);
         seatsH2.appendChild(document.createTextNode("Seat " + (seatIdx + 1)));
-
-        const reserveButton = document.createElement("button");
-        const aButton = document.createElement("a");
-        seatsH2.appendChild(aButton);
-        aButton.appendChild(reserveButton);
-        aButton.href = "register.html"
-        reserveButton.classList.add("reserve-button");
-        reserveButton.innerText = "Reserve";
-        reserveButton.id = "lab-" + (labIdx + 1) + "-seat-" + (seatIdx + 1);
-
-        // reserveButton.addEventListener("click",
-        //     function() { alert(reserveButton.id) });
-
-        reserveButtonList.push(reserveButton);
+        // reserveButtonList.push(reserveButton);
     }
+
+    const reserveButton = document.createElement("button");
+    availCounter.appendChild(reserveButton);
+    reserveButton.classList.add("reserve-button");
+    reserveButton.innerText = "Reserve";
+    reserveButton.id = "lab-" + (labIdx + 1) + "-seat-" + (seatIdx + 1);
+
+    reserveButton.addEventListener("click", function() { showReserve(formSeat, labIdx) });
 }
