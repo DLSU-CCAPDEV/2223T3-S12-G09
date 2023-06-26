@@ -3,18 +3,99 @@ const reserveH1 = document.createElement("h1");
 const seatH1 = document.createElement("span");
 const labH1 = document.createElement("span");
 
-// reserveDiv.appendChild(reserveH1);
+reserveDiv.appendChild(reserveH1);
 reserveH1.appendChild(document.createTextNode("Reserve Seat "));
 reserveH1.appendChild(seatH1);
 reserveH1.appendChild(document.createTextNode(" at Lab "));
 reserveH1.appendChild(labH1);
 
+
 const reserveForm = document.createElement("form");
 reserveDiv.appendChild(reserveForm);
 
+const fromLabel = document.createElement("label");
+const fromTime = document.createElement("select");
+const fromTimeSlots = [];
+reserveForm.appendChild(fromLabel);
+fromLabel.innerText = "From: ";
+reserveForm.appendChild(fromTime);
+
+const toLabel = document.createElement("label");
+const toTime = document.createElement("select");
+const toTimeSlots = [];
+reserveForm.appendChild(toLabel);
+toLabel.innerText = "To: ";
+reserveForm.appendChild(toTime);
+
+fromTime.classList.add("time-select");
+fromTime.id = "to-time";
+
+toTime.classList.add("time-select");
+toTime.id = "to-time";
+
+const timeLists = document.querySelectorAll(".time-select");
+
+function checkValidTimeRange() {
+    const fromTime = document.getElementById("from-time");
+    const toTime = document.getElementById("to-time");
+
+    const fromValue = Number(fromTime.value);
+    const toValue = Number(toTime.value);
+
+    console.log(fromValue);
+    console.log(toValue);
+
+    if (fromValue > toValue) {
+        toTime.value = fromTime.value;
+    }
+
+    reserveForm.reset();
+}
+
+timeLists.forEach(function(timeListElement, index, array) {
+    timeListElement.addEventListener("change", checkValidTimeRange);
+
+    for (var i = 7; i < 21; i++) {
+        console.log(i);
+
+        var hour = i;
+        var hourOutput = hour;
+        var amPM = "am";
+        if (hour > 11) {
+            amPM = "pm";
+
+            if (hour > 12)
+                hourOutput -= 12;
+        }
+        for (var j = 0; j < 2; j++) {
+            const option = document.createElement("option");
+            const minute = j * 30;
+            var minuteOutput;
+
+            option.value = hour + "" + minuteOutput;
+
+            if (minute < 9) {
+                minuteOutput = "0" + minute;
+            }
+            else {
+                minuteOutput = minute;
+            }
+
+            const output = hourOutput + ":" + minuteOutput + amPM;
 
 
-// reserveDiv.style.display = "none";
+            timeListElement.appendChild(option);
+            option.appendChild(document.createTextNode(output));
+
+            option.value = hour + "" + minuteOutput;
+        }
+    }
+});
+
+
+reserveDiv.style.display = "none";
+
+console.log("after none");
 
 seatH1.id = "chosen-seat";
 labH1.id = "chosen-lab";
@@ -35,4 +116,71 @@ function showReserve(labform) {
     labH1.innerText = labIdx;
 
     seatH1.innerText = radioValue;
+    reserveForm.reset();
+}
+
+const list = document.querySelectorAll(".crap-time");
+// console.log(list);
+
+list.forEach(function(listElement, index, array) {
+    listElement.addEventListener("change", checkValidTimeRange);
+    listUp(listElement);
+});
+
+function checkValidTimeRange() {
+    const fromTime = document.getElementById("from-time");
+    const toTime = document.getElementById("to-time");
+
+    const fromValue = Number(fromTime.value);
+    const toValue = Number(toTime.value);
+
+    console.log(fromValue);
+    console.log(toValue);
+
+    if (fromValue > toValue) {
+        toTime.value = fromTime.value;
+    }
+}
+
+function test() {
+    const fromTime = document.getElementById("from-time");
+    const toTime = document.getElementById("to-time");
+    fromTime.value = toTime.value;
+}
+
+function listUp(listItem) {
+    for (var i = 7; i < 21; i++) {
+        console.log(i);
+        var hour = i;
+        var hourOutput = hour;
+        var amPM = "am";
+        if (hour > 11) {
+            amPM = "pm";
+
+            if (hour > 12)
+                hourOutput -= 12;
+        }
+        for (var j = 0; j < 2; j++) {
+            const option = document.createElement("option");
+            const minute = j * 30;
+            var minuteOutput;
+
+            option.value = hour + "" + minuteOutput;
+
+            if (minute < 9) {
+                minuteOutput = "0" + minute;
+            }
+            else {
+                minuteOutput = minute;
+            }
+
+            const output = hourOutput + ":" + minuteOutput + amPM;
+
+
+            listItem.appendChild(option);
+            option.appendChild(document.createTextNode(output));
+
+            option.value = hour + "" + minuteOutput;
+        }
+    }
 }
