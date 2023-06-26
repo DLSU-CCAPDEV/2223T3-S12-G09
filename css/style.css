@@ -4,14 +4,15 @@
     left: 0;
     width: 100%;
     height: auto;
-    background: cyan; 
+    background: lightgray; 
     display: flex;
     align-items: center;
+    
 }
 
 .htext{
     font-weight: bold;
-    font-size: 1.4rem;
+    font-size: 2.4rem;
     flex-grow: 1;
 }
 
@@ -91,7 +92,7 @@ button.view {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     padding-top: 100px;
     left:0;
     top:0;
@@ -100,7 +101,7 @@ button.view {
     overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
-
+    
 }
 
 .modal-content {
@@ -109,6 +110,59 @@ button.view {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+}
+
+.modal-edit {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left:0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-edit-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    top: 200px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+}
+
+.modal-other {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 80px;
+    left:0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+
+}
+
+.modal-other-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%;
+    height: 80%;
+    overflow-y: auto;
+    max-width: 400px;
 }
 
 .close{
@@ -128,3 +182,30 @@ button.view {
     cursor: pointer;
 }
 
+/*.scroll {
+    height: 400px;
+    overflow-y: auto;
+}*/
+/*
+    create new modal for viewing of other profiles
+    close the user profile view
+    add the account email
+*/
+
+/*.close-other-profile{
+    color: #aaaaaa;
+    position: fixed;
+    right: 600px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-other-profile:hover{
+    color: #000;
+}
+
+.close-other-profile:hover, .close-other-profile:focus{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}*/
