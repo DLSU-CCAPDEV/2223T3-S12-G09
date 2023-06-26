@@ -1,7 +1,3 @@
-var emailArray = [];
-var passwordArray = [];
-var acc_typeArray = [];
-
 function handleRegister(event) {
     event.preventDefault();
 
@@ -18,17 +14,14 @@ function handleRegister(event) {
         var acc_Type = acc_TypeInput.value;
     }
 
+    var new_user = new User(email, password, acc_Type);
+    store_user(new_user);
 
-    emailArray.push(email);
-    emailInput.value = "";
-    passwordArray.push(password);
-    passwordInput.value = "";
-    acc_typeArray.push(acc_Type);
-
-
-    console.log("Email registered: " + email);
-    console.log("Password registered: " + password);
-    console.log("Account type registered: " + acc_Type);
+    console.log("Email registered: " + new_user.email);
+    console.log("Password registered: " + new_user.password);
+    console.log("Account type registered: " + new_user.acc_type);
+    console.log("User list:");
+    console.log(user_array);
 }
 
 var register_acc = document.getElementById("register_acc");
