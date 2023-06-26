@@ -28,7 +28,7 @@ toLabel.innerText = "To: ";
 reserveForm.appendChild(toTime);
 
 fromTime.classList.add("time-select");
-fromTime.id = "to-time";
+fromTime.id = "from-time";
 
 toTime.classList.add("time-select");
 toTime.id = "to-time";
@@ -50,13 +50,15 @@ function checkValidTimeRange() {
     }
 
     reserveForm.reset();
+    console.log("hello");
 }
 
 timeLists.forEach(function(timeListElement, index, array) {
+    console.log(timeListElement);
     timeListElement.addEventListener("change", checkValidTimeRange);
 
     for (var i = 7; i < 21; i++) {
-        console.log(i);
+        // console.log(i);
 
         var hour = i;
         var hourOutput = hour;
