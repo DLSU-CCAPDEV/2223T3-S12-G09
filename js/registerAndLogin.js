@@ -410,11 +410,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 }else{
                     prof_pic.src = acc_profpicArray[i];
                 }
-                
                 prof_pic.alt = "Profile Picture";
                 prof_pic.width = 250;
                 prof_pic.height = 250;
-                prof_pic.style.border = "1px solid black";
+                prof_pic.style.border = "2px solid gray";
+                prof_pic.style.backgroundAttachment = "fixed";
+                prof_pic.style.borderRadius = "200px";
 
                 var prof_email = document.createElement("p");
                 prof_email.innerText = emailArray[i];

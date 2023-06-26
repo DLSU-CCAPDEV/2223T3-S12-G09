@@ -1,3 +1,10 @@
+body{
+    margin: 0;
+    padding: 35px 150px;
+    font-family: Arial, sans-serif;
+    color: #262626;
+}
+
 #header{
     position: sticky;
     top: 0;
@@ -47,7 +54,19 @@ p, h2 {
 
 
 .nav-ul li a:hover {
-    background-color: cyan;
+    cursor: pointer;
+}
+
+.nav-ul button{
+    margin-left: 30px;
+    border: solid 1px #9d9d9d;
+    border-radius: 25px;
+    padding: 10px;
+    background-color: white;
+}
+
+.nav-ul button:hover{
+    background-color: rgba(157, 157, 157, 0.10);
     cursor: pointer;
 }
 
@@ -101,7 +120,6 @@ button.view {
     overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
-    
 }
 
 .modal-content {
@@ -109,7 +127,47 @@ button.view {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 20%;
+    border-radius: 7px;
+}
+
+.modal input{
+    margin: 3px 0 3px 0;
+}
+
+.modal input[type=submit]{
+    background-color: #262626;
+    border-radius: 2px;
+    padding: 10px 65px;
+    border: none;
+    color: #ffffff;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-top: 25px;
+}
+
+.modal input[type=submit]:hover {
+    cursor: pointer;
+}
+
+.modal input[type=email], input[type=password], input[type=text]{
+    padding: 5px 10px;
+    border: #e5e5e5 solid 2px;
+    border-radius: 3px;
+    background: rgba(229, 229, 229, 0.15);
+}
+
+.modal input[type=radio]{
+    margin-right: 15px;
+}
+
+.modal label{
+    font-size: 0.8rem;
+    margin-right: 5px;
+}
+
+.close{
+    display: block;
 }
 
 .modal-edit {
@@ -150,7 +208,6 @@ button.view {
     overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
-
 }
 
 .modal-other-content {
@@ -210,7 +267,6 @@ button.view {
     cursor: pointer;
 }*/
 
-
 /*------------------------  Index Showcase Content   -------------------*/
 
 .lab_1 img, .lab_2 img, .lab_3 img {
@@ -262,3 +318,13 @@ button.view {
     background: rgb(255, 255, 248);
     transition-duration: 0.4s;
 }
+/*
+.rounded {
+    background-attachment: fixed;
+    border: 2px solid gray;
+    border-radius: 200px;
+    /*width: 250px;
+    height: 250px;*/
+    /*align-items: center;*/
+}
+*/
