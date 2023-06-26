@@ -1,16 +1,22 @@
+body{
+    margin: 0;
+    padding: 35px 150px;
+    font-family: Arial, serif;
+    color: #262626;
+}
+
 #header{
     position: sticky;
     top: 0;
-    left: 0;
     width: 100%;
     height: auto;
-    background: lightgray; 
+    background: white;
     display: flex;
     align-items: center;
-    
 }
 
 .htext{
+    color: #1e1e1e;
     font-weight: bold;
     font-size: 2.4rem;
     flex-grow: 1;
@@ -29,25 +35,34 @@ p, h2 {
     list-style-type: none;
     margin: 0px;
     padding: 0px;
-    overflow: hidden;
-    background-color: #333
-}
-
-.nav-ul li {
-    float: left;
+    overflow: visible;
+    display: flex;
+    flex-direction: row;
 }
 
 .nav-ul li a {
     display: block;
-    color: white;
+    color: #262626;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
+    margin-left: 30px;
 }
 
 
 .nav-ul li a:hover {
-    background-color: cyan;
+    cursor: pointer;
+}
+
+.nav-ul button{
+    margin-left: 30px;
+    border: solid 1px #9d9d9d;
+    border-radius: 25px;
+    padding: 10px;
+    background-color: white;
+}
+
+.nav-ul button:hover{
+    background-color: rgba(157, 157, 157, 0.11);
     cursor: pointer;
 }
 
