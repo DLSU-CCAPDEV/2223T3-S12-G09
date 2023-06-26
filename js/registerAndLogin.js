@@ -2,13 +2,13 @@ var emailArray = ["jose_joaquin_arevalo@dlsu.edu.ph", "john_joseph_giron@dlsu.ed
 var passwordArray = ["123", "123", "123", "123", "123"];
 var acc_typeArray = ["Student", "Student", "Student", "Student", "Lab Technician"];
 var acc_descArray = ["ComSci Student", "ComSci Student", "ComSci Student", "ComSci Student", "DLSU Technician"];
-var acc_profpicArray = ["https://images.freeimages.com/images/large-previews/b5e/laughing-otters-1408610.jpg", "https://images.freeimages.com/images/large-previews/f41/sea-otters-2-1507561.jpg",
-    "https://myfox8.com/wp-content/uploads/sites/17/2022/08/All-Three-Best.jpg", "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Bruce_Wayne_%28The_Dark_Knight_Trilogy%29.jpg/220px-Bruce_Wayne_%28The_Dark_Knight_Trilogy%29.jpg",
-    "https://m.media-amazon.com/images/M/MV5BNGJmMWEzOGQtMWZkNS00MGNiLTk5NGEtYzg1YzAyZTgzZTZmXkEyXkFqcGdeQXVyMTE1MTYxNDAw._V1_FMjpg_UX1000_.jpg"];
+var acc_profpicArray = ["https://images.freeimages.com/images/large-previews/b5e/laughing-otters-1408610.jpg", "", "https://myfox8.com/wp-content/uploads/sites/17/2022/08/All-Three-Best.jpg", 
+                        "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Bruce_Wayne_%28The_Dark_Knight_Trilogy%29.jpg/220px-Bruce_Wayne_%28The_Dark_Knight_Trilogy%29.jpg", "https://m.media-amazon.com/images/M/MV5BNGJmMWEzOGQtMWZkNS00MGNiLTk5NGEtYzg1YzAyZTgzZTZmXkEyXkFqcGdeQXVyMTE1MTYxNDAw._V1_FMjpg_UX1000_.jpg"];
 var currUser;
 var currUserAccType;
 var currUserAccDesc;
 var currUserAccProfPic;
+var defAccProfPic = "https://i.imgflip.com/6yvpkj.jpg";
 
 /*
     Notes/Question:
@@ -79,6 +79,8 @@ document.addEventListener("DOMContentLoaded", function() {
         passwordArray.push(password);
         passwordInput.value = "";
         acc_typeArray.push(acc_Type);
+        acc_descArray.push("No bio.");
+        acc_profpicArray.push("");
 
         modal_register.style.display = "none";
 
@@ -168,7 +170,11 @@ document.addEventListener("DOMContentLoaded", function() {
             acc_desc.innerText = currUserAccDesc;
         }
         if (acc_pic) {
-            acc_pic.src = currUserAccProfPic;
+            if (currUserAccProfPic == ""){
+                acc_pic.src = defAccProfPic;
+            } else {
+                acc_pic.src = currUserAccProfPic;
+            }
         }
         if (acc_type) {
             acc_type.innerText = currUserAccType;
@@ -399,7 +405,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 //}
 
                 var prof_pic = document.createElement("img");
-                prof_pic.src = acc_profpicArray[i];
+                if(acc_profpicArray[i] == ""){
+                    prof_pic.src = defAccProfPic;
+                }else{
+                    prof_pic.src = acc_profpicArray[i];
+                }
+                
                 prof_pic.alt = "Profile Picture";
                 prof_pic.width = 250;
                 prof_pic.height = 250;
