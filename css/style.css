@@ -224,3 +224,12 @@ button.view {
     text-decoration: none;
     cursor: pointer;
 }*/
+
+.rounded {
+    background-attachment: fixed;
+    border: 2px solid gray;
+    border-radius: 200px;
+    /*width: 250px;
+    height: 250px;*/
+    /*align-items: center;*/
+}
