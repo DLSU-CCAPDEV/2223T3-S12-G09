@@ -35,6 +35,15 @@ toTime.id = "to-time";
 
 const timeLists = document.querySelectorAll(".time-select");
 
+// break line
+reserveForm.appendChild(document.createElement("br"));
+
+const reserveButton = document.createElement("input");
+reserveForm.appendChild(reserveButton);
+reserveButton.type = "button";
+reserveButton.id = "reserve";
+reserveButton.value = "Reserve slot";
+
 function checkValidTimeRange() {
     const fromTime = document.getElementById("from-time");
     const toTime = document.getElementById("to-time");
