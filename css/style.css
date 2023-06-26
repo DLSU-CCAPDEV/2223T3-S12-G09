@@ -1,22 +1,16 @@
-body{
-    margin: 0;
-    padding: 35px 150px;
-    font-family: Arial, serif;
-    color: #262626;
-}
-
 #header{
     position: sticky;
     top: 0;
+    left: 0;
     width: 100%;
     height: auto;
-    background: white;
+    background: lightgray; 
     display: flex;
     align-items: center;
+    
 }
 
 .htext{
-    color: #1e1e1e;
     font-weight: bold;
     font-size: 2.4rem;
     flex-grow: 1;
@@ -35,34 +29,25 @@ p, h2 {
     list-style-type: none;
     margin: 0px;
     padding: 0px;
-    overflow: visible;
-    display: flex;
-    flex-direction: row;
+    overflow: hidden;
+    background-color: #333
+}
+
+.nav-ul li {
+    float: left;
 }
 
 .nav-ul li a {
     display: block;
-    color: #262626;
+    color: white;
     text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
-    margin-left: 30px;
 }
 
 
 .nav-ul li a:hover {
-    cursor: pointer;
-}
-
-.nav-ul button{
-    margin-left: 30px;
-    border: solid 1px #9d9d9d;
-    border-radius: 25px;
-    padding: 10px;
-    background-color: white;
-}
-
-.nav-ul button:hover{
-    background-color: rgba(157, 157, 157, 0.11);
+    background-color: cyan;
     cursor: pointer;
 }
 
@@ -102,7 +87,7 @@ button.view {
     padding: 0px 10px;
 }
 
-/*------------------------  MODAL LOGIN AND REGISTER -----------*/
+/*------------------------  MODAL LOGIN AND REGISTER -------------------*/
 
 .modal {
     display: none;
@@ -224,3 +209,57 @@ button.view {
     text-decoration: none;
     cursor: pointer;
 }*/
+
+
+/*------------------------  Index Showcase Content   -------------------*/
+
+.lab_1 img, .lab_2 img, .lab_3 img {
+    width: 750px;
+    float: left;
+}
+
+#showcase {
+    background-image: url("/images/Chemistry_Lab.jpg");
+    background-repeat: no-repeat;
+    height: 550px;
+    background-position: center;
+    background-size: cover;
+    background-color: papayawhip;
+    
+}
+
+.showcase-content {
+    padding: 100px;
+    padding-right: 170px;
+    color: rgb(56, 56, 56);
+}
+
+.showcase-content h2 {
+    font-size: 60px;
+    line-height: 1.9em;
+}
+
+.btn {
+    display: inline-block;
+    padding: 07px 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 03px;
+    background: beige;
+}
+
+.lead {
+    font-size: 16px;
+    text-align: justify;
+}
+
+.showcase-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.showcase-content a:hover {
+    background: rgb(255, 255, 248);
+    transition-duration: 0.4s;
+}
