@@ -34,11 +34,12 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("register_acc").reset();
     }
 
-    window.onclick = function(event) {
+    // window.onclick = function(event) {
+    window.addEventListener("click", function(event) {
         if (event.target == modal_register) {
             modal_register.style.display = "none";
         }
-    }
+    });
 
     form_btn_register.onclick = function(event) {
         event.preventDefault();
@@ -95,11 +96,12 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("login_acc").reset();
     }
 
-    window.onclick = function(event) {
+    // window.onclick = function(event) {
+    window.addEventListener("click", function(event) {
         if (event.target == modal_login) {
             modal_login.style.display = "none";
         }
-    }
+    });
 
     form_btn_login.onclick = function(event) {
         event.preventDefault();
@@ -196,11 +198,11 @@ document.addEventListener("DOMContentLoaded", function() {
         modal_logout.style.display = "none";
     }
 
-    window.onclick = function(event) {
+    window.addEventListener("click", function(event) {
         if (event.target == modal_logout) {
             modal_logout.style.display = "none";
         }
-    }
+    });
 
     form_btn_logout.onclick = function(event) {
         event.preventDefault();
@@ -241,11 +243,11 @@ document.addEventListener("DOMContentLoaded", function() {
         modal_delete.style.display = "none";
     }
 
-    window.onclick = function(event) {
+    window.addEventListener("click", function(event) {
         if (event.target == modal_delete) {
             modal_delete.style.display = "none";
         }
-    }
+    });
 
     form_btn_delete.onclick = function(event) {
         event.preventDefault();
@@ -298,11 +300,11 @@ document.addEventListener("DOMContentLoaded", function() {
         modal_profile.style.display = "none"; //changed from block to none
     }
 
-    window.onclick = function(event) {
+    window.addEventListener("click", function(event) {
         if (event.target == modal_profile) {
             modal_profile.style.display = "none";
         }
-    }
+    });
 
     form_btn_profile.onclick = function(event) {
         event.preventDefault();
@@ -425,11 +427,11 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("new_profile_acc").reset();
     }
 
-    window.onclick = function(event) {
+    window.addEventListener("click", function(event) {
         if (event.target == edit_modal_profile) {
             edit_modal_profile.style.display = "none";
         }
-    }
+    });
 
     form_btn_edit_profile.onclick = function(event) {
         event.preventDefault();
@@ -486,11 +488,11 @@ document.addEventListener("DOMContentLoaded", function() {
     //other_modal_profile.style.display = "none";
     //}
 
-    window.onclick = function(event) {
+    window.addEventListener("click", function(event) {
         if (event.target == other_modal_profile) {
             other_modal_profile.style.display = "none";
         }
-    }
+    });
 
     //form_btn_other_profile.onclick = function(event) {
     //event.preventDefault();
