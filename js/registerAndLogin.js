@@ -1,8 +1,10 @@
-var emailArray = ["jj@dlsu.edu.ph", "jojo@dlsu.edu.ph", "jose@dlsu.edu.ph"];
-var passwordArray = ["123", "123", "123"];
-var acc_typeArray = ["Student", "Student", "Lab Technician"];
-var acc_descArray = ["ComSci Student", "ComSci Student", "DLSU Technician"];
-var acc_profpicArray = ["https://images.freeimages.com/images/large-previews/b5e/laughing-otters-1408610.jpg", "https://m.media-amazon.com/images/M/MV5BNGJmMWEzOGQtMWZkNS00MGNiLTk5NGEtYzg1YzAyZTgzZTZmXkEyXkFqcGdeQXVyMTE1MTYxNDAw._V1_FMjpg_UX1000_.jpg", "https://images.freeimages.com/images/large-previews/f41/sea-otters-2-1507561.jpg"];
+var emailArray = ["jose_joaquin_arevalo@dlsu.edu.ph", "john_joseph_giron@dlsu.edu.ph", "rey_obejero@dlsu.edu.ph", "dylan_uy@dlsu.edu.ph", "arren.antioquia@dlsu.edu.ph"];
+var passwordArray = ["123", "123", "123", "123", "123"];
+var acc_typeArray = ["Student", "Student", "Student", "Student", "Lab Technician"];
+var acc_descArray = ["ComSci Student", "ComSci Student", "ComSci Student", "ComSci Student", "DLSU Technician"];
+var acc_profpicArray = ["https://images.freeimages.com/images/large-previews/b5e/laughing-otters-1408610.jpg", "https://images.freeimages.com/images/large-previews/f41/sea-otters-2-1507561.jpg",
+"https://myfox8.com/wp-content/uploads/sites/17/2022/08/All-Three-Best.jpg", "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Bruce_Wayne_%28The_Dark_Knight_Trilogy%29.jpg/220px-Bruce_Wayne_%28The_Dark_Knight_Trilogy%29.jpg",
+"https://m.media-amazon.com/images/M/MV5BNGJmMWEzOGQtMWZkNS00MGNiLTk5NGEtYzg1YzAyZTgzZTZmXkEyXkFqcGdeQXVyMTE1MTYxNDAw._V1_FMjpg_UX1000_.jpg"];
 var currUser;
 var currUserAccType;
 var currUserAccDesc; 
@@ -11,7 +13,7 @@ var currUserAccProfPic;
 /*
     Notes/Question:
     1. Delete the console logs?
-    2. In profile add the profile view of other accounts
+    2. In profile add the profile view of other accounts (almost done)
     3. In profile add the accounts(student) current reservations
     4. Improve css for the modals?
 */
@@ -143,16 +145,24 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         //prof
+        var acc_email = document.getElementById("acc-email");
         var acc_desc = document.getElementById("acc-desc");
         var acc_pic = document.getElementById("acc-pic");
+        var acc_type = document.getElementById("acc-type");
         var edit_modal_profile = document.getElementById("edit-profile-modal");
         var modal_login = document.getElementById("login-modal");
 
+        if(acc_email){
+            acc_email.innerText = currUser;
+        }
         if(acc_desc){
             acc_desc.innerText = currUserAccDesc;
         }
         if(acc_pic){
             acc_pic.src = currUserAccProfPic;
+        }
+        if(acc_type){
+            acc_type.innerText = currUserAccType;
         }
         
         edit_modal_profile.style.display = "none";
@@ -278,6 +288,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var btn_profile = document.getElementById("profile-button");
     var span_profile = document.getElementsByClassName("close")[4];
     var form_btn_profile = document.getElementById("profile_ID");
+    var form_btn_other_profile = document.getElementById("other_profile_ID");
 
     btn_profile.onclick = function() {
         modal_profile.style.display = "block";
@@ -299,6 +310,106 @@ document.addEventListener("DOMContentLoaded", function() {
         var edit_modal_profile = document.getElementById("edit-profile-modal");
 
         edit_modal_profile.style.display = "block";
+    }
+
+    //other profiles
+    form_btn_other_profile.onclick = function(event) {
+        event.preventDefault();
+
+        var other_modal_profile = document.getElementById("other-profile-modal");
+
+        other_modal_profile.style.display = "block";
+
+        modal_profile.style.display = "none";
+
+        // maybe add the other profiles view here?
+        var other_profile_content = document.querySelector("#other-profile-modal .modal-other-content");
+
+        //other_profile_content.innerHTML = "";
+
+        for(var i = 0; i < emailArray.length; i++){
+            if(emailArray[i] == currUser){
+                //i++;
+                //skip;
+                continue;
+            }else{
+                var prof_container = document.createElement("div");
+                prof_container.style.overflow = "auto";
+                //border: 1px solid #888;
+                prof_container.style.border = "1px solid black";
+                prof_container.style.borderRadius = "10px";
+                prof_container.style.padding = "5px";
+                prof_container.style.margin = "5px";
+                prof_container.style.backgroundColor = "gray";
+                prof_container.classList.add("profile-container");
+
+                other_profile_content.style.backgroundColor = "lightgray";
+                //other_profile_content.style.backgroundColor = "blue";
+                
+
+                //var scroll = document.createElement("pre");
+                //scroll.style.whiteSpace = "pre-wrap";
+                //scroll.style.
+
+                var prof_pic = document.createElement("img");
+                prof_pic.src = acc_profpicArray[i];
+                prof_pic.alt = "Profile Picture";
+                prof_pic.width = 250;
+                prof_pic.height = 250;
+                //prof_pic.style.aspectRatio = "auto";
+                prof_pic.style.border = "1px solid black";
+
+                var prof_email = document.createElement("p");
+                prof_email.innerText = emailArray[i];
+                prof_email.style.fontWeight = "bold";
+
+                var prof_type = document.createElement("p");
+                prof_type.innerText = acc_typeArray[i];
+                prof_type.style.fontSize = "small";
+                
+                var prof_desc = document.createElement("p");
+                prof_desc.innerText = acc_descArray[i];
+                prof_desc.style.fontSize = "smaller";
+
+                //scroll.appendChild(prof_pic);
+                //scroll.appendChild(prof_type);
+                //scroll.appendChild(prof_desc);
+
+                //add email
+                //prof_container.appendChild(scroll);//added this part last
+                prof_container.appendChild(prof_pic);
+                prof_container.appendChild(prof_email);
+                prof_container.appendChild(prof_type);
+                prof_container.appendChild(prof_desc);
+
+                other_profile_content.appendChild(prof_container);
+            }
+        }
+
+        other_modal_profile.style.display = "block";
+
+        /*var prof_container = document.createElement("div");
+        prof_container.classList.add("profile-container");
+
+        var prof_pic = document.createElement("img");
+        prof_pic.src = acc_profpicArray[i];
+        prof_pic.alt = "Profile Picture";
+        prof_pic.width = 250;
+        prof_pic.height = 250;
+
+        var prof_type = document.createElement("p");
+        prof_type.innerText = acc_typeArray[i];
+        
+        var prof_desc = document.createElement("p");
+        prof_desc.innerText = acc_descArray[i];
+        prof_desc.style.fontSize = "small";
+
+        //add email
+        prof_container.appendChild(prof_pic);
+        prof_container.appendChild(prof_type);
+        prof_container.appendChild(prof_desc);
+
+        other_profile_content.appendChild(prof_container);*/
     }
 
     //edit profile
@@ -359,6 +470,37 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     btn_editProfile.style.display = "none";
+
+    //other profile
+    var other_modal_profile = document.getElementById("other-profile-modal");
+    var btn_otherProfile = document.getElementById("other-profile-button");
+    //var span_otherProfile = document.getElementsByClassName("close-other-profile")[0];
+    var span_otherProfile = document.getElementsByClassName("close")[6];
+    //var form_btn_other_profile = document.getElementById("other_profile_ID");
+    //jose_joaquin_arevalo@dlsu.edu.ph
+    
+    btn_otherProfile.onclick = function() {
+        other_modal_profile.style.display = "block";
+    }
+
+    span_otherProfile.onclick = function(event) {
+        other_modal_profile.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if(event.target == other_modal_profile){
+            other_modal_profile.style.display = "none";
+        }
+    }
+
+    //form_btn_other_profile.onclick = function(event) {
+        //event.preventDefault();
+
+
+    //}
+
+    btn_otherProfile.style.display = "none";
+
 
     logoutButton();
     deleteButton();
