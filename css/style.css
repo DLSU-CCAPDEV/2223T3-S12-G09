@@ -219,13 +219,12 @@ button.view {
 }
 
 #showcase {
-    background-image: url("/images/Chemistry_Lab.jpg");
+    background-image: url("../images/Chemistry_Lab.jpg");
     background-repeat: no-repeat;
     height: 550px;
     background-position: center;
     background-size: cover;
     background-color: papayawhip;
-    
 }
 
 .showcase-content {
