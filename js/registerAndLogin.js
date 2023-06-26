@@ -45,13 +45,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
         var emailInput = document.getElementById("reg_email_ID");
         var passwordInput = document.getElementById("reg_password_ID");
+        var passwordConfirmInput = document.getElementById("reg_password_confirm_ID");
         var acc_TypeInput = document.querySelector("input[name='reg_acc_type']:checked");
         var modal_register = document.getElementById("register-modal");
         var form_btn_register = document.getElementById("register_ID");
 
-        if (!emailInput.value || !passwordInput.value || !acc_TypeInput) {
+        if (!emailInput.value || !passwordInput.value || !acc_TypeInput || !passwordConfirmInput.value) {
             alert("Unable to register account. One or more details are missing!");
             console.log("Unable to register account. One or more details are missing!");
+            document.getElementById("register_acc").reset();
+            return;
+        } else if(passwordInput.value !== passwordConfirmInput.value){
+            alert("Unable to register account. Password confirmation is not the same!");
+            console.log("Unable to register account. Password confirmation is not the same!");
             document.getElementById("register_acc").reset();
             return;
         } else {
@@ -330,6 +336,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         other_profile_content.innerHTML = "";
 
+        var count = 0;
+
         for (var i = 0; i < emailArray.length; i++) {
             if (emailArray[i] == currUser) {
                 continue;
@@ -345,7 +353,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 other_profile_content.style.backgroundColor = "lightgray";
 
-                if (i === 1) {
+                if (count === 0) {
                     var close_other_profile = document.createElement("span");
                     close_other_profile.innerText = "×";
                     close_other_profile.classList.add("close-other-profile")
@@ -376,11 +384,17 @@ document.addEventListener("DOMContentLoaded", function() {
                     close_other_profile.addEventListener("blur", function() {
                         this.style.color = "#aaaaaa";
                     });
+
+                    close_other_profile.onclick = function(event) { //problem here
+                        other_modal_profile.style.display = "none";
+                    }
+
+                    count++;
                 }
 
-                close_other_profile.onclick = function(event) {
-                    other_modal_profile.style.display = "none";
-                }
+                //close_other_profile.onclick = function(event) { //problem here
+                    //other_modal_profile.style.display = "none";
+                //}
 
                 var prof_pic = document.createElement("img");
                 prof_pic.src = acc_profpicArray[i];
