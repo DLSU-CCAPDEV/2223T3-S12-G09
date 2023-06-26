@@ -46,13 +46,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
         var emailInput = document.getElementById("reg_email_ID");
         var passwordInput = document.getElementById("reg_password_ID");
+        var passwordConfirmInput = document.getElementById("reg_password_confirm_ID");
         var acc_TypeInput = document.querySelector("input[name='reg_acc_type']:checked");
         var modal_register = document.getElementById("register-modal");
         var form_btn_register = document.getElementById("register_ID");
 
-        if (!emailInput.value || !passwordInput.value || !acc_TypeInput) {
+        if (!emailInput.value || !passwordInput.value || !acc_TypeInput || !passwordConfirmInput.value) {
             alert("Unable to register account. One or more details are missing!");
             console.log("Unable to register account. One or more details are missing!");
+            document.getElementById("register_acc").reset();
+            return;
+        } else if(passwordInput.value !== passwordConfirmInput.value){
+            alert("Unable to register account. Password confirmation is not the same!");
+            console.log("Unable to register account. Password confirmation is not the same!");
             document.getElementById("register_acc").reset();
             return;
         } else {
@@ -118,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             var email = emailInput.value;
             var password = passwordInput.value;
+            isLoggedIn = 1;
         }
 
         if (!emailExist(email)) {//problems may occur here
@@ -216,6 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
             currUserAccType = "";
             currUserAccDesc = "";
             currUserAccProfPic = "";
+            isLoggedIn = 0;
         }
 
         modal_logout.style.display = "none";
@@ -266,6 +274,7 @@ document.addEventListener("DOMContentLoaded", function() {
             currUserAccType = "";
             currUserAccDesc = "";
             currUserAccProfPic = "";
+            isLoggedIn = 0;
 
             emailArray.splice(emailIndex, 1);
             passwordArray.splice(emailIndex, 1);
@@ -329,6 +338,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         other_profile_content.innerHTML = "";
 
+        var count = 0;
+
         for (var i = 0; i < emailArray.length; i++) {
             if (emailArray[i] == currUser) {
                 continue;
@@ -344,7 +355,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 other_profile_content.style.backgroundColor = "lightgray";
 
-                if (i === 1) {
+                if (count === 0) {
                     var close_other_profile = document.createElement("span");
                     close_other_profile.innerText = "×";
                     close_other_profile.classList.add("close-other-profile")
@@ -375,11 +386,17 @@ document.addEventListener("DOMContentLoaded", function() {
                     close_other_profile.addEventListener("blur", function() {
                         this.style.color = "#aaaaaa";
                     });
+
+                    close_other_profile.onclick = function(event) { //problem here
+                        other_modal_profile.style.display = "none";
+                    }
+
+                    count++;
                 }
 
-                close_other_profile.onclick = function(event) {
-                    other_modal_profile.style.display = "none";
-                }
+                //close_other_profile.onclick = function(event) { //problem here
+                    //other_modal_profile.style.display = "none";
+                //}
 
                 var prof_pic = document.createElement("img");
                 prof_pic.src = acc_profpicArray[i];
@@ -562,217 +579,6 @@ function emailExist(email) {
     return emailArray.includes(email);
 }
 
-function handleRegister(event) {
-    event.preventDefault();
-
-    var emailInput = document.getElementById("reg_email_ID");
-    var passwordInput = document.getElementById("reg_password_ID");
-    var acc_TypeInput = document.querySelector("input[name='reg_acc_type']:checked");
-    if (!emailInput.value || !passwordInput.value || !acc_TypeInput) {
-        //alert("Unable to register account. One or more details are missing!");
-        return;
-    } else {
-        var email = emailInput.value;
-        var password = passwordInput.value;
-        var acc_Type = acc_TypeInput.value;
-    }
-
-    if (emailExist(email)) {
-        //alert("Email already exist. Please use a different email.");
-        return;
-    }
-
-    emailArray.push(email);
-    emailInput.value = "";
-    passwordArray.push(password);
-    passwordInput.value = "";
-    acc_typeArray.push(acc_Type);
-
-    //delete afterwards?
-    console.log("Email registered: " + email);
-    console.log("Password registered: " + password);
-    console.log("Account type registered: " + acc_Type);
-
-    var modal_register = document.getElementById("register-modal");
-    modal_register.style.display = "none";
-}
-
-//login acc
-function handleLogin(event) {
-    event.preventDefault();
-
-    var emailInput = document.getElementById("log_email_ID");
-    var passwordInput = document.getElementById("log_password_ID");
-
-    if (!emailInput.value || !passwordInput.value) {
-        //alert("Unable to login account. One or more details are missing!");
-        return;
-    } else {
-        var email = emailInput.value;
-        var password = passwordInput.value;
-    }
-
-    if (!emailExist(email)) {//problems may occur here
-        //alert("Invalid email. Please use an existing email or register email before you login.");
-        return;
-    }
-
-    //what now how do i say it is logged in or how do i proceed with it
-    //it will go to home page afterwards
-    //input here
-    var emailIndex = emailArray.indexOf(email);
-    var desPassword = passwordArray[emailIndex];
-    var desAccType = acc_typeArray[emailIndex];
-    var desAccDesc = acc_descArray[emailIndex];
-
-    if (password == desPassword) {
-        currUser = email;
-        currUserAccType = desAccType;
-        currUserAccDesc = desAccDesc;
-        //alert("User successfully logged in.")
-    } else {
-        //alert("Incorrect password. Please enter the correct password.");
-        return;
-    }
-    //prof
-    var acc_desc = document.getElementById("acc-desc");
-
-    var edit_modal_profile = document.getElementById("edit-profile-modal");
-
-    if (acc_desc) {
-        acc_desc.innerText = currUserAccDesc;
-    }
-
-    edit_modal_profile.style.display = "none";
 
 
-    //currUser = email;
-    emailInput.value = "";
-    passwordInput.value = "";
 
-    //delete afterwards>
-    console.log("User successfully logged in.");
-    console.log("Email registered: " + email);
-    console.log("Password registered: " + password);
-
-    var modal_login = document.getElementById("login-modal");//remember this part
-    modal_login.style.display = "none";
-
-    loginButton();
-    registerButton();
-    logoutButton();
-    deleteButton();
-    profileButton();
-}
-
-function handleLogout(event) {
-    event.preventDefault();
-
-    var logout = document.getElementById("logout_ID");
-    if (logout) {
-        currUser = "";
-        currUserAccType = "";
-        currUserAccDesc = "";
-    }
-
-    //delete afterwards>
-    console.log("User successfully logged out.");
-
-    var modal_logout = document.getElementById("logout-modal");
-    modal_logout.style.display = "none";
-
-    loginButton();
-    registerButton();
-    logoutButton();
-    deleteButton();
-    profileButton();
-}
-
-function handleDelete(event) {
-    event.preventDefault();
-
-    var delete_Acc = document.getElementById("delete_ID");
-
-    var emailIndex = emailArray.indexOf(currUser);
-    var desAccType = acc_typeArray[emailIndex];
-
-    if (desAccType == "Lab Technician") {
-        //alert("User account cannot be deleted.")
-        return;
-    } else {
-        currUser = "";
-        currUserAccType = "";
-        currUserAccDesc = "";
-
-
-        emailArray.splice(emailIndex, 1);
-        passwordArray.splice(emailIndex, 1);
-        acc_typeArray.splice(emailIndex, 1);
-    }
-
-    //delete afterwards?
-    console.log("User successfully deleted out.");
-
-    var modal_delete = document.getElementById("delete-modal");
-    modal_delete.style.display = "none";
-
-    loginButton();
-    registerButton();
-    logoutButton();
-    deleteButton();
-    profileButton();
-}
-
-function handleProfile(event) {
-    event.preventDefault();
-
-    var edit_modal_profile = document.getElementById("edit-profile-modal");
-
-    edit_modal_profile.style.display = "block";
-
-
-}
-
-function handleProfileEdit(event) { //maybbe use onclick???
-    event.preventDefault();
-
-    var new_acc_desc = document.getElementById("edit_prof_desc_ID");
-
-    var acc_desc = document.getElementById("acc-desc");
-
-    var edit_modal_profile = document.getElementById("edit-profile-modal");
-    //var edit_modal_profile = document.getElementById("new_profile_acc");
-
-    var emailIndex = emailArray.indexOf(currUser);
-
-    if (new_acc_desc) {
-        currUserAccDesc = new_acc_desc.value;
-        acc_desc.innerText = currUserAccDesc;
-        acc_descArray[emailIndex] = new_acc_desc.value;
-    }
-
-    edit_modal_profile.style.display = "none";
-    document.getElementById("new_profile_acc").reset();
-
-    var modal_profile = document.getElementById("profile-modal");
-    modal_profile.style.display = "none";
-
-}
-
-var register_acc = document.getElementById("register_acc");
-register_acc.addEventListener("submit", handleRegister);
-
-var login_acc = document.getElementById("login_acc");
-login_acc.addEventListener("submit", handleLogin);
-
-var logout_acc = document.getElementById("logout_acc");
-logout_acc.addEventListener("submit", handleLogout);
-
-var delete_acc = document.getElementById("delete_acc");
-delete_acc.addEventListener("submit", handleDelete);
-
-var profile_acc = document.getElementById("profile_acc");
-profile_acc.addEventListener("submit", handleProfile);
-
-var new_profile_acc = document.getElementById("new_profile_acc");
-new_profile_acc.addEventListener("submit", handleProfileEdit);
