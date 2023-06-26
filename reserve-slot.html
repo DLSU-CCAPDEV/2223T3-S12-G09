@@ -4,26 +4,26 @@
     <head>
         <title>Laboratory</title>
         <script src="js/registerAndLogin.js"></script>
-        <script src="js/test.js" type="text/javascript"></script>
-        <script src="js/nav.js" type="text/javascript"></script>
-        <link  rel="stylesheet" type="text/css" href="style.css">
+        <link  rel="stylesheet" type="text/css" href="css/style.css">
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body onload="loadLinks()">
+    <body>
 
         <div id="header">
             <span class="htext">Lab Reservation</span>
-            <ul class="nav-ul">
-                <li><a href="#index">Home</a></li>
-                <li><a href="#lab">Labs</a></li>
-                <li><a href="#contact">Contact</a></li>
-
+            <ul class="nav-ul" id="menu">
             </ul>
+            <script src="js/nav.js"></script>
             <ul class="nav-ul">
                 <li><button id="register-button">Register</button></li>
                 <li><button id="login-button">Login</button></li>
+                <li><button id="logout-button">Logout</button></li>
+                <li><button id="delete-button">Delete</button></li>
+                <li><button id="profile-button">Profile</button></li>
+                <li><button id="edit-profile-button"></button></li>
+                <li><button id="other-profile-button"></button></li>
             </ul>
 
         </div>
@@ -31,7 +31,7 @@
 
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2>Register!</h2>
+                <h2>Register Account</h2>
                 <form id="register_acc">
                     <input type="email" id="reg_email_ID" placeholder="Enter your email"><br>
                     <input type="password" id="reg_password_ID" placeholder="Enter your password"><br>
@@ -39,8 +39,9 @@
                     <input type="radio" id="reg_student" name="reg_acc_type" value="Student">
                     <label for="lab_technician"> Lab Technician </label>
                     <input type="radio" id="reg_lab_technician" name="reg_acc_type" value="Lab Technician"><br>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Register" id="register_ID">
                 </form>
+<!--                 <script src="js/registerAndLogin.js"></script> -->
             </div>
 
         </div>
@@ -48,18 +49,79 @@
 
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2>Login!</h2>
-                <form id="register_acc">
-                    <input type="email" id="reg_email_ID" placeholder="Enter your email"><br>
-                    <input type="password" id="reg_password_ID" placeholder="Enter your password"><br>
-                    <label for="Student"> Student </label>
-                    <input type="radio" id="reg_student" name="reg_acc_type" value="Student">
-                    <label for="lab_technician"> Lab Technician </label>
-                    <input type="radio" id="reg_lab_technician" name="reg_acc_type" value="Lab Technician"><br>
-                    <input type="submit" value="Submit">
+                <h2>Login Account</h2>
+                <form id="login_acc">
+                    <input type="email" id="log_email_ID" placeholder="Enter your email"><br>
+                    <input type="password" id="log_password_ID" placeholder="Enter your password"><br>
+                    <input type="submit" value="Login" id="login_ID">
                 </form>
+<!--                 <script src="js/registerAndLogin.js"></script> -->
             </div>
 
+        </div>
+        <div id="logout-modal" class="modal">
+
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Logout Account</h2>
+                <form id="logout_acc">
+                    <input type="submit" id="logout_ID" value="Logout">
+                </form>
+<!--                 <script src="js/registerAndLogin.js"></script> -->
+            </div>
+
+        </div>
+        <div id="delete-modal" class="modal">
+
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Delete Account</h2>
+                <form id="delete_acc">
+                    <input type="submit" id="delete_ID" value="Delete">
+                </form>
+<!--                 <script src="js/registerAndLogin.js"></script> -->
+            </div>
+
+        </div>
+        <div id="profile-modal" class="modal">
+
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Profile Account</h2>
+                <img id="acc-pic" src ="" alt="Profile Picture" width="250" height="250">
+                <p id="acc-email" style="font-weight: bold;"></p>
+                <p id="acc-type" style="font-size: small;"></p>
+                <p id="acc-desc" style="font-size: smaller;"></p>
+                <form id="profile_acc">
+                    <input type="submit" id="profile_ID" value="Edit"><br>
+                    <input type="submit" id="other_profile_ID" value="Other">
+                </form>
+                <script src="js/registerAndLogin.js"></script>
+            </div>
+            <div id="edit-profile-modal" class="modal-edit">
+                <div class="modal-edit-content">
+                    <!--<button id="edit-profile-button"></button>-->
+                    <span class="close">&times;</span>
+                    <form id="new_profile_acc">
+                        <input type="text" id="edit_prof_pic_ID" placeholder="Enter new account picture url" style="width: 180px;"><br>
+                        <input type="text" id="edit_prof_desc_ID" placeholder="Enter new account description" style="width: 180px;"><br>
+                        <input type="submit" id="edit_profile_ID" value="Submit">
+                    </form>
+                    <script src="js/registerAndLogin.js"></script>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- maybe move this outside of the profile modal -->
+        <div id="other-profile-modal" class="modal-other">
+            <!--<div class="scroll">-->
+                <div class="modal-other-content">
+                    <!--<span class="close-other-profile">&times;</span>-->
+                    <!--<span class="close-other-profile">&times;</span>-->
+                    <script src="js/registerAndLogin.js"></script>
+                </div>
+            <!--</div>-->
         </div>
 
     </body>
