@@ -2,14 +2,6 @@ const containers = document.querySelectorAll(".seats-container");
 const numOfSeats = 5;
 console.log("test");
 
-// const date = document.createElement("input");
-// container.appendChild(date);
-// date.type = "date";
-//
-// const submit = document.createElement("button");
-// container.appendChild(submit);
-// submit.type = "submit";
-
 function dateElement() {
     const days = [];
     // document.createElement("input")

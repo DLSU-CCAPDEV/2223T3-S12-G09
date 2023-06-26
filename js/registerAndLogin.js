@@ -4,9 +4,9 @@ var acc_typeArray = ["Student", "Student", "Lab Technician"];
 var currUser; // when logout do currUser = "";
 var currUserAccType; // when logout do currUserAccType = "";
 
-window.addEventListener("click", function(event) {
-    console.log(event.target);
-});
+// window.addEventListener("click", function(event) {
+//     // console.log(event.target);
+// });
 
 document.addEventListener("DOMContentLoaded", function() {
 
