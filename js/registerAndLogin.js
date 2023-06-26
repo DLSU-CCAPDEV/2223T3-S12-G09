@@ -1,15 +1,15 @@
 var emailArray = ["jj@dlsu.edu.ph", "jojo@dlsu.edu.ph", "jose@dlsu.edu.ph"];
 var passwordArray = ["123", "123", "123"];
 var acc_typeArray = ["Student", "Student", "Lab Technician"];
+var acc_descArray = ["ComSci Student", "ComSci Student", "DLSU Technician"];
+var acc_profpicArray = [];
 var currUser; // when logout do currUser = "";
 var currUserAccType; // when logout do currUserAccType = "";
 
-// window.addEventListener("click", function(event) {
-//     // console.log(event.target);
-// });
+var currUserAccDesc;
+var currUserAccProfPic;
 
 document.addEventListener("DOMContentLoaded", function() {
-
     //register
     var modal_register = document.getElementById("register-modal");
 
@@ -25,17 +25,11 @@ document.addEventListener("DOMContentLoaded", function() {
         modal_register.style.display = "none";
     }
 
-    // modal_register.onclick = function(event) {
-    //     modal_register.style.display = "none";
-    // }
-    window.addEventListener("click", function(event) {
+    window.onclick = function(event) {
         if (event.target == modal_register) {
             modal_register.style.display = "none";
         }
-    });
-
-    // modal_register.childNodes[1].onclick = closeRegisterModal;
-
+    }
     //login
     var modal_login = document.getElementById("login-modal");
 
@@ -51,13 +45,11 @@ document.addEventListener("DOMContentLoaded", function() {
         modal_login.style.display = "none";
     }
 
-    window.addEventListener("click", function(event) {
+    window.onclick = function(event) {
         if (event.target == modal_login) {
             modal_login.style.display = "none";
         }
-    });
-
-
+    }
     //logout 
     var modal_logout = document.getElementById("logout-modal");
 
@@ -73,12 +65,11 @@ document.addEventListener("DOMContentLoaded", function() {
         modal_logout.style.display = "none";
     }
 
-    window.addEventListener("click", function(event) {
+    window.onclick = function(event) {
         if (event.target == modal_logout) {
             modal_logout.style.display = "none";
         }
-    });
-
+    }
     //delete
     var modal_delete = document.getElementById("delete-modal");
 
@@ -94,14 +85,34 @@ document.addEventListener("DOMContentLoaded", function() {
         modal_delete.style.display = "none";
     }
 
-    window.addEventListener("click", function(event) {
+    window.onclick = function(event) {
         if (event.target == modal_delete) {
             modal_delete.style.display = "none";
         }
-    });
+    }
+    //profile
+    var modal_profile = document.getElementById("profile-modal");
 
+    var btn_profile = document.getElementById("profile-button");
+
+    var span_profile = document.getElementsByClassName("close")[4];
+
+    btn_profile.onclick = function() {
+        modal_profile.style.display = "block";
+    }
+
+    span_profile.onclick = function(event) {
+        modal_profile.style.display = "none"; //changed from block to none
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal_profile) {
+            modal_profile.style.display = "none";
+        }
+    }
     logoutButton();
     deleteButton();
+    profileButton();
 });
 
 function loginButton() {
@@ -144,6 +155,16 @@ function deleteButton() {
     }
 }
 
+function profileButton() {
+    var btn_profile = document.getElementById("profile-button");
+
+    if (currUser) {
+        btn_profile.style.display = "block";
+    } else {
+        btn_profile.style.display = "none";
+    }
+}
+
 function emailExist(email) {
     return emailArray.includes(email);
 }
@@ -155,7 +176,7 @@ function handleRegister(event) {
     var passwordInput = document.getElementById("reg_password_ID");
     var acc_TypeInput = document.querySelector("input[name='reg_acc_type']:checked");
     if (!emailInput.value || !passwordInput.value || !acc_TypeInput) {
-        alert("Unable to register account. One or more details are missing!");
+        //alert("Unable to register account. One or more details are missing!");
         return;
     } else {
         var email = emailInput.value;
@@ -164,7 +185,7 @@ function handleRegister(event) {
     }
 
     if (emailExist(email)) {
-        alert("Email already exist. Please use a different email.");
+        //alert("Email already exist. Please use a different email.");
         return;
     }
 
@@ -178,6 +199,9 @@ function handleRegister(event) {
     console.log("Email registered: " + email);
     console.log("Password registered: " + password);
     console.log("Account type registered: " + acc_Type);
+
+    var modal_register = document.getElementById("register-modal");
+    modal_register.style.display = "none";
 }
 
 //login acc
@@ -188,7 +212,7 @@ function handleLogin(event) {
     var passwordInput = document.getElementById("log_password_ID");
 
     if (!emailInput.value || !passwordInput.value) {
-        alert("Unable to login account. One or more details are missing!");
+        //alert("Unable to login account. One or more details are missing!");
         return;
     } else {
         var email = emailInput.value;
@@ -196,7 +220,7 @@ function handleLogin(event) {
     }
 
     if (!emailExist(email)) {//problems may occur here
-        alert("Invalid email. Please use an existing email or register email before you login.");
+        //alert("Invalid email. Please use an existing email or register email before you login.");
         return;
     }
 
@@ -206,15 +230,28 @@ function handleLogin(event) {
     var emailIndex = emailArray.indexOf(email);
     var desPassword = passwordArray[emailIndex];
     var desAccType = acc_typeArray[emailIndex];
+    var desAccDesc = acc_descArray[emailIndex];
 
     if (password == desPassword) {
         currUser = email;
         currUserAccType = desAccType;
-        alert("User successfully logged in.")
+        currUserAccDesc = desAccDesc;
+        //alert("User successfully logged in.")
     } else {
-        alert("Incorrect password. Please enter the correct password.");
+        //alert("Incorrect password. Please enter the correct password.");
         return;
     }
+    //prof
+    var acc_desc = document.getElementById("acc-desc");
+
+    var edit_modal_profile = document.getElementById("edit-profile-modal");
+
+    if (acc_desc) {
+        acc_desc.innerText = currUserAccDesc;
+    }
+
+    edit_modal_profile.style.display = "none";
+
 
     //currUser = email;
     emailInput.value = "";
@@ -225,10 +262,14 @@ function handleLogin(event) {
     console.log("Email registered: " + email);
     console.log("Password registered: " + password);
 
+    var modal_login = document.getElementById("login-modal");//remember this part
+    modal_login.style.display = "none";
+
     loginButton();
     registerButton();
     logoutButton();
     deleteButton();
+    profileButton();
 }
 
 function handleLogout(event) {
@@ -238,15 +279,20 @@ function handleLogout(event) {
     if (logout) {
         currUser = "";
         currUserAccType = "";
+        currUserAccDesc = "";
     }
 
     //delete afterwards>
     console.log("User successfully logged out.");
 
+    var modal_logout = document.getElementById("logout-modal");
+    modal_logout.style.display = "none";
+
     loginButton();
     registerButton();
     logoutButton();
     deleteButton();
+    profileButton();
 }
 
 function handleDelete(event) {
@@ -258,11 +304,13 @@ function handleDelete(event) {
     var desAccType = acc_typeArray[emailIndex];
 
     if (desAccType == "Lab Technician") {
-        alert("User account cannot be deleted.")
+        //alert("User account cannot be deleted.")
         return;
     } else {
         currUser = "";
         currUserAccType = "";
+        currUserAccDesc = "";
+
 
         emailArray.splice(emailIndex, 1);
         passwordArray.splice(emailIndex, 1);
@@ -272,10 +320,50 @@ function handleDelete(event) {
     //delete afterwards?
     console.log("User successfully deleted out.");
 
+    var modal_delete = document.getElementById("delete-modal");
+    modal_delete.style.display = "none";
+
     loginButton();
     registerButton();
     logoutButton();
     deleteButton();
+    profileButton();
+}
+
+function handleProfile(event) {
+    event.preventDefault();
+
+    var edit_modal_profile = document.getElementById("edit-profile-modal");
+
+    edit_modal_profile.style.display = "block";
+
+
+}
+
+function handleProfileEdit(event) { //maybbe use onclick???
+    event.preventDefault();
+
+    var new_acc_desc = document.getElementById("edit_prof_desc_ID");
+
+    var acc_desc = document.getElementById("acc-desc");
+
+    var edit_modal_profile = document.getElementById("edit-profile-modal");
+    //var edit_modal_profile = document.getElementById("new_profile_acc");
+
+    var emailIndex = emailArray.indexOf(currUser);
+
+    if (new_acc_desc) {
+        currUserAccDesc = new_acc_desc.value;
+        acc_desc.innerText = currUserAccDesc;
+        acc_descArray[emailIndex] = new_acc_desc.value;
+    }
+
+    edit_modal_profile.style.display = "none";
+    document.getElementById("new_profile_acc").reset();
+
+    var modal_profile = document.getElementById("profile-modal");
+    modal_profile.style.display = "none";
+
 }
 
 var register_acc = document.getElementById("register_acc");
@@ -289,3 +377,9 @@ logout_acc.addEventListener("submit", handleLogout);
 
 var delete_acc = document.getElementById("delete_acc");
 delete_acc.addEventListener("submit", handleDelete);
+
+var profile_acc = document.getElementById("profile_acc");
+profile_acc.addEventListener("submit", handleProfile);
+
+var new_profile_acc = document.getElementById("new_profile_acc");
+new_profile_acc.addEventListener("submit", handleProfileEdit);
