@@ -82,11 +82,5 @@ for (var labIdx = 0; labIdx < 3; labIdx++) {
     reserveButton.innerText = "Reserve";
     reserveButton.id = "lab-" + (labIdx + 1) + "-seat-" + (seatIdx + 1);
 
-    // seatArray.push(new Seat(seatIdx, labIdx, seatsList));
-
-    // const current = seatArray[seatArray.length - 1];
-
-    // availCounter.appendChild(document.createTextNode(current.idx + 1))
-
     reserveButton.addEventListener("click", function() { showReserve(formSeat, labIdx) });
 }
