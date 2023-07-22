@@ -1,0 +1,380 @@
+body{
+    margin: 0;
+    padding: 35px 150px;
+    font-family: Arial, sans-serif;
+    color: #262626;
+}
+
+#header{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background: lightgray; 
+    display: flex;
+    align-items: center;
+    
+}
+
+.htext{
+    font-weight: bold;
+    font-size: 2.4rem;
+    flex-grow: 1;
+}
+
+.hnav{
+    border: solid 1px gray;
+    margin: 1.5px;
+}
+
+p, h2 {
+    font-family: sans-serif;
+}
+
+.nav-ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #333
+}
+
+.nav-ul li {
+    float: left;
+}
+
+.nav-ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+.nav-ul li a:hover {
+    cursor: pointer;
+}
+
+.nav-ul button{
+    margin-left: 30px;
+    border: solid 1px #9d9d9d;
+    border-radius: 25px;
+    padding: 10px;
+    background-color: white;
+}
+
+.nav-ul button:hover{
+    background-color: rgba(157, 157, 157, 0.10);
+    cursor: pointer;
+}
+
+ul li {
+    font-family: sans-serif;
+}
+
+.lab-container {
+    display:flex;
+    justify-content: stretch;
+}
+
+.avail-container {
+    padding:1em 2em;
+/*     border: 3px solid black */
+}
+
+.seats-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.seats-status {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: lightgray;
+    margin-right: 10px;
+}
+
+.reserve-button {
+    margin-left: 10px;
+}
+
+button.view {
+    padding: 0px 10px;
+}
+
+/*------------------------  MODAL LOGIN AND REGISTER -------------------*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    padding-top: 100px;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+    border-radius: 7px;
+}
+
+.modal input{
+    margin: 3px 0 3px 0;
+}
+
+.modal input[type=submit]{
+    background-color: #262626;
+    border-radius: 2px;
+    padding: 10px 65px;
+    border: none;
+    color: #ffffff;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-top: 25px;
+}
+
+.modal input[type=submit]:hover {
+    cursor: pointer;
+}
+
+.modal input[type=email], input[type=password], input[type=text]{
+    padding: 5px 10px;
+    border: #e5e5e5 solid 2px;
+    border-radius: 3px;
+    background: rgba(229, 229, 229, 0.15);
+}
+
+.modal input[type=radio]{
+    margin-right: 15px;
+}
+
+.modal label{
+    font-size: 0.8rem;
+    margin-right: 5px;
+}
+
+.close{
+    display: block;
+}
+
+.modal-edit {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left:0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-edit-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    top: 200px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+}
+
+.modal-other {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 80px;
+    left:0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-other-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%;
+    height: 80%;
+    overflow-y: auto;
+    max-width: 400px;
+}
+
+.close{
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover{
+    color: #000;
+}
+
+.close:hover, .close:focus{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*.scroll {
+    height: 400px;
+    overflow-y: auto;
+}*/
+/*
+    create new modal for viewing of other profiles
+    close the user profile view
+    add the account email
+*/
+
+/*.close-other-profile{
+    color: #aaaaaa;
+    position: fixed;
+    right: 600px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-other-profile:hover{
+    color: #000;
+}
+
+.close-other-profile:hover, .close-other-profile:focus{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}*/
+
+/*------------------------  Index Showcase Content   -------------------*/
+
+.lab_1 img, .lab_2 img, .lab_3 img {
+    width: 750px;
+    float: left;
+}
+
+#showcase {
+    background-image: url("../images/lab\ 1.jpg");
+    background-repeat: no-repeat;
+    height: 550px;
+    background-position: center;
+    background-size: cover;
+    background-color: papayawhip;
+}
+
+.showcase-content {
+    padding: 100px;
+    padding-right: 170px;
+    color: rgb(56, 56, 56);
+}
+
+.showcase-content h2 {
+    font-size: 60px;
+    line-height: 1.9em;
+}
+
+.btn {
+    display: inline-block;
+    padding: 07px 16px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 03px;
+    background: beige;
+}
+
+.lead {
+    font-size: 16px;
+    text-align: justify;
+}
+
+.showcase-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.showcase-content a:hover {
+    background: rgb(255, 255, 248);
+    transition-duration: 0.4s;
+}
+
+#available-labs .lab-box {
+    float: left;
+    width: 25.25%;
+    padding: 45px;
+    text-align: center;
+    margin: 30px;
+}
+
+#available-labs h2 {
+    margin-bottom: 25px;
+}
+
+.container-design h3 {
+    margin-left: 25px;
+}
+
+#lab1 {
+    background-image: url("../images/Chemistry_Lab.jpg");
+    background-repeat: no-repeat;
+    height: 550px;
+    background-position: center;
+    background-size: cover;
+    background-color: papayawhip;
+}
+
+#lab2 {
+    background-image: url("../images/Computer_lab.jpg");
+    background-repeat: no-repeat;
+    height: 550px;
+    background-position: center;
+    background-size: cover;
+    background-color: papayawhip;
+}
+
+#lab3 {
+    background-image: url("../images/Physics_lab.jpg");
+    background-repeat: no-repeat;
+    height: 550px;
+    background-position: center;
+    background-size: cover;
+    background-color: papayawhip;
+}
+<<<<<<< HEAD
+
+.overlay {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.rounded {
+    background-attachment: fixed;
+    border: 2px solid gray;
+    border-radius: 200px;
+    /*width: 250px;
+    height: 250px;*/
+    /*align-items: center;*/
+}
