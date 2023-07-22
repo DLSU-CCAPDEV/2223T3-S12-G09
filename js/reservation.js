@@ -2,6 +2,7 @@ var days = [];
 update_days(days);
 var current_date = days[0];
 var current_user = "User";
+var selected_lab = "a";
 var seats = [];
 
 function Seat(seat_id){
@@ -9,8 +10,9 @@ function Seat(seat_id){
     this.reservations = [];
 }
 
-function Reservation(user, date, time_slot){
+function Reservation(user, lab, date, time_slot){
     this.user = user;
+    this.lab = lab;
     this.date = date;
     this.time_slot = time_slot;
 }
@@ -22,19 +24,25 @@ $(document).ready(function(){
 
     // Test
     var time_slot = document.getElementById("time-slots");
-    seats[0].reservations.push(new Reservation(current_user, current_date.toString(), time_slot.options[0].text));
-    seats[1].reservations.push(new Reservation(current_user, current_date.toString(), time_slot.options[0].text));
-    seats[6].reservations.push(new Reservation(current_user, days[2].toString(), time_slot.options[1].text));
-    seats[9].reservations.push(new Reservation(current_user, days[5].toString(), time_slot.options[1].text));
-    seats[10].reservations.push(new Reservation(current_user, days[5].toString(), time_slot.options[2].text));
-    seats[27].reservations.push(new Reservation(current_user, days[5].toString(),time_slot.options[2].text));
-    seats[31].reservations.push(new Reservation(current_user, days[6].toString(),  time_slot.options[3].text));
+    seats[0].reservations.push(new Reservation(current_user, "a", current_date.toString(), time_slot.options[0].text));
+    seats[1].reservations.push(new Reservation(current_user, "a", current_date.toString(), time_slot.options[0].text));
+    seats[6].reservations.push(new Reservation(current_user, "b", days[2].toString(), time_slot.options[1].text));
+    seats[9].reservations.push(new Reservation(current_user, "c", days[5].toString(), time_slot.options[1].text));
+    seats[10].reservations.push(new Reservation(current_user, "c", days[5].toString(), time_slot.options[2].text));
+    seats[27].reservations.push(new Reservation(current_user, "c", days[5].toString(),time_slot.options[2].text));
+    seats[31].reservations.push(new Reservation(current_user, "c", days[6].toString(),  time_slot.options[3].text));
 
     display_seats(seats, current_date);
 });
 
 $("#time-slots").change(function(){
    display_seats(seats, current_date);
+});
+
+$("#res-labs > button").click(function(){
+    selected_lab = this.id.substring(this.id.indexOf("-") + 1, this.id.length);
+    alert("Laboratory " + selected_lab.toUpperCase() + " selected");
+    display_seats(seats, current_date);
 });
 
 function update_days(days){
@@ -54,9 +62,13 @@ function generate_buttons(){
             current_date = new Date(this.value);
             alert("Set date to " + current_date.toString());
             display_seats(seats, current_date);
-            document.getElementById("time-slots").selectedIndex = "0";
+            reset_selected_time_slot();
         };
     }
+}
+
+function reset_selected_time_slot(){
+    document.getElementById("time-slots").selectedIndex = "0";
 }
 
 function generate_time_slots() {
@@ -108,16 +120,18 @@ function display_seat(seat, date, time_slot) {
     seat_container.innerHTML = seat.seat_id;
     seat_container.className = "seat-container";
     seat_container.onclick = function(){
-        reserve_seat(seat, time_slot);
+        reserve_seat(seat, selected_lab, time_slot);
         seat_container.classList.add("reserved");
     };
 
-   if(seat.reservations.some(reservation => reservation.date === date && reservation.time_slot === time_slot))
+   if(seat.reservations.some(reservation => reservation.date === date &&
+                                            reservation.time_slot === time_slot &&
+                                            reservation.lab === selected_lab))
        seat_container.classList.add("reserved");
 }
 
-function reserve_seat(seat, time_slot){
-    seats[seat.seat_id].reservations.push(new Reservation(current_user, current_date.toString(), time_slot));
+function reserve_seat(seat, lab, time_slot){
+    seats[seat.seat_id].reservations.push(new Reservation(current_user, lab, current_date.toString(), time_slot));
     alert("Seat " + seat.seat_id + " has been reserved");
 }
 
