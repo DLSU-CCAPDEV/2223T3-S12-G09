@@ -1,3 +1,31 @@
+#res-days{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#res-seats-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 30%;
+}
+
+.seat-container{
+    border-style: solid;
+    padding: 20px;
+    flex: 1 0 15%;
+    text-align: center;
+}
+
+.reserved{
+    border-color: red;
+    color: red;
+}
+
+/** ^^^ Temp ^^^ **/
+
 body{
     margin: 0;
     padding: 35px 150px;
@@ -274,6 +302,7 @@ button.view {
     float: left;
 }
 
+/*
 #showcase {
     background-image: url("../images/lab\ 1.jpg");
     background-repeat: no-repeat;
@@ -282,6 +311,7 @@ button.view {
     background-size: cover;
     background-color: papayawhip;
 }
+*/
 
 .showcase-content {
     padding: 100px;
@@ -361,7 +391,6 @@ button.view {
     background-size: cover;
     background-color: papayawhip;
 }
-<<<<<<< HEAD
 
 .overlay {
     margin: 10px;
