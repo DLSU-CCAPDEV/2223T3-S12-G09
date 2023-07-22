@@ -56,7 +56,7 @@ function generate_buttons(){
     for(var i = 0; i < 7; i++) {
         var button = document.createElement("button");
         document.getElementById("res-days").append(button);
-        button.innerHTML = days[i].getMonth() + "/" + days[i].getDate() + "/" + days[i].getFullYear();
+        button.innerHTML = get_month(days[i].getMonth()) + " " + days[i].getDate() + ", " + days[i].getFullYear();
         button.value = days[i].toString();
         button.onclick = function(){
             current_date = new Date(this.value);
@@ -65,6 +65,13 @@ function generate_buttons(){
             reset_selected_time_slot();
         };
     }
+}
+
+function get_month(month){
+    var months = [ "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December" ];
+
+    return months[month];
 }
 
 function reset_selected_time_slot(){
