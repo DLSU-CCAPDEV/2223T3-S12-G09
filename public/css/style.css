@@ -275,7 +275,7 @@ button.view {
 }
 
 #showcase {
-    background-image: url("../images/lab\ 1.jpg");
+    background-image: url("/css/images/lab\ 1.jpg");
     background-repeat: no-repeat;
     height: 550px;
     background-position: center;
@@ -336,7 +336,7 @@ button.view {
 }
 
 #lab1 {
-    background-image: url("../images/Chemistry_Lab.jpg");
+    background-image: url("/css/images/Chemistry_Lab.jpg");
     background-repeat: no-repeat;
     height: 550px;
     background-position: center;
@@ -345,7 +345,7 @@ button.view {
 }
 
 #lab2 {
-    background-image: url("../images/Computer_lab.jpg");
+    background-image: url("/css/images/Computer_lab.jpg");
     background-repeat: no-repeat;
     height: 550px;
     background-position: center;
@@ -354,7 +354,7 @@ button.view {
 }
 
 #lab3 {
-    background-image: url("../images/Physics_lab.jpg");
+    background-image: url("/css/images/Physics_lab.jpg");
     background-repeat: no-repeat;
     height: 550px;
     background-position: center;

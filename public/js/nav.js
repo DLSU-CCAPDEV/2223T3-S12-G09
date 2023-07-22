@@ -7,8 +7,8 @@ class Links {
 }
 
 const links = [
-    new Links("index.html", "Home", "_self"),
-    new Links("labs.html", "Labs", "_blank"),
+    new Links("/", "Home", "_self"),
+    new Links("/labs", "Labs", "_blank")
     // new Links("contacts.html", "Contacts", "_blank")
 ];
 
