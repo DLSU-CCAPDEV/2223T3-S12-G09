@@ -10,7 +10,8 @@ function Seat(seat_id){
     this.reservations = [];
 }
 
-function Reservation(user, lab, date, time_slot){
+function Reservation(seat_id, user, lab, date, time_slot){
+    this.seat_id = seat_id;
     this.user = user;
     this.lab = lab;
     this.date = date;
@@ -21,18 +22,13 @@ $(document).ready(function(){
     generate_buttons();
     generate_time_slots();
     populate_seats(seats);
-
-    // Test
-    var time_slot = document.getElementById("time-slots");
-    seats[0].reservations.push(new Reservation(current_user, "a", current_date.toString(), time_slot.options[0].text));
-    seats[1].reservations.push(new Reservation(current_user, "a", current_date.toString(), time_slot.options[0].text));
-    seats[6].reservations.push(new Reservation(current_user, "b", days[2].toString(), time_slot.options[1].text));
-    seats[9].reservations.push(new Reservation(current_user, "c", days[5].toString(), time_slot.options[1].text));
-    seats[10].reservations.push(new Reservation(current_user, "c", days[5].toString(), time_slot.options[2].text));
-    seats[27].reservations.push(new Reservation(current_user, "c", days[5].toString(),time_slot.options[2].text));
-    seats[31].reservations.push(new Reservation(current_user, "c", days[6].toString(),  time_slot.options[3].text));
-
     display_seats(seats, current_date);
+    display_user_reservations();
+});
+
+$("#temp-logout").click(function(){
+    current_user = "";
+    alert("Logged out");
 });
 
 $("#time-slots").change(function(){
@@ -40,7 +36,7 @@ $("#time-slots").change(function(){
 });
 
 $("#res-labs > button").click(function(){
-    selected_lab = this.id.substring(this.id.indexOf("-") + 1, this.id.length);
+    selected_lab = this.id[this.id.length - 1];
     alert("Laboratory " + selected_lab.toUpperCase() + " selected");
     display_seats(seats, current_date);
 });
@@ -129,6 +125,7 @@ function display_seat(seat, date, time_slot) {
     seat_container.onclick = function(){
         reserve_seat(seat, selected_lab, time_slot);
         seat_container.classList.add("reserved");
+        display_user_reservations();
     };
 
    if(seat.reservations.some(reservation => reservation.date === date &&
@@ -138,7 +135,7 @@ function display_seat(seat, date, time_slot) {
 }
 
 function reserve_seat(seat, lab, time_slot){
-    seats[seat.seat_id].reservations.push(new Reservation(current_user, lab, current_date.toString(), time_slot));
+    seats[seat.seat_id].reservations.push(new Reservation(seat.seat_id, current_user, lab, current_date.toString(), time_slot));
     alert("Seat " + seat.seat_id + " has been reserved");
 }
 
@@ -148,4 +145,47 @@ function display_seats(seats, date){
 
     for(var i = 0; i < seats.length; i++)
         display_seat(seats[i], date.toString(), time_slot.options[time_slot.selectedIndex].text);
+}
+
+function display_user_reservations(){
+    document.getElementById("user-res-container").innerHTML = "";
+    var user_reservations = filter_reservations(current_user).slice();
+
+    for(var i = 0; i < user_reservations.length; i++){
+        display_user_reservation(user_reservations[i]);
+    }
+}
+
+function display_user_reservation(reservation){
+    var lab = document.createElement("div");
+    var date = document.createElement("div");
+    var time_slot = document.createElement("div");
+    var seat_id = document.createElement("div");
+    var container = document.createElement("div");
+
+    container.append(lab);
+    container.append(date);
+    container.append(time_slot);
+    container.append(seat_id);
+    document.getElementById("user-res-container").append(container);
+    document.getElementById("user-res-container").append(document.createElement("br"));
+
+    seat_id.innerHTML = "Seat " + reservation.seat_id;
+    lab.innerHTML = "Lab " + reservation.lab.toUpperCase();
+    date.innerHTML = reservation.date;
+    time_slot.innerHTML = reservation.time_slot;
+}
+
+function filter_reservations(user){
+    var filtered_array = [];
+
+    seats.forEach(seat => {
+        if(seat.reservations)
+            seat.reservations.forEach(reservation => {
+               if(reservation.user === user)
+                   filtered_array.push(reservation);
+            });
+    });
+
+    return filtered_array;
 }
