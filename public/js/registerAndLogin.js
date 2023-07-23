@@ -2,14 +2,22 @@ var emailArray = ["jose_joaquin_arevalo@dlsu.edu.ph", "john_joseph_giron@dlsu.ed
 var passwordArray = ["123", "123", "123", "123", "123"];
 var acc_typeArray = ["Student", "Student", "Student", "Student", "Lab Technician"];
 var acc_descArray = ["ComSci Student", "ComSci Student", "ComSci Student", "ComSci Student", "DLSU Technician"];
-var acc_profpicArray = ["https://images.freeimages.com/images/large-previews/b5e/laughing-otters-1408610.jpg", "", "https://myfox8.com/wp-content/uploads/sites/17/2022/08/All-Three-Best.jpg", 
-                        "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Bruce_Wayne_%28The_Dark_Knight_Trilogy%29.jpg/220px-Bruce_Wayne_%28The_Dark_Knight_Trilogy%29.jpg", "https://m.media-amazon.com/images/M/MV5BNGJmMWEzOGQtMWZkNS00MGNiLTk5NGEtYzg1YzAyZTgzZTZmXkEyXkFqcGdeQXVyMTE1MTYxNDAw._V1_FMjpg_UX1000_.jpg"];
+var acc_profpicArray = [
+    "https://images.freeimages.com/images/large-previews/b5e/laughing-otters-1408610.jpg",
+    "https://myfox8.com/wp-content/uploads/sites/17/2022/08/All-Three-Best.jpg",
+    "https://myfox8.com/wp-content/uploads/sites/17/2022/08/All-Three-Best.jpg",
+    "https://upload.wikimedia.org/wikipedia/en/thumb/1/19/Bruce_Wayne_%28The_Dark_Knight_Trilogy%29.jpg/220px-Bruce_Wayne_%28The_Dark_Knight_Trilogy%29.jpg",
+    "https://m.media-amazon.com/images/M/MV5BNGJmMWEzOGQtMWZkNS00MGNiLTk5NGEtYzg1YzAyZTgzZTZmXkEyXkFqcGdeQXVyMTE1MTYxNDAw._V1_FMjpg_UX1000_.jpg"
+];
+
 var acc_reservationsArray = [[], [], [], [], []];
 var currUser;
 var currUserAccType;
 var currUserAccDesc;
 var currUserAccProfPic;
 var defAccProfPic = "https://i.imgflip.com/6yvpkj.jpg";
+
+
 
 /*
     Notes/Question:
@@ -127,6 +135,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             var email = emailInput.value;
             var password = passwordInput.value;
+
             isLoggedIn = 1;
         }
 
