@@ -149,9 +149,12 @@ function display_seat(seat, date, time_slot) {
 //                              reservation.lab === selected_lab))
 //        seat_container.classList.add("reserved");
 // =======
-    if(seat.reservations.some(reservation => reservation.date === date &&
-        reservation.time_slot === time_slot &&
-        reservation.lab === selected_lab))
+    if(seat.reservations.some((reservation) => {
+        reservation.date == date &&
+        reservation.time_slot == time_slot &&
+        reservation.lab == selected_lab
+    }
+    ))
         seat_container.classList.add("reserved");
 // >>>>>>> b56335155282b66dab24b197e9e2edd9ecc8afde
 }
