@@ -34,7 +34,7 @@ NodeJS yet, go to its <a href='https://nodejs.org/en/download'>download</a> site
   </li>
   <li>
     Install the necessary npm modules with the command below:<br>
-    <code>npm install express hbs dotenv body-parser mongodb</code>
+    <code>npm install express hbs dotenv body-parser mongoose</code>
   </li>
   <li>
     Then run the server by copy-pasting the code below into the command prompt (Windows), or terminal (Mac, Linux).
