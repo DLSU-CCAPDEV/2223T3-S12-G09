@@ -154,10 +154,10 @@ function reserve_seat(seat, lab, time_slot){
 }
 
 function delete_reservation(seat, date, lab, time_slot){
-    seat.reservations.splice(seat.reservations.indexOf(seat.reservations.find(reservation =>
+    seat.reservations.splice(seat.reservations.findIndex(reservation =>
         reservation.date === date &&
         reservation.lab === lab &&
-        reservation.time_slot === time_slot)), 1);
+        reservation.time_slot === time_slot), 1);
 
     alert("Seat " + seat.seat_id + " reservation has been removed");
 }
@@ -185,7 +185,7 @@ function display_user_reservation(reservation){
     document.getElementById("user-res-container").append(document.createElement("br"));
 
     seat_id.innerHTML = "Seat " + reservation.seat_id;
-    lab.innerHTML = "Lab " + reservation.lab.toUpperCase();
+    lab.innerHTML = "Laboratory " + reservation.lab.toUpperCase();
     date.innerHTML = format_date(new Date(reservation.date));
     time_slot.innerHTML = reservation.time_slot;
 }
