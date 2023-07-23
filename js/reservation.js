@@ -52,10 +52,10 @@ function generate_buttons(){
     for(var i = 0; i < 7; i++) {
         var button = document.createElement("button");
         document.getElementById("res-days").append(button);
-        button.innerHTML = get_month(days[i].getMonth()) + " " + days[i].getDate() + ", " + days[i].getFullYear();
-        button.value = days[i].toString();
+        button.innerHTML = format_date(days[i]);
+        button.value = days[i];
         button.onclick = function(){
-            current_date = new Date(this.value);
+            current_date = this.value;
             alert("Set date to " + current_date.toString());
             display_seats(seats, current_date);
             reset_selected_time_slot();
@@ -63,11 +63,11 @@ function generate_buttons(){
     }
 }
 
-function get_month(month){
+function format_date(date){
     var months = [ "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December" ];
 
-    return months[month];
+    return date = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
 }
 
 function reset_selected_time_slot(){
@@ -117,43 +117,57 @@ function populate_seats(seats){
         seats.push(new Seat(i));
 }
 
+function display_seats(seats, date){
+    document.getElementById("res-seats-container").innerHTML = "";
+    var time_slot = document.getElementById("time-slots");
+
+    for(var i = 0; i < seats.length; i++)
+        display_seat(seats[i], date, time_slot.options[time_slot.selectedIndex].text);
+}
+
 function display_seat(seat, date, time_slot) {
     var seat_container = document.createElement("div");
     document.getElementById("res-seats-container").append(seat_container);
     seat_container.innerHTML = seat.seat_id;
     seat_container.className = "seat-container";
     seat_container.onclick = function(){
-        reserve_seat(seat, selected_lab, time_slot);
-        seat_container.classList.add("reserved");
+        if(seat_container.classList.contains("reserved")){
+            delete_reservation(seat, date, selected_lab, time_slot)
+            seat_container.classList.remove("reserved");
+        } else{
+            reserve_seat(seat, selected_lab, time_slot);
+            seat_container.classList.add("reserved");
+        }
+
         display_user_reservations();
     };
 
-   if(seat.reservations.some(reservation => reservation.date === date &&
-                                            reservation.time_slot === time_slot &&
-                                            reservation.lab === selected_lab))
-       seat_container.classList.add("reserved");
+    if(seat.reservations.some(reservation => reservation.date === date &&
+        reservation.time_slot === time_slot &&
+        reservation.lab === selected_lab))
+        seat_container.classList.add("reserved");
 }
 
 function reserve_seat(seat, lab, time_slot){
-    seats[seat.seat_id].reservations.push(new Reservation(seat.seat_id, current_user, lab, current_date.toString(), time_slot));
+    seats[seat.seat_id].reservations.push(new Reservation(seat.seat_id, current_user, lab, current_date, time_slot));
     alert("Seat " + seat.seat_id + " has been reserved");
 }
 
-function display_seats(seats, date){
-    document.getElementById("res-seats-container").innerHTML = "";
-    var time_slot = document.getElementById("time-slots");
+function delete_reservation(seat, date, lab, time_slot){
+    seat.reservations.splice(seat.reservations.indexOf(seat.reservations.find(reservation =>
+        reservation.date === date &&
+        reservation.lab === lab &&
+        reservation.time_slot === time_slot)), 1);
 
-    for(var i = 0; i < seats.length; i++)
-        display_seat(seats[i], date.toString(), time_slot.options[time_slot.selectedIndex].text);
+    alert("Seat " + seat.seat_id + " reservation has been removed");
 }
 
 function display_user_reservations(){
     document.getElementById("user-res-container").innerHTML = "";
     var user_reservations = filter_reservations(current_user).slice();
 
-    for(var i = 0; i < user_reservations.length; i++){
+    for(var i = 0; i < user_reservations.length; i++)
         display_user_reservation(user_reservations[i]);
-    }
 }
 
 function display_user_reservation(reservation){
@@ -172,7 +186,7 @@ function display_user_reservation(reservation){
 
     seat_id.innerHTML = "Seat " + reservation.seat_id;
     lab.innerHTML = "Lab " + reservation.lab.toUpperCase();
-    date.innerHTML = reservation.date;
+    date.innerHTML = format_date(new Date(reservation.date));
     time_slot.innerHTML = reservation.time_slot;
 }
 
