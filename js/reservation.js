@@ -53,9 +53,8 @@ function generate_buttons(){
         var button = document.createElement("button");
         document.getElementById("res-days").append(button);
         button.innerHTML = format_date(days[i]);
-        button.value = days[i];
         button.onclick = function(){
-            current_date = this.value;
+            current_date = days[Array.from(this.parentNode.children).indexOf(this)];
             alert("Set date to " + current_date.toString());
             display_seats(seats, current_date);
             reset_selected_time_slot();
