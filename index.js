@@ -1,8 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser')
-
-const routes = require('./routes/routes');
+const routes = require('./routes/routes.js');
+const hbs = require('hbs');
 
 const app = express();
 
@@ -11,6 +11,7 @@ port = process.env.PORT;
 hostname = process.env.HOSTNAME;
 
 app.set('view engine', 'hbs');
+hbs.registerPartials(__dirname + '/views/partials')
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
@@ -22,6 +23,6 @@ app.use(function(req, res) {
 });
 
 app.listen(port, hostname, function(req, res) {
-    console.log('Server running at:');
-    console.log('http://' + hostname + ':' + port);
+    console.log(`Server running at: `);
+    console.log(`http://` + hostname + `:` + port);
 });
