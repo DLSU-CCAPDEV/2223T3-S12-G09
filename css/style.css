@@ -1,3 +1,9 @@
+/* Temp */
+#res-container{
+    margin: auto;
+    width: 75%;
+}
+
 #res-days{
     display: flex;
     gap: 10px;
@@ -12,12 +18,23 @@
     cursor: pointer;
 }
 
+#res-another-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 #res-seats-container{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 10px;
-    width: 30%;
+    width: 45%;
+}
+
+#active-reservations{
+    width: 55%;
+    text-align: center;
 }
 
 .seat-container{
@@ -33,7 +50,7 @@
     color: red;
 }
 
-/** ^^^ Temp ^^^ **/
+/* ^^^ Temp ^^^ */
 
 body{
     margin: 0;

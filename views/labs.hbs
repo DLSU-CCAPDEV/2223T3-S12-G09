@@ -11,6 +11,8 @@
     </head>
     <body>
 
+        {{> header}}
+        <!--
         <div id="header">
             <span class="htext">Lab Reservation</span>
             <ul class="nav-ul" id="menu">
@@ -42,7 +44,7 @@
                     <input type="radio" id="reg_lab_technician" name="reg_acc_type" value="Lab Technician"><br>
                     <input type="submit" value="Register" id="register_ID">
                 </form>
-<!--                 <script src="js/registerAndLogin.js"></script> -->
+
             </div>
 
         </div>
@@ -56,7 +58,7 @@
                     <input type="password" id="log_password_ID" placeholder="Enter your password"><br>
                     <input type="submit" value="Login" id="login_ID">
                 </form>
-<!--                 <script src="js/registerAndLogin.js"></script> -->
+
             </div>
 
         </div>
@@ -68,7 +70,7 @@
                 <form id="logout_acc">
                     <input type="submit" id="logout_ID" value="Logout">
                 </form>
-<!--                 <script src="js/registerAndLogin.js"></script> -->
+
             </div>
 
         </div>
@@ -80,7 +82,7 @@
                 <form id="delete_acc">
                     <input type="submit" id="delete_ID" value="Delete">
                 </form>
-<!--                 <script src="js/registerAndLogin.js"></script> -->
+
             </div>
 
         </div>
@@ -89,19 +91,20 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Profile Account</h2>
-                <img id="acc-pic" src ="" alt="Profile Picture" width="250" height="250">
+                <img class="rounded" id="acc-pic" src ="" alt="Profile Picture" width="250" height="250">
                 <p id="acc-email" style="font-weight: bold;"></p>
                 <p id="acc-type" style="font-size: small;"></p>
                 <p id="acc-desc" style="font-size: smaller;"></p>
+                <p style="font-size: smaller;">Current Reservation: None</p>
                 <form id="profile_acc">
                     <input type="submit" id="profile_ID" value="Edit"><br>
                     <input type="submit" id="other_profile_ID" value="Other">
                 </form>
-                <script src="js/registerAndLogin.js"></script>
+                <script src="/js/registerAndLogin.js"></script>
             </div>
             <div id="edit-profile-modal" class="modal-edit">
                 <div class="modal-edit-content">
-                    <!--<button id="edit-profile-button"></button>-->
+                    
                     <span class="close">&times;</span>
                     <form id="new_profile_acc">
                         <input type="text" id="edit_prof_pic_ID" placeholder="Enter new account picture url" style="width: 180px;"><br>
@@ -109,22 +112,22 @@
                         <input type="text" id="edit_prof_desc_ID" placeholder="Enter new account description" style="width: 180px;"><br>
                         <input type="submit" id="edit_profile_ID" value="Submit">
                     </form>
-                    <script src="js/registerAndLogin.js"></script>
+                    <script src="/js/registerAndLogin.js"></script>
                 </div>
             </div>
 
         </div>
         
-        <!-- maybe move this outside of the profile modal -->
+        
         <div id="other-profile-modal" class="modal-other">
-            <!--<div class="scroll">-->
+            
                 <div class="modal-other-content">
-                    <!--<span class="close-other-profile">&times;</span>-->
-                    <!--<span class="close-other-profile">&times;</span>-->
+
                     <script src="js/registerAndLogin.js"></script>
                 </div>
-            <!--</div>-->
+            
         </div>
+        -->
 
         <h1>Seat Availability</h1>
 
