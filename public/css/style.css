@@ -65,7 +65,6 @@ body{
     left: 0;
     width: 100%;
     height: auto;
-    background: lightgray; 
     display: flex;
     align-items: center;
     
@@ -91,7 +90,6 @@ p, h2 {
     margin: 0px;
     padding: 0px;
     overflow: hidden;
-    background-color: #333
 }
 
 .nav-ul li {
@@ -104,6 +102,7 @@ p, h2 {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    color: #262626;
 }
 
 

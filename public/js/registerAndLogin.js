@@ -17,8 +17,6 @@ var currUserAccDesc;
 var currUserAccProfPic;
 var defAccProfPic = "https://i.imgflip.com/6yvpkj.jpg";
 
-
-
 /*
     Notes/Question:
     1. Delete the console logs?
@@ -164,6 +162,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("login_acc").reset();
             return;
         }
+
 
         //prof
         var acc_email = document.getElementById("acc-email");

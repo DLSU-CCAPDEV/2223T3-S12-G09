@@ -142,11 +142,10 @@ function display_seat(seat, date, time_slot) {
         display_user_reservations();
     };
 
-    if(seat.reservations.some((reservation) => {
-        reservation.date == date &&
-        reservation.time_slot == time_slot &&
-        reservation.lab == selected_lab
-    }
+    if(seat.reservations.some(reservation =>
+        reservation.date === date &&
+        reservation.time_slot === time_slot &&
+        reservation.lab === selected_lab
     ))
         seat_container.classList.add("reserved");
 }
