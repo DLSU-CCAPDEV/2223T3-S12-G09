@@ -130,16 +130,16 @@ function display_seat(seat, date, time_slot) {
             return;
         }
         console.log(currUser);
-        // if(seat_container.classList.contains("reserved")){
-        //     delete_reservation(seat, date, selected_lab, time_slot)
-        //     seat_container.classList.remove("reserved");
-        // }
-        //else{
+        if(seat_container.classList.contains("reserved")){
+            delete_reservation(seat, date, selected_lab, time_slot)
+            seat_container.classList.remove("reserved");
+        }
+        else{
             reserve_seat(seat, selected_lab, time_slot);
             seat_container.classList.add("reserved");
-        // }
-        //
-        // display_user_reservations();
+        }
+
+        display_user_reservations();
     };
 
     const sendJSON = {
@@ -172,7 +172,7 @@ function display_seat(seat, date, time_slot) {
 
 function reserve_seat(seat, lab, time_slot){
     seats[seat.seat_id].reservations.push(new Reservation(seat.seat_id, currUser, lab, current_date, time_slot));
-
+/*
     const sendJSON = {
             seat_id: seat.seat_id,
             user: {email: currUser},
@@ -184,7 +184,7 @@ function reserve_seat(seat, lab, time_slot){
     $.get('/makeReservation', sendJSON, (result, status) => {
         console.log('Status:', status);
         console.log(result);
-    });
+    });*/
     alert("Seat " + seat.seat_id + " has been reserved");
 }
 
