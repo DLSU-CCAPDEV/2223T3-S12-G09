@@ -1,7 +1,6 @@
 var days = [];
 update_days(days);
 var current_date = days[0];
-var current_user = "User";
 var selected_lab = "a";
 var seats = [];
 
@@ -24,11 +23,6 @@ $(document).ready(function(){
     populate_seats(seats);
     display_seats(seats, current_date);
     display_user_reservations();
-});
-
-$("#temp-logout").click(function(){
-    current_user = "";
-    alert("Logged out");
 });
 
 $("#time-slots").change(function(){
@@ -151,7 +145,7 @@ function display_seat(seat, date, time_slot) {
 }
 
 function reserve_seat(seat, lab, time_slot){
-    seats[seat.seat_id].reservations.push(new Reservation(seat.seat_id, current_user, lab, current_date, time_slot));
+    seats[seat.seat_id].reservations.push(new Reservation(seat.seat_id, currUser, lab, current_date, time_slot));
     alert("Seat " + seat.seat_id + " has been reserved");
 }
 
@@ -166,7 +160,7 @@ function delete_reservation(seat, date, lab, time_slot){
 
 function display_user_reservations(){
     document.getElementById("user-res-container").innerHTML = "";
-    var user_reservations = filter_reservations(current_user).slice();
+    var user_reservations = filter_reservations(currUser).slice();
 
     for(var i = 0; i < user_reservations.length; i++)
         display_user_reservation(user_reservations[i]);

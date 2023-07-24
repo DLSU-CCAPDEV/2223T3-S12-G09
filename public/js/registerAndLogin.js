@@ -1,5 +1,5 @@
-var emailArray = ["jose_joaquin_arevalo@dlsu.edu.ph", "john_joseph_giron@dlsu.edu.ph", "rey_obejero@dlsu.edu.ph", "dylan_uy@dlsu.edu.ph", "arren.antioquia@dlsu.edu.ph"];
-var passwordArray = ["123", "123", "123", "123", "123"];
+var emailArray = ["jose_joaquin_arevalo@dlsu.edu.ph", "john_joseph_giron@dlsu.edu.ph", "rey_obejero@dlsu.edu.ph", "dylan_uy@dlsu.edu.ph", "arren.antioquia@dlsu.edu.ph", "email@email.com"];
+var passwordArray = ["123", "123", "123", "123", "123", "123"];
 var acc_typeArray = ["Student", "Student", "Student", "Student", "Lab Technician"];
 var acc_descArray = ["ComSci Student", "ComSci Student", "ComSci Student", "ComSci Student", "DLSU Technician"];
 var acc_profpicArray = [
