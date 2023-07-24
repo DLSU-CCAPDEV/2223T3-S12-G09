@@ -9,5 +9,6 @@ app.get('/', controllers.getIndex);
 app.get('/labs', labControllers.getLabs);
 
 app.get('/checkReservation', reserveControllers.checkReservation);
+app.post('/makeReservation', reserveControllers.makeReservation);
 
 module.exports = app;
