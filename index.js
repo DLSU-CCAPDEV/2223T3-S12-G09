@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const routes = require('./routes/routes.js');
 const hbs = require('hbs');
 
+const db = require('./models/db.js');
+
 const app = express();
 
 dotenv.config();
@@ -21,6 +23,8 @@ app.use('/', routes);
 app.use(function(req, res) {
    res.send('Error 404!');
 });
+
+db.connect();
 
 app.listen(port, hostname, function(req, res) {
     console.log(`Server running at: `);

@@ -133,10 +133,16 @@ function display_seat(seat, date, time_slot) {
     seat_container.className = "seat-container";
 
     seat_container.onclick = function(){
+        if (currUser == null) {
+            alert("Sign in first!!");
+            return;
+        }
+        console.log(currUser);
         if(seat_container.classList.contains("reserved")){
             delete_reservation(seat, date, selected_lab, time_slot)
             seat_container.classList.remove("reserved");
-        } else{
+        }
+        else{
             reserve_seat(seat, selected_lab, time_slot);
             seat_container.classList.add("reserved");
         }
@@ -144,16 +150,49 @@ function display_seat(seat, date, time_slot) {
         display_user_reservations();
     };
 
+    const sendJSON = {
+        seat_id: seat.seat_id,
+        email: currUser,
+        date: date,
+        time_slot: time_slot,
+        lab: selected_lab
+    };
+
+    $.get('/checkReservation', sendJSON, (result, status) => {
+        console.log(result);
+        if (result.seat_id === seat.seat_id &&
+            result.email === currUser &&
+            result.date === date &&
+            result.time_slot === time_slot &&
+            result.lab === selected_lab
+        ) {
+            seat_container.classList.add("reserved");
+        }
+    });
+/*
     if(seat.reservations.some(reservation =>
         reservation.date === date &&
         reservation.time_slot === time_slot &&
         reservation.lab === selected_lab
     ))
-        seat_container.classList.add("reserved");
+        seat_container.classList.add("reserved");*/
 }
 
 function reserve_seat(seat, lab, time_slot){
     seats[seat.seat_id].reservations.push(new Reservation(seat.seat_id, currUser, lab, current_date, time_slot));
+/*
+    const sendJSON = {
+            seat_id: seat.seat_id,
+            user: {email: currUser},
+            lab: selected_lab,
+            date: current_date,
+            time_slot: time_slot
+    };
+
+    $.get('/makeReservation', sendJSON, (result, status) => {
+        console.log('Status:', status);
+        console.log(result);
+    });*/
     alert("Seat " + seat.seat_id + " has been reserved");
 }
 
