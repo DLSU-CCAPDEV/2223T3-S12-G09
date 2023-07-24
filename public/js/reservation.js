@@ -136,17 +136,41 @@ function display_seat(seat, date, time_slot) {
         display_user_reservations();
     };
 
-    $.get('/checkReservation', {seat: seat, date: date, time_slot: time_slot},
-      (result, status) => {
 
+    /*
+     * function Reservation(seat_id, user, lab, date, time_slot){
+            this.seat_id = seat_id;
+            this.user = user;
+            this.lab = lab;
+            this.date = date;
+            this.time_slot = time_slot;
+        }
+     */
+    const sendJSON = {
+        seat: seat.seat_id,
+        email: currUser,
+        date: date,
+        time_slot: time_slot,
+        lab: selected_lab
+    };
+
+    $.get('/checkReservation', sendJSON, (result, status) => {
+        if (result.seat_id === seat.seat_id &&
+            result.email === currUser &&
+            result.date === date &&
+            result.time_slot === time_slot &&
+            result.lab === selected_lab
+        ) {
+            seat_container.classList.add("reserved");
+        }
     });
-
+/*
     if(seat.reservations.some(reservation =>
         reservation.date === date &&
         reservation.time_slot === time_slot &&
         reservation.lab === selected_lab
     ))
-        seat_container.classList.add("reserved");
+        seat_container.classList.add("reserved");*/
 }
 
 function reserve_seat(seat, lab, time_slot){
