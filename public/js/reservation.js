@@ -30,7 +30,15 @@ $("#time-slots").change(function(){
 });
 
 $("#res-labs > button").click(function(){
-    selected_lab = this.id[this.id.length - 1];
+    var btn_index = Array.from(this.parentNode.children).indexOf(this);
+
+    if(btn_index === 0)
+        selected_lab = "a";
+    else if (btn_index === 1)
+        selected_lab = "b";
+    else
+        selected_lab = "c";
+
     alert("Laboratory " + selected_lab.toUpperCase() + " selected");
     display_seats(seats, current_date);
 });
