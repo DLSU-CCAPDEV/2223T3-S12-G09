@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("register_acc").reset();
             return;
         } else {
+            alert("Account successfully registered.");
             var email = emailInput.value;
             var password = passwordInput.value;
             var acc_Type = acc_TypeInput.value;
@@ -133,7 +134,6 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             var email = emailInput.value;
             var password = passwordInput.value;
-
             isLoggedIn = 1;
         }
 
@@ -162,7 +162,6 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("login_acc").reset();
             return;
         }
-
 
         //prof
         var acc_email = document.getElementById("acc-email");
@@ -365,10 +364,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 prof_container.style.borderRadius = "10px";
                 prof_container.style.padding = "5px";
                 prof_container.style.margin = "5px 17px 5px 5px";
-                prof_container.style.backgroundColor = "gray";
+                //prof_container.style.backgroundColor = "gray";
+                prof_container.style.backgroundColor = "#262626";
                 prof_container.classList.add("profile-container");
 
-                other_profile_content.style.backgroundColor = "lightgray";
+                //other_profile_content.style.backgroundColor = "lightgray";
+                other_profile_content.style.backgroundColor = "#262626";
 
                 if (count === 0) {
                     var close_other_profile = document.createElement("span");
