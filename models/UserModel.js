@@ -1,4 +1,3 @@
-
 // import module `mongoose`
 var mongoose = require('mongoose');
 
