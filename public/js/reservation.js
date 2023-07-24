@@ -136,6 +136,11 @@ function display_seat(seat, date, time_slot) {
         display_user_reservations();
     };
 
+    $.get('/checkReservation', {seat: seat, date: date, time_slot: time_slot},
+      (result, status) => {
+
+    });
+
     if(seat.reservations.some(reservation =>
         reservation.date === date &&
         reservation.time_slot === time_slot &&
