@@ -7,17 +7,17 @@ Specs checklist
 <pre>
 w - work in progress
 x - done
-[ ] View Slot Availability
-[w] Register
-[w] Login
-[w] Logout
-[ ] Reserve
-[ ] Reserve for a student
-[ ] Remove reservation
+[x] View Slot Availability
+[x] Register
+[x] Login
+[x] Logout
+[x] Reserve
+[x] Reserve for a student
+[x] Remove reservation
 [ ] Edit reservation
-[ ] See reservation
-[ ] View / Edit user profile
-[ ] Delete user account
+[x] See reservation
+[x] View / Edit user profile
+[x] Delete user account
 [ ] Search for users / free slots
 [ ] General
   [ ] Good UI and UX
