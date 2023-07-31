@@ -180,7 +180,7 @@ function display_seat(seat, date, time_slot) {
 
 function reserve_seat(seat, lab, time_slot){
     seats[seat.seat_id].reservations.push(new Reservation(seat.seat_id, currUser, lab, current_date, time_slot));
-/*
+
     const sendJSON = {
             seat_id: seat.seat_id,
             user: {email: currUser},
@@ -192,7 +192,7 @@ function reserve_seat(seat, lab, time_slot){
     $.get('/makeReservation', sendJSON, (result, status) => {
         console.log('Status:', status);
         console.log(result);
-    });*/
+    });
     alert("Seat " + seat.seat_id + " has been reserved");
 }
 
