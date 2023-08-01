@@ -183,7 +183,7 @@ function reserve_seat(seat, lab, time_slot){
 
     const sendJSON = {
             seat_id: seat.seat_id,
-            user: {email: currUser},
+            user: currUser,
             lab: selected_lab,
             date: current_date,
             time_slot: time_slot

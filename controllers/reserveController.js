@@ -23,7 +23,7 @@ const reserveController = {
 
     makeReservation: async function (req, res) {
         var seat = parseInt(req.body.seat_id);
-        var email = req.body['user[email]'];
+        var email = req.body.user;
         var date = req.body.date;
         var time_slot = req.body.time_slot;
         var lab = req.body.lab;
@@ -32,9 +32,7 @@ const reserveController = {
 
         var reservation = {
             seat_id: seat,
-            user: {
-                email: email
-            },
+            user: email,
             lab: lab,
             date: date,
             time_slot: time_slot
