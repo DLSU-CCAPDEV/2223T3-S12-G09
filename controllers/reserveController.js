@@ -1,4 +1,4 @@
-const db = require('../models/db');
+const db = require('../models/db.js');
 const Reservation = require('../models/ReservationModel.js');
 
 const reserveController = {
@@ -22,24 +22,29 @@ const reserveController = {
     },
 
     makeReservation: async function (req, res) {
-        var seat = req.params.seat_id;
-        var email = req.params.email;
-        var date = req.params.date;
-        var time_slot = req.params.time_slot;
-        var lab = req.params.lab;
+        var seat = parseInt(req.body.seat_id);
+        var email = req.body['user[email]'];
+        var date = req.body.date;
+        var time_slot = req.body.time_slot;
+        var lab = req.body.lab;
+
+        console.log(req.body);
 
         var reservation = {
             seat_id: seat,
-            user: {},
+            user: {
+                email: email
+            },
             lab: lab,
             date: date,
             time_slot: time_slot
         };
+        console.log("Reservation: ", reservation);
 
         var response = await db.insertOne(Reservation, reservation);
 
         if(response != null){
-            res.send(response);
+            res.send("db.insertOne response: " + response);
         }
         else {
             res.send({error: "insert fail!!"});

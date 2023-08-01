@@ -189,9 +189,9 @@ function reserve_seat(seat, lab, time_slot){
             time_slot: time_slot
     };
 
-    $.get('/makeReservation', sendJSON, (result, status) => {
+    $.post('/makeReservation', sendJSON, (result, status) => {
         console.log('Status:', status);
-        console.log(result);
+        console.log('Result:', result);
     });
     alert("Seat " + seat.seat_id + " has been reserved");
 }
