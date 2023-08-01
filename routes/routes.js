@@ -10,5 +10,6 @@ app.get('/labs', labControllers.getLabs);
 
 app.get('/checkReservation', reserveControllers.checkReservation);
 app.post('/makeReservation', reserveControllers.makeReservation);
+app.delete('/deleteReservation', reserveControllers.deleteReservation);
 
 module.exports = app;

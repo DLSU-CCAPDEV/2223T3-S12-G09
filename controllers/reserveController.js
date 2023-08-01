@@ -47,7 +47,34 @@ const reserveController = {
         else {
             res.send({error: "insert fail!!"});
         }
-    }
-}
+    },
 
-module.exports = reserveController
+    deleteReservation: async function(req, res){
+        var seat = parseInt(req.body.seat_id);
+        var email = req.body.user;
+        var date = req.body.date;
+        var time_slot = req.body.time_slot;
+        var lab = req.body.lab;
+
+        console.log(req.body);
+
+        var query = {
+            seat_id: seat,
+            user: email,
+            date: date,
+            time_slot: time_slot,
+            lab: lab
+        };
+
+        var response = await db.deleteOne(Reservation, query);
+
+        if(response != null){
+            res.send("Reservation deleted successfully");
+        }
+        else {
+            res.send({error: "Failed to delete reservation"});
+        }
+    }
+};
+
+module.exports = reserveController;
