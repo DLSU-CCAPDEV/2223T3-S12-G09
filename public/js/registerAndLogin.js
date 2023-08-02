@@ -10,6 +10,83 @@ var acc_profpicArray = [
     "https://m.media-amazon.com/images/M/MV5BNGJmMWEzOGQtMWZkNS00MGNiLTk5NGEtYzg1YzAyZTgzZTZmXkEyXkFqcGdeQXVyMTE1MTYxNDAw._V1_FMjpg_UX1000_.jpg"
 ];
 
+$(document).ready(function(){
+    function isFilled(){
+        var email = validator.trim($('#reg_email_ID').val());
+        var pw = validator.trim($('#reg_password_ID').val());
+
+        var email_empty = validator.isEmpty(email);
+        var pw_empty = validator.isEmpty(pw);
+
+        return !email_empty && !pw_empty;
+    }
+
+    function isValidEmail(field, callback){
+        var email = validator.trim($('#reg_email_ID').val());
+
+        $.get('/checkEmail', {email: email}, function(result){
+            if(result.email !== email){
+                if(field.is($('#reg_email_ID')))
+                    $('#reg_email_ID').text('');
+
+                return callback(true);
+            } else{
+                if(field.is($('#reg_email_ID')))
+                    $('#emailError').text('Email already registered.');
+
+                return callback(false);
+            }
+        });
+    }
+
+    function isValidPassword(field){
+        var validPassword = false;
+        var password = validator.trim($('#reg_password_ID').val());
+        var isValidLength = validator.isLength(password, {min: 8});
+
+        if(isValidLength){
+            if(field.is($('#reg_password_ID')))
+                $('#pwError').text('');
+
+            validPassword = true;
+        } else{
+            if(field.is($('#reg_password_ID')))
+                $('#pwError').text('Password should contain at least 8 characters.');
+        }
+
+        return validPassword;
+    }
+
+    function validateField(field, fieldName, error){
+        var value = validator.trim(field.val());
+        var empty = validator.isEmpty(value);
+
+        if(empty){
+            field.prop('value', '');
+            error.text(fieldName + ' should not be empty.');
+        } else
+            error.text('');
+
+        var filled = isFilled();
+        var validPassword = isValidPassword(field);
+
+        isValidEmail(field, function(validEmail){
+            if(filled && validPassword && validEmail)
+                $("register_ID").prop('disabled', false);
+            else
+                $('#submit').prop('disabled', true);
+        });
+    }
+
+    $('#reg_email_ID').keyup(function(){
+        validateField($('#reg_email_ID'), 'Email', $('#emailError'));
+    });
+
+    $('#reg_password_ID').keyup(function () {
+        validateField($('#reg_password_ID'), 'Password', $('#pwError'));
+    });
+});
+
 var acc_reservationsArray = [[], [], [], [], []];
 var currUser;
 var currUserAccType;
@@ -58,29 +135,31 @@ document.addEventListener("DOMContentLoaded", function() {
         var modal_register = document.getElementById("register-modal");
         var form_btn_register = document.getElementById("register_ID");
 
-        if (!emailInput.value || !passwordInput.value || !acc_TypeInput || !passwordConfirmInput.value) {
+        if (!emailInput.value || !passwordInput.value || !acc_TypeInput /*|| !passwordConfirmInput.value*/) {
             alert("Unable to register account. One or more details are missing!");
             console.log("Unable to register account. One or more details are missing!");
             document.getElementById("register_acc").reset();
             return;
-        } else if(passwordInput.value !== passwordConfirmInput.value){
+        } /*else if(passwordInput.value !== passwordConfirmInput.value){
             alert("Unable to register account. Password confirmation is not the same!");
             console.log("Unable to register account. Password confirmation is not the same!");
             document.getElementById("register_acc").reset();
             return;
-        } else {
+        }*/ else {
             alert("Account successfully registered.");
             var email = emailInput.value;
             var password = passwordInput.value;
             var acc_Type = acc_TypeInput.value;
         }
 
+        /*
         if (emailExist(email)) {
             alert("Email already exist. Please use a different email.");
             console.log("Email already exist. Please use a different email.");
             document.getElementById("register_acc").reset();
             return;
         }
+         */
 
         emailArray.push(email);
         emailInput.value = "";
