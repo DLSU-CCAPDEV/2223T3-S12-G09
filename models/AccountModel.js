@@ -4,7 +4,7 @@ var AccountSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true
-    },
+    },/*
     fname: {
         type: String,
         required: true
@@ -12,7 +12,7 @@ var AccountSchema = new mongoose.Schema({
     lname: {
         type: String,
         required: true
-    },
+    },*/
     description: {
         type: String,
         required: true

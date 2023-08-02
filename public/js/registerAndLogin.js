@@ -128,29 +128,37 @@ document.addEventListener("DOMContentLoaded", function() {
     form_btn_register.onclick = function(event) {
         event.preventDefault();
 
-        var emailInput = document.getElementById("reg_email_ID");
-        var passwordInput = document.getElementById("reg_password_ID");
-        var passwordConfirmInput = document.getElementById("reg_password_confirm_ID");
-        var acc_TypeInput = document.querySelector("input[name='reg_acc_type']:checked");
+        var emailInput = $('reg_email_ID').val();
+        var passwordInput = $('reg_password_ID').val();
+        // var passwordConfirmInput = document.getElementById("reg_password_confirm_ID");
+        var acc_TypeInput = $('input[name="reg_acc_type"]:checked').val();
         var modal_register = document.getElementById("register-modal");
-        var form_btn_register = document.getElementById("register_ID");
+        // var form_btn_register = document.getElementById("register_ID");
 
-        if (!emailInput.value || !passwordInput.value || !acc_TypeInput /*|| !passwordConfirmInput.value*/) {
+        $.post('/signup', {email: emailInput, pw: passwordInput, acc_type: acc_TypeInput}, result => {
+            console.log('Result:', result);
+        });
+
+        /*
+        if (!emailInput.value || !passwordInput.value || !acc_TypeInput) {
             alert("Unable to register account. One or more details are missing!");
             console.log("Unable to register account. One or more details are missing!");
             document.getElementById("register_acc").reset();
             return;
-        } /*else if(passwordInput.value !== passwordConfirmInput.value){
+        }*/
+        /*else if(passwordInput.value !== passwordConfirmInput.value){
             alert("Unable to register account. Password confirmation is not the same!");
             console.log("Unable to register account. Password confirmation is not the same!");
             document.getElementById("register_acc").reset();
             return;
-        }*/ else {
+        }*/
+        /*else {
             alert("Account successfully registered.");
             var email = emailInput.value;
             var password = passwordInput.value;
             var acc_Type = acc_TypeInput.value;
         }
+        */
 
         /*
         if (emailExist(email)) {
@@ -161,19 +169,19 @@ document.addEventListener("DOMContentLoaded", function() {
         }
          */
 
-        emailArray.push(email);
-        emailInput.value = "";
-        passwordArray.push(password);
-        passwordInput.value = "";
-        acc_typeArray.push(acc_Type);
+        emailArray.push(emailInput);
+        emailInput = "";
+        passwordArray.push(passwordInput);
+        passwordInput = "";
+        acc_typeArray.push(acc_TypeInput);
         acc_descArray.push("No bio.");
         acc_profpicArray.push("");
 
         modal_register.style.display = "none";
 
-        console.log("Email registered: " + email);
-        console.log("Password registered: " + password);
-        console.log("Account type registered: " + acc_Type);
+        console.log("Email registered: " + emailInput);
+        console.log("Password registered: " + passwordInput);
+        console.log("Account type registered: " + acc_TypeInput);
     }
 
     //login

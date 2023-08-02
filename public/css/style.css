@@ -1,3 +1,10 @@
+/* one more temp */
+.error{
+    color: red;
+    font-size: 0.75rem;
+    margin-left: 5%;
+}
+
 /* Temp */
 #res-container{
     margin: auto;
@@ -38,7 +45,7 @@
 }
 
 .seat-container{
-    border-style: solid;
+    border: solid black 1px;
     padding: 20px;
     flex: 1 0 15%;
     text-align: center;
