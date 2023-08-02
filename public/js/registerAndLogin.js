@@ -72,9 +72,9 @@ $(document).ready(function(){
 
         isValidEmail(field, function(validEmail){
             if(filled && validPassword && validEmail)
-                $("register_ID").prop('disabled', false);
+                $("#register_ID").prop('disabled', false);
             else
-                $('#submit').prop('disabled', true);
+                $('#register_ID').prop('disabled', true);
         });
     }
 
