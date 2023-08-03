@@ -6,7 +6,7 @@ var ReservationSchema = new mongoose.Schema({
         required: true
     },
     user: {
-        type: Object,
+        type: String,
         required: true
     },
     lab: {
