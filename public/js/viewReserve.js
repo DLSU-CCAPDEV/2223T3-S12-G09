@@ -1,3 +1,5 @@
+console.log("viewReserve.js");
+
 $viewReserve = $("<div id='view-div'></div>");
 $viewTop= $("<div class='view-content'></div>");
 $viewBottom = $("<div class='view-content'></div>");
@@ -9,15 +11,18 @@ const bottomHTML =
     "<button class='view-button'>Remove</button>";
 $viewBottom.append($(bottomHTML));
 
-function interactSeat(seat_container, user, seat, date, lab, time_slot) {
+function interact_seat(seat_container, user, seat, date, lab, time_slot) {
     // Request data from server
     const sendJSON = {
-        seat_id: seat.seat_id,
-        email: user,
+        seat_id: seat.seat_id.toString(),
+        // user: user,
+        // lab: lab,
         date: date,
-        time_slot: time_slot,
-        lab: lab
+        // time_slot: time_slot
     };
+    console.log("--interact_seat()--");
+    console.log(sendJSON);
+
     $.get("/checkReservation", sendJSON, function(result) {
         console.log(result);
     });
