@@ -133,20 +133,21 @@ function display_seat(seat, date, time_slot) {
     seat_container.className = "seat-container";
 
     seat_container.onclick = function(){
-        // if (currUser == null) {
-        //     alert("Sign in first!!");
-        //     return;
-        // }
-        // console.log(currUser);
+        if (currUser == null) {
+            alert("Sign in first!!");
+            return;
+        }
+        console.log(currUser);
         // if(seat_container.classList.contains("reserved")){
-        //     delete_reservation(seat, date, selected_lab, time_slot)
+        //     delete_reservation(seat, date, selected_lab, time_slot);
         //     seat_container.classList.remove("reserved");
         // }
         // else{
         //     reserve_seat(seat, selected_lab, time_slot);
         //     seat_container.classList.add("reserved");
         // }
-        test(seat, date, selected_lab, time_slot);
+
+        // interactSeat(seat_container, currUser, seat, date, selected_lab, time_slot);
 
         display_user_reservations();
     };
@@ -170,13 +171,13 @@ function display_seat(seat, date, time_slot) {
     //         seat_container.classList.add("reserved");
     //     }
     // });
-/*
-    if(seat.reservations.some(reservation =>
-        reservation.date === date &&
-        reservation.time_slot === time_slot &&
-        reservation.lab === selected_lab
-    ))
-        seat_container.classList.add("reserved");*/
+
+    // if(seat.reservations.some(reservation =>
+    //     reservation.date === date &&
+    //     reservation.time_slot === time_slot &&
+    //     reservation.lab === selected_lab
+    // ))
+    //     seat_container.classList.add("reserved");
 }
 
 function reserve_seat(seat, lab, time_slot){
