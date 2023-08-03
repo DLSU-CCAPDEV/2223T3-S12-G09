@@ -12,7 +12,6 @@ app.get('/labs', labControllers.getLabs);
 
 app.get('/checkReservation', reserveControllers.checkReservation);
 app.get('/getAccount', accountControllers.getAccount);
-app.get('/viewSeat', )
 app.post('/makeReservation', reserveControllers.makeReservation);
 
 module.exports = app;
