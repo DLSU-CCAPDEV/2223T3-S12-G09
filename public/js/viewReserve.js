@@ -1,29 +1,30 @@
-$(document).ready(function() {
-    $viewReserve = $("<div id='view-div'></div>");
-    $viewTop= $("<div class='view-content'></div>");
-    $viewBottom = $("<div class='view-content'></div>");
+$viewReserve = $("<div id='view-div'></div>");
+$viewTop= $("<div class='view-content'></div>");
+$viewBottom = $("<div class='view-content'></div>");
 
-    $viewReserve.append($viewTop, $viewBottom);
+$viewReserve.append($viewTop, $viewBottom);
 
-    const bottomHTML =
-        "<button class='view-button view-focused'>Cancel</button>" +
-        "<button class='view-button'>Remove</button>";
-    $viewButton.append($(bottomHTML));
+const bottomHTML =
+    "<button class='view-button view-focused'>Cancel</button>" +
+    "<button class='view-button'>Remove</button>";
+$viewBottom.append($(bottomHTML));
 
-    /**
-     * Top content:
-     * Seat number, Lab number, student's profile
-     */
+function interactSeat(seat_container, user, seat, date, lab, time_slot) {
+    // Request data from server
+    const sendJSON = {
+        seat_id: seat.seat_id,
+        email: user,
+        date: date,
+        time_slot: time_slot,
+        lab: lab
+    };
+    $.get("/checkReservation", sendJSON, function(result) {
+        console.log(result);
+    });
+    // Popup that shit
 
-    function test(seat, date, selected_lab, time_slot) {
-        console.log(seat, date, selected_lab, time_slot);
-    }
+    // Display the data
 
+    // Show the butt'ns
 
-    /**
-     * Bottom content:
-     * If admin:
-     *  Show delete button
-     */
-    if (/*user is admin*/ true) {}
-});
+}
