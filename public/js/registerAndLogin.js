@@ -131,15 +131,15 @@ document.addEventListener("DOMContentLoaded", function() {
         var emailInput = $('#reg_email_ID').val();
         var passwordInput = $('#reg_password_ID').val();
         // var passwordConfirmInput = document.getElementById("reg_password_confirm_ID");
-        var acc_TypeInput = $('input[name="reg_acc_type"]:checked').val();
+        //var acc_TypeInput = $('input[name="reg_acc_type"]:checked').val();
         var modal_register = document.getElementById("register-modal");
         // var form_btn_register = document.getElementById("register_ID");
 
-        console.log(emailInput);
+        /*console.log(emailInput);
         console.log(passwordInput);
-        console.log(acc_TypeInput);
+        console.log(acc_TypeInput);*/
 
-        $.post('/signup', {email: emailInput, pw: passwordInput, acc_type: acc_TypeInput}, result => {
+        $.post('/signup', {email: emailInput, pw: passwordInput}, result => {
             console.log('Result:', result);
         });
 
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function() {
         emailInput = "";
         passwordArray.push(passwordInput);
         passwordInput = "";
-        acc_typeArray.push(acc_TypeInput);
+        //acc_typeArray.push(acc_TypeInput);
         acc_descArray.push("No bio.");
         acc_profpicArray.push("");
 

@@ -31,8 +31,7 @@ const signupController = {
             bcrypt.hash(password, saltRounds, async function (err, hash) {
                 var user = {
                     email: email,
-                    password: hash,
-                    type: type
+                    password: hash
                 };
 
                 var response = await db.insertOne(User, user);
