@@ -128,12 +128,16 @@ document.addEventListener("DOMContentLoaded", function() {
     form_btn_register.onclick = function(event) {
         event.preventDefault();
 
-        var emailInput = $('reg_email_ID').val();
-        var passwordInput = $('reg_password_ID').val();
+        var emailInput = $('#reg_email_ID').val();
+        var passwordInput = $('#reg_password_ID').val();
         // var passwordConfirmInput = document.getElementById("reg_password_confirm_ID");
         var acc_TypeInput = $('input[name="reg_acc_type"]:checked').val();
         var modal_register = document.getElementById("register-modal");
         // var form_btn_register = document.getElementById("register_ID");
+
+        console.log(emailInput);
+        console.log(passwordInput);
+        console.log(acc_TypeInput);
 
         $.post('/signup', {email: emailInput, pw: passwordInput, acc_type: acc_TypeInput}, result => {
             console.log('Result:', result);
@@ -179,9 +183,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
         modal_register.style.display = "none";
 
+        /*
         console.log("Email registered: " + emailInput);
         console.log("Password registered: " + passwordInput);
         console.log("Account type registered: " + acc_TypeInput);
+         */
     }
 
     //login

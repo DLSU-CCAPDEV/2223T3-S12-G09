@@ -20,7 +20,7 @@ const signupController = {
             for(i = 0; i < errors.length; i++)
                 details[errors[i].path + 'Error'] = errors[i].msg;
 
-            res.render('signup', details);
+            res.render('header', details);
         } else{
             var email = req.body.email;
             var description = "No description.";

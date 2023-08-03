@@ -4,7 +4,6 @@ const validation = {
     signupValidation: function(){
         var validation = [
             check('email','Email should not be empty.').notEmpty(),
-            !check('password', 'Password should not be empty.').notEmpty(),
             check('password', 'Password should contain at least 8 characters.')
                 .isLength({min: 8})
         ];
