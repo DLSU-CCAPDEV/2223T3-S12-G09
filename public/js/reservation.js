@@ -132,22 +132,43 @@ function display_seat(seat, date, time_slot) {
     seat_container.innerHTML = seat.seat_id;
     seat_container.className = "seat-container";
 
+    const sendJSON = {
+            seat_id: seat.seat_id.toString(),
+            lab: selected_lab,
+            // date: date,
+            time_slot: time_slot
+    };
+    console.log("display_seat()");
+    console.log(sendJSON);
+
+    $.get('/checkReservation', sendJSON, (result, status) => {
+        console.log("AJAX Get result: ");
+        console.log(result);
+        if (result.seat_id == seat.seat_id &&
+            // result.date === date &&
+            result.time_slot === time_slot &&
+            result.lab === selected_lab
+        ) {
+            seat_container.classList.add("reserved");
+        }
+    });
+
     seat_container.onclick = function(){
         if (currUser == null) {
             alert("Sign in first!!");
             return;
         }
         console.log(currUser);
-        // if(seat_container.classList.contains("reserved")){
-        //     delete_reservation(seat, date, selected_lab, time_slot);
-        //     seat_container.classList.remove("reserved");
-        // }
-        // else{
-        //     reserve_seat(seat, selected_lab, time_slot);
-        //     seat_container.classList.add("reserved");
-        // }
+        if(seat_container.classList.contains("reserved")){
+            // delete_reservation(seat, date, selected_lab, time_slot);
+            interact_seat(seat_container, currUser, seat, date, selected_lab, time_slot);
+            // seat_container.classList.remove("reserved");
+        }
+        else{
+            reserve_seat(seat, selected_lab, time_slot);
+            seat_container.classList.add("reserved");
+        }
 
-        // interactSeat(seat_container, currUser, seat, date, selected_lab, time_slot);
 
         display_user_reservations();
     };
@@ -160,17 +181,6 @@ function display_seat(seat, date, time_slot) {
     //     lab: selected_lab
     // };
     //
-    // $.get('/checkReservation', sendJSON, (result, status) => {
-    //     console.log(result);
-    //     if (result.seat_id === seat.seat_id &&
-    //         result.email === currUser &&
-    //         result.date === date &&
-    //         result.time_slot === time_slot &&
-    //         result.lab === selected_lab
-    //     ) {
-    //         seat_container.classList.add("reserved");
-    //     }
-    // });
 
     // if(seat.reservations.some(reservation =>
     //     reservation.date === date &&
@@ -181,17 +191,18 @@ function display_seat(seat, date, time_slot) {
 }
 
 function reserve_seat(seat, lab, time_slot){
-    seats[seat.seat_id].reservations.push(new Reservation(seat.seat_id, currUser, lab, current_date, time_slot));
+    // seats[seat.seat_id].reservations.push(new Reservation(seat.seat_id, currUser, lab, current_date, time_slot));
 
     const sendJSON = {
             seat_id: seat.seat_id,
-            user: {email: currUser},
+            user: currUser,
             lab: selected_lab,
             date: current_date,
             time_slot: time_slot
     };
 
-    $.get('/makeReservation', sendJSON, (result, status) => {
+    $.post('/makeReservation', sendJSON, (result, status) => {
+        console.log("--reserve_seat()--");
         console.log('Status:', status);
         console.log(result);
     });
@@ -199,12 +210,12 @@ function reserve_seat(seat, lab, time_slot){
 }
 
 function delete_reservation(seat, date, lab, time_slot){
-    seat.reservations.splice(seat.reservations.findIndex(reservation =>
-        reservation.date === date &&
-        reservation.lab === lab &&
-        reservation.time_slot === time_slot), 1);
+    // seat.reservations.splice(seat.reservations.findIndex(reservation =>
+    //     reservation.date === date &&
+    //     reservation.lab === lab &&
+    //     reservation.time_slot === time_slot), 1);
 
-    alert("Seat " + seat.seat_id + " reservation has been removed");
+    // alert("Seat " + seat.seat_id + " reservation has been removed");
 }
 
 function display_user_reservations(){
