@@ -1,4 +1,6 @@
 const { validationResult } = require('express-validator');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const db = require('../models/db.js');
 const User = require('../models/AccountModel.js');
@@ -26,18 +28,20 @@ const signupController = {
             var password = req.body.pw;
             var type = req.body.acc_type;
 
-            var user = {
-                email: email,
-                password: password,
-                type: type
-            };
+            bcrypt.hash(password, saltRounds, async function (err, hash) {
+                var user = {
+                    email: email,
+                    password: hash,
+                    type: type
+                };
 
-            var response = await db.insertOne(User, user);
+                var response = await db.insertOne(User, user);
 
-            if(response !== null)
-                res.send(response);
-            else
-                res.render('error');
+                if (response !== null)
+                    res.send(response);
+                else
+                    res.render('error');
+            });
         }
     }
 };
