@@ -15,7 +15,8 @@ var AccountSchema = new mongoose.Schema({
     },*/
     description: {
         type: String,
-        required: true
+        //required: true,
+        default: "No description."
     },
     password: {
         type: String,
@@ -23,15 +24,18 @@ var AccountSchema = new mongoose.Schema({
     },
     pfpURL: {
         type: String,
-        required: true
+        //required: true,
+        default: "https://cdn.vectorstock.com/i/preview-1x/70/84/default-avatar-profile-icon-symbol-for-website-vector-46547084.jpg"
     },
     type: {
         type: String,
-        required: true
+        required: true,
+        default: "Student"
     },
     deleted: {
         type: Boolean,
-        required: true
+        //required: true
+        default: false
     },
 });
 
