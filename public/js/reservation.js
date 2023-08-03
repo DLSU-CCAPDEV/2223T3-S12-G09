@@ -133,42 +133,43 @@ function display_seat(seat, date, time_slot) {
     seat_container.className = "seat-container";
 
     seat_container.onclick = function(){
-        if (currUser == null) {
-            alert("Sign in first!!");
-            return;
-        }
-        console.log(currUser);
-        if(seat_container.classList.contains("reserved")){
-            delete_reservation(seat, date, selected_lab, time_slot)
-            seat_container.classList.remove("reserved");
-        }
-        else{
-            reserve_seat(seat, selected_lab, time_slot);
-            seat_container.classList.add("reserved");
-        }
+        // if (currUser == null) {
+        //     alert("Sign in first!!");
+        //     return;
+        // }
+        // console.log(currUser);
+        // if(seat_container.classList.contains("reserved")){
+        //     delete_reservation(seat, date, selected_lab, time_slot)
+        //     seat_container.classList.remove("reserved");
+        // }
+        // else{
+        //     reserve_seat(seat, selected_lab, time_slot);
+        //     seat_container.classList.add("reserved");
+        // }
+        test(seat, date, selected_lab, time_slot);
 
         display_user_reservations();
     };
 
-    const sendJSON = {
-        seat_id: seat.seat_id,
-        email: currUser,
-        date: date,
-        time_slot: time_slot,
-        lab: selected_lab
-    };
-
-    $.get('/checkReservation', sendJSON, (result, status) => {
-        console.log(result);
-        if (result.seat_id === seat.seat_id &&
-            result.email === currUser &&
-            result.date === date &&
-            result.time_slot === time_slot &&
-            result.lab === selected_lab
-        ) {
-            seat_container.classList.add("reserved");
-        }
-    });
+    // const sendJSON = {
+    //     seat_id: seat.seat_id,
+    //     email: currUser,
+    //     date: date,
+    //     time_slot: time_slot,
+    //     lab: selected_lab
+    // };
+    //
+    // $.get('/checkReservation', sendJSON, (result, status) => {
+    //     console.log(result);
+    //     if (result.seat_id === seat.seat_id &&
+    //         result.email === currUser &&
+    //         result.date === date &&
+    //         result.time_slot === time_slot &&
+    //         result.lab === selected_lab
+    //     ) {
+    //         seat_container.classList.add("reserved");
+    //     }
+    // });
 /*
     if(seat.reservations.some(reservation =>
         reservation.date === date &&
@@ -224,6 +225,7 @@ function display_user_reservation(reservation){
     container.append(date);
     container.append(time_slot);
     container.append(seat_id);
+
     document.getElementById("user-res-container").append(container);
     document.getElementById("user-res-container").append(document.createElement("br"));
 
