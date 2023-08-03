@@ -1,4 +1,3 @@
-
 // import module `mongoose`
 const mongoose = require('mongoose');
 
@@ -6,7 +5,7 @@ const Reservation = require('./ReservationModel.js');
 const Account = require('./AccountModel.js');
 
 // ccapdev-mongoose is the name of the database
-const url = 'mongodb+srv://admin:EJQYBcLmYB9ptMLB@g09-2223t3-s12.suaaeyb.mongodb.net/?retryWrites=true&w=majority';
+const url = 'mongodb+srv://admin:EJQYBcLmYB9ptMLB@g09-2223t3-s12.suaaeyb.mongodb.net/labDB?retryWrites=true&w=majority';
 
 // additional connection options
 const options = {
