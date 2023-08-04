@@ -11,10 +11,10 @@ const app = express();
 
 app.get('/', controllers.getIndex);
 app.get('/labs', labControllers.getLabs);
-
-app.get('/checkReservation', reserveController.checkReservation);
-app.post('/makeReservation', reserveController.makeReservation);
-app.delete('/deleteReservation', reserveController.deleteReservation);
+app.get('/checkReservation', reserveControllers.checkReservation);
+app.get('/listReservations', reserveControllers.listReservations);', accountControllers.getAccount);
+app.post('/makeReservation', reserveControllers.makeReservation);
+app.delete('/deleteReservation', reserveControllers.deleteReservation);
 
 app.get('/checkEmail', signupController.checkEmail);
 app.get('/signup', signupController.getSignUp);

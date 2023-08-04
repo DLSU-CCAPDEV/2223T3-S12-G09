@@ -6,19 +6,18 @@ var ReservationSchema = new mongoose.Schema({
         required: true
     },
     user: {
-        email: {
-            type: Object,
-            required: true
-        },
-
-        type: Object,
+        type: String,
         required: true
     },
     lab: {
         type: String,
         required: true
     },
-    date: {
+    date_reserved: {
+        type: Date,
+        required: true
+    },
+    reservation_date: {
         type: Date,
         required: true
     },
