@@ -1,6 +1,6 @@
 const controllers = require('../controllers/controller.js');
 const labControllers = require('../controllers/labController.js');
-const reserveController= require('../controllers/reserveController.js');
+const reserveControllers = require('../controllers/reserveController.js');
 const signupController = require('../controllers/signupController.js');
 const successController = require('../controllers/successController.js');
 const loginController = require("../controllers/loginController.js");
