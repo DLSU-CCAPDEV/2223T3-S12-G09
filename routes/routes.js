@@ -10,6 +10,7 @@ app.get('/', controllers.getIndex);
 app.get('/labs', labControllers.getLabs);
 
 app.get('/checkReservation', reserveControllers.checkReservation);
+app.get('/listReservations', reserveControllers.listReservations);
 app.get('/getAccount', accountControllers.getAccount);
 app.post('/makeReservation', reserveControllers.makeReservation);
 
