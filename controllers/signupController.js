@@ -25,8 +25,7 @@ const signupController = {
             res.render('header', details);
         } else{
             var email = req.body.email;
-            var password = req.body.pw;
-            var type = req.body.acc_type;
+            var password = req.body.password;
 
             bcrypt.hash(password, saltRounds, async function (err, hash) {
                 var user = {
