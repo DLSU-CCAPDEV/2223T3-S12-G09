@@ -66,6 +66,22 @@ body{
     color: #262626;
 }
 
+table{
+    border-collapse: collapse;
+}
+
+code {
+    background-color: #f0f0f0;
+    padding: 3px 10px;
+    border: 1px #d4d4d4 solid;
+    border-radius: 3px;
+}
+
+td, th{
+    padding: 0.5em 2em;
+    border: lightgray 1px solid;
+}
+
 #header{
     position: sticky;
     top: 0;
