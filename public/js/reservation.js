@@ -58,7 +58,7 @@ $("#res-labs > button").click(function(){
 function update_days(days){
    for(var i = 0; i < 7; i++){
         var currentDate = new Date();
-        var noHourDate = new Date(currentDate.setHours(0, 0, 0, 0));
+        var noHourDate = currentDate.setHours(0, 0, 0, 0);
         console.log(noHourDate);
         days.push(noHourDate);
         days[i].setDate(days[i].getDate() + i);
@@ -159,8 +159,8 @@ function display_seat(seat, date, time_slot) {
     $.get('/checkReservation', sendJSON, (result, status) => {
         // console.log("AJAX Get result: ");
         // console.log(result.reservation_date);
-        const res_date = result.reservation_date;
-        // const res_date = Date.parse(result.reservation_date);
+        // const res_date = result.reservation_date;
+        const res_date = new Date(result.reservation_date);
         console.log(res_date);
         console.log(date);
         if (result.seat_id == seat.seat_id.toString() &&
