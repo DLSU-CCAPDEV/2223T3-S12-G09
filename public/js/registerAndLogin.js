@@ -221,9 +221,9 @@ document.addEventListener("DOMContentLoaded", function() {
         var password = $("#log_password_ID").val();
         var form_btn_login = document.getElementById("login_ID");
 
-        $.post("/login", {email: email, password: password}, result => {
+        /*$.post("/login", {email: email, password: password}, result => {
             console.log(result);
-        });
+        });*/
 
         /*if (!emailInput.value || !passwordInput.value) {
             alert("Unable to login account. One or more details are missing!");
