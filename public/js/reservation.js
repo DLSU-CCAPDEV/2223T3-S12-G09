@@ -30,6 +30,10 @@ $(document).ready(function(){
         console.log("logged in");
         display_user_reservations()
     });
+
+    $("#logout_ID").click(function() {
+        document.getElementById("user-res-container").innerHTML = "";
+    })
 });
 
 $("#time-slots").change(function(){
