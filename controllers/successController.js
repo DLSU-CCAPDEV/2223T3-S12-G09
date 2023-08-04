@@ -5,6 +5,7 @@ const successController = {
         };
 
         res.send(details);
+        console.log("details");
     }
 }
 

@@ -215,11 +215,17 @@ document.addEventListener("DOMContentLoaded", function() {
     form_btn_login.onclick = function(event) {
         event.preventDefault();
 
-        var emailInput = document.getElementById("log_email_ID");
-        var passwordInput = document.getElementById("log_password_ID");
+        /*var emailInput = document.getElementById("log_email_ID");
+        var passwordInput = document.getElementById("log_password_ID");*/
+        var email = $("#log_email_ID").val();
+        var password = $("#log_password_ID").val();
         var form_btn_login = document.getElementById("login_ID");
 
-        if (!emailInput.value || !passwordInput.value) {
+        $.post("/login", {email: email, password: password}, result => {
+            console.log(result);
+        });
+
+        /*if (!emailInput.value || !passwordInput.value) {
             alert("Unable to login account. One or more details are missing!");
             console.log("Unable to login account. One or more details are missing!");
             document.getElementById("login_acc").reset();
@@ -235,15 +241,15 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("Invalid email. Please use an existing email or register the email before logging in.");
             document.getElementById("login_acc").reset();
             return;
-        }
+        }*/
 
-        var emailIndex = emailArray.indexOf(email);
+        /*var emailIndex = emailArray.indexOf(email);
         var desPassword = passwordArray[emailIndex];
         var desAccType = acc_typeArray[emailIndex];
         var desAccDesc = acc_descArray[emailIndex];
-        var desAccPic = acc_profpicArray[emailIndex];
+        var desAccPic = acc_profpicArray[emailIndex];*/
 
-        if (password == desPassword) {
+        /*if (password == desPassword) {
             currUser = email;
             currUserAccType = desAccType;
             currUserAccDesc = desAccDesc;
@@ -254,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("Incorrect password. Please enter the correct password.");
             document.getElementById("login_acc").reset();
             return;
-        }
+        }*/
 
         //prof
         var acc_email = document.getElementById("acc-email");
@@ -284,12 +290,12 @@ document.addEventListener("DOMContentLoaded", function() {
         edit_modal_profile.style.display = "none";
         modal_login.style.display = "none";
 
-        emailInput.value = "";
-        passwordInput.value = "";
+        /*emailInput.value = "";
+        passwordInput.value = "";*/
 
-        console.log("Account successfully logged in.");
+        /*console.log("Account successfully logged in.");
         console.log("Email registered: " + email);
-        console.log("Password registered: " + password);
+        console.log("Password registered: " + password);*/
 
         loginButton();
         registerButton();

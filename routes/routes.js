@@ -3,6 +3,7 @@ const labControllers = require('../controllers/labController.js');
 const reserveController= require('../controllers/reserveController.js');
 const signupController = require('../controllers/signupController.js');
 const successController = require('../controllers/successController.js');
+const loginController = require("../controllers/loginController.js");
 
 const express = require('express');
 const validation = require('../helpers/validation.js');
@@ -20,5 +21,7 @@ app.get('/checkEmail', signupController.checkEmail);
 app.post('/signup', signupController.postSignUp);
 
 app.get('/success', successController.getSuccess);
+
+app.post('/login', loginController.postLogIn);
 
 module.exports = app;
