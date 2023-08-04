@@ -11,7 +11,7 @@ const url = 'mongodb+srv://admin:EJQYBcLmYB9ptMLB@g09-2223t3-s12.suaaeyb.mongodb
 const options = {
     useUnifiedTopology: true,
     useNewUrlParser: true
-};
+}; 
 
 const database = {
     connect: async function () {
