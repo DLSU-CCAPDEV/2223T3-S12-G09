@@ -58,7 +58,7 @@ $("#res-labs > button").click(function(){
 function update_days(days){
    for(var i = 0; i < 7; i++){
         var currentDate = new Date();
-        var noHourDate = currentDate.setHours(0, 0, 0, 0);
+        var noHourDate = new Date(currentDate.setHours(0, 0, 0, 0));
         console.log(noHourDate);
         days.push(noHourDate);
         days[i].setDate(days[i].getDate() + i);
