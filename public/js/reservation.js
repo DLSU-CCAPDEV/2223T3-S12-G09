@@ -49,9 +49,9 @@ $("#res-labs > button").click(function(){
 // Setup for the reservation_date, not the date_reserved
 function update_days(days){
    for(var i = 0; i < 7; i++){
-        Date currentDate = new Date();
-        Date noHourDate = currentDate.setHours(0, 0, 0, 0);
-
+        var currentDate = new Date();
+        var noHourDate = new Date(currentDate.setHours(0, 0, 0, 0));
+        console.log(noHourDate);
         days.push(noHourDate);
         days[i].setDate(days[i].getDate() + i);
     }
@@ -142,7 +142,7 @@ function display_seat(seat, date, time_slot) {
     const sendJSON = {
             seat_id: seat.seat_id.toString(),
             lab: selected_lab,
-            // date: date,
+            reservation_date: date,
             time_slot: time_slot
     };
     console.log("display_seat()");
@@ -151,10 +151,10 @@ function display_seat(seat, date, time_slot) {
     $.get('/checkReservation', sendJSON, (result, status) => {
         console.log("AJAX Get result: ");
         console.log(result);
-        if (result.seat_id == seat.seat_id &&
+        if (result.seat_id == seat.seat_id.toString() &&
             // result.date === date &&
-            result.time_slot === time_slot &&
-            result.lab === selected_lab
+            result.time_slot == time_slot &&
+            result.lab == selected_lab
         ) {
             seat_container.classList.add("reserved");
         }
@@ -168,12 +168,13 @@ function display_seat(seat, date, time_slot) {
         console.log(currUser);
         if(seat_container.classList.contains("reserved")){
             // delete_reservation(seat, date, selected_lab, time_slot);
-            interact_seat(seat_container, currUser, seat, date, selected_lab, time_slot);
+            interact_seat(seat_container, currUser, seat, date,
+                          selected_lab, time_slot);
             // seat_container.classList.remove("reserved");
         }
         else{
-            reserve_seat(seat, selected_lab, time_slot);
-            seat_container.classList.add("reserved");
+            if (reserve_seat(seat, selected_lab, time_slot))
+                seat_container.classList.add("reserved");
         }
 
 
@@ -204,7 +205,8 @@ function reserve_seat(seat, lab, time_slot){
             seat_id: seat.seat_id,
             user: currUser,
             lab: selected_lab,
-            date: current_date,
+            date_reserved: new Date(),
+            reservation_date: current_date,
             time_slot: time_slot
     };
 
@@ -212,8 +214,14 @@ function reserve_seat(seat, lab, time_slot){
         console.log("--reserve_seat()--");
         console.log('Status:', status);
         console.log(result);
+
+        if (result == null) {
+            alert("Failed to reserve Seat " + seat.seat_id + ".");
+            return false;
+        }
     });
     alert("Seat " + seat.seat_id + " has been reserved");
+    return true;
 }
 
 function delete_reservation(seat, date, lab, time_slot){
@@ -230,7 +238,7 @@ function display_user_reservations(){
     var user_reservations = filter_reservations(currUser).slice();
 
     // for(var i = 0; i < user_reservations.length; i++)
-    for (const reservations of user_resevations)
+    for (const reservations of user_reservations)
         display_user_reservation(reservations);
         // display_user_reservation(user_reservations[i]);
 }
