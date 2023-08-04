@@ -12,7 +12,7 @@ const app = express();
 app.get('/', controllers.getIndex);
 app.get('/labs', labControllers.getLabs);
 app.get('/checkReservation', reserveControllers.checkReservation);
-app.get('/listReservations', reserveControllers.listReservations);', accountControllers.getAccount);
+app.get('/listReservations', reserveControllers.listReservations);
 app.post('/makeReservation', reserveControllers.makeReservation);
 app.delete('/deleteReservation', reserveControllers.deleteReservation);
 
