@@ -229,8 +229,10 @@ function display_user_reservations(){
     document.getElementById("user-res-container").innerHTML = "";
     var user_reservations = filter_reservations(currUser).slice();
 
-    for(var i = 0; i < user_reservations.length; i++)
-        display_user_reservation(user_reservations[i]);
+    // for(var i = 0; i < user_reservations.length; i++)
+    for (const reservations of user_resevations)
+        display_user_reservation(reservations);
+        // display_user_reservation(user_reservations[i]);
 }
 
 function display_user_reservation(reservation){
