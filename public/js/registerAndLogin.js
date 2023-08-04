@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(acc_TypeInput);*/
 
         $.post('/signup', {email: emailInput, pw: passwordInput}, result => {
-            console.log('Result:', result);
+            //console.log('Result:', result);
         });
 
         /*

@@ -37,7 +37,7 @@ const signupController = {
                 var response = await db.insertOne(User, user);
 
                 if (response !== null)
-                    res.send(response);
+                    res.redirect('/success?email=' + email);
                 else
                     res.render('error');
             });
