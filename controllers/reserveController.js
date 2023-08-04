@@ -6,19 +6,22 @@ const reserveController = {
         var seat = req.query.seat_id;
         var user = req.query.user;
         var lab = req.query.lab;
-        var date = req.query.date;
+        var date_reserved = req.query.date_reserved;
+        var reservation_date = req.query.reservation_date;
         var time_slot = req.query.time_slot;
 
         var query = {
             seat_id: seat,
             // user: user,
             lab: lab,
-            // date: date,
+            // date_reserved: date_reserved,
+            // reservation_date: reservation_date,
             time_slot: time_slot
         };
 
-        console.log(query);
+        // console.log(query);
         var result = await db.findOne(Reservation, query);
+        console.log(result);
         res.send(result);
     },
 
@@ -26,14 +29,16 @@ const reserveController = {
         var seat = req.body.seat_id;
         var user = req.body.user;
         var lab = req.body.lab;
-        var date = req.body.date;
+        var date_reserved = req.body.date_reserved;
+        var reservation_date = req.body.reservation_date;
         var time_slot = req.body.time_slot;
 
         var reservation = {
             seat_id: seat,
             user: user,
             lab: lab,
-            date: date,
+            date_reserved: date_reserved,
+            reservation_date: reservation_date,
             time_slot: time_slot
         };
 
