@@ -9,11 +9,14 @@ function Seat(seat_id){
     this.reservations = [];
 }
 
-function Reservation(seat_id, user, lab, date, time_slot){
+function Reservation(seat_id, user, lab, date_reserved, reservation_date,
+                    time_slot){
     this.seat_id = seat_id;
     this.user = user;
     this.lab = lab;
-    this.date = date;
+    this.date_reserved = date_reserved; // when the user put a reservation
+    this.reservation_date = reservation_date; // the date when the user will
+                                              // come to borrow a computer
     this.time_slot = time_slot;
 }
 
@@ -43,9 +46,13 @@ $("#res-labs > button").click(function(){
     display_seats(seats, current_date);
 });
 
+// Setup for the reservation_date, not the date_reserved
 function update_days(days){
    for(var i = 0; i < 7; i++){
-        days.push(new Date());
+        Date currentDate = new Date();
+        Date noHourDate = currentDate.setHours(0, 0, 0, 0);
+
+        days.push(noHourDate);
         days[i].setDate(days[i].getDate() + i);
     }
 }
