@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var ReservationSchema = new mongoose.Schema({
     seat_id: {
-        type: String,
+        type: Number,
         required: true
     },
     user: {
