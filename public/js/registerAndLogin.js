@@ -12,8 +12,8 @@ var acc_profpicArray = [
 
 $(document).ready(function(){
     function isFilled(){
-        var email = validator.trim($('#reg_email_ID').val());
-        var pw = validator.trim($('#reg_password_ID').val());
+        var email = validator.trim($('#email').val());
+        var pw = validator.trim($('#password').val());
 
         var email_empty = validator.isEmpty(email);
         var pw_empty = validator.isEmpty(pw);
@@ -22,16 +22,16 @@ $(document).ready(function(){
     }
 
     function isValidEmail(field, callback){
-        var email = validator.trim($('#reg_email_ID').val());
+        var email = validator.trim($('#email').val());
 
         $.get('/checkEmail', {email: email}, function(result){
             if(result.email !== email){
-                if(field.is($('#reg_email_ID')))
-                    $('#reg_email_ID').text('');
+                if(field.is($('#email')))
+                    $('#email').text('');
 
                 return callback(true);
             } else{
-                if(field.is($('#reg_email_ID')))
+                if(field.is($('#email')))
                     $('#emailError').text('Email already registered.');
 
                 return callback(false);
@@ -41,16 +41,16 @@ $(document).ready(function(){
 
     function isValidPassword(field){
         var validPassword = false;
-        var password = validator.trim($('#reg_password_ID').val());
+        var password = validator.trim($('#password').val());
         var isValidLength = validator.isLength(password, {min: 8});
 
         if(isValidLength){
-            if(field.is($('#reg_password_ID')))
+            if(field.is($('#password')))
                 $('#pwError').text('');
 
             validPassword = true;
         } else{
-            if(field.is($('#reg_password_ID')))
+            if(field.is($('#password')))
                 $('#pwError').text('Password should contain at least 8 characters.');
         }
 
@@ -72,18 +72,18 @@ $(document).ready(function(){
 
         isValidEmail(field, function(validEmail){
             if(filled && validPassword && validEmail)
-                $("#register_ID").prop('disabled', false);
+                $("#signup").prop('disabled', false);
             else
-                $('#register_ID').prop('disabled', true);
+                $('#signup').prop('disabled', true);
         });
     }
 
-    $('#reg_email_ID').keyup(function(){
-        validateField($('#reg_email_ID'), 'Email', $('#emailError'));
+    $('#email').keyup(function(){
+        validateField($('#email'), 'Email', $('#emailError'));
     });
 
-    $('#reg_password_ID').keyup(function () {
-        validateField($('#reg_password_ID'), 'Password', $('#pwError'));
+    $('#password').keyup(function () {
+        validateField($('#password'), 'Password', $('#passwordError'));
     });
 });
 
@@ -128,8 +128,8 @@ document.addEventListener("DOMContentLoaded", function() {
     form_btn_register.onclick = function(event) {
         event.preventDefault();
 
-        var emailInput = $('#reg_email_ID').val();
-        var passwordInput = $('#reg_password_ID').val();
+        var emailInput = $('#email').val();
+        var passwordInput = $('#password').val();
         // var passwordConfirmInput = document.getElementById("reg_password_confirm_ID");
         //var acc_TypeInput = $('input[name="reg_acc_type"]:checked').val();
         var modal_register = document.getElementById("register-modal");
@@ -139,9 +139,9 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(passwordInput);
         console.log(acc_TypeInput);*/
 
-        $.post('/signup', {email: emailInput, password: passwordInput}, result => {
+        /*$.post('/signup', {email: emailInput, password: passwordInput}, result => {
             //console.log('Result:', result);
-        });
+        });*/
 
         /*
         if (!emailInput.value || !passwordInput.value || !acc_TypeInput) {

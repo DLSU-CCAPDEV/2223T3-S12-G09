@@ -17,8 +17,9 @@ app.post('/makeReservation', reserveController.makeReservation);
 app.delete('/deleteReservation', reserveController.deleteReservation);
 
 app.get('/checkEmail', signupController.checkEmail);
-//app.post('/signup', validation.signupValidation(), signupController.postSignUp);
-app.post('/signup', signupController.postSignUp);
+app.get('/signup', signupController.getSignUp);
+app.post('/signup', validation.signupValidation(), signupController.postSignUp);
+//app.post('/signup', signupController.postSignUp);
 
 app.get('/success', successController.getSuccess);
 

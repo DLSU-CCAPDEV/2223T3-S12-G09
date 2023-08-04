@@ -6,6 +6,10 @@ const db = require('../models/db.js');
 const User = require('../models/AccountModel.js');
 
 const signupController = {
+    getSignUp: function(req, res){
+        res.render('signup');
+    },
+
     checkEmail: async function(req, res){
         var email = req.query.email;
         var result = await db.findOne(User, {email: email}, 'email');
@@ -22,7 +26,9 @@ const signupController = {
             for(i = 0; i < errors.length; i++)
                 details[errors[i].path + 'Error'] = errors[i].msg;
 
-            res.render('header', details);
+            console.log(details);
+
+            res.render('signup', details);
         } else{
             var email = req.body.email;
             var password = req.body.password;
@@ -31,12 +37,12 @@ const signupController = {
                 var user = {
                     email: email,
                     password: hash
-                };
+                }
 
-                var response = await db.insertOne(User, user);
+                var response = db.insertOne(User, user);
 
                 if (response !== null)
-                    res.redirect('/success?email=' + email);
+                    res.redirect('/login');
                 else
                     res.render('error');
             });
