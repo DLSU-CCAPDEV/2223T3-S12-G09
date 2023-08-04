@@ -9,11 +9,14 @@ function Seat(seat_id){
     this.reservations = [];
 }
 
-function Reservation(seat_id, user, lab, date, time_slot){
+function Reservation(seat_id, user, lab, date_reserved, reservation_date,
+                    time_slot){
     this.seat_id = seat_id;
     this.user = user;
     this.lab = lab;
-    this.date = date;
+    this.date_reserved = date_reserved; // when the user put a reservation
+    this.reservation_date = reservation_date; // the date when the user will
+                                              // come to borrow a computer
     this.time_slot = time_slot;
 }
 
@@ -22,7 +25,15 @@ $(document).ready(function(){
     generate_time_slots();
     populate_seats(seats);
     display_seats(seats, current_date);
-    display_user_reservations();
+    // display_user_reservations();
+    $("#login_ID").click(function() {
+        console.log("logged in");
+        display_user_reservations()
+    });
+
+    $("#logout_ID").click(function() {
+        document.getElementById("user-res-container").innerHTML = "";
+    })
 });
 
 $("#time-slots").change(function(){
@@ -43,9 +54,13 @@ $("#res-labs > button").click(function(){
     display_seats(seats, current_date);
 });
 
+// Setup for the reservation_date, not the date_reserved
 function update_days(days){
    for(var i = 0; i < 7; i++){
-        days.push(new Date());
+        var currentDate = new Date();
+        var noHourDate = new Date(currentDate.setHours(0, 0, 0, 0));
+        console.log(noHourDate);
+        days.push(noHourDate);
         days[i].setDate(days[i].getDate() + i);
     }
 }
@@ -132,75 +147,108 @@ function display_seat(seat, date, time_slot) {
     seat_container.innerHTML = seat.seat_id;
     seat_container.className = "seat-container";
 
+    const sendJSON = {
+            seat_id: seat.seat_id.toString(),
+            lab: selected_lab,
+            reservation_date: date,
+            time_slot: time_slot
+    };
+    console.log("display_seat()");
+    console.log(sendJSON);
+
+    $.get('/checkReservation', sendJSON, (result, status) => {
+        // console.log("AJAX Get result: ");
+        // console.log(result.reservation_date);
+        // const res_date = result.reservation_date;
+        const res_date = new Date(result.reservation_date);
+        console.log(res_date);
+        console.log(date);
+        if (result.seat_id == seat.seat_id.toString() &&
+            res_date == date &&
+            result.time_slot == time_slot &&
+            result.lab == selected_lab
+        ) {
+            seat_container.classList.add("reserved");
+        }
+    });
+
     seat_container.onclick = function(){
         if (currUser == null) {
             alert("Sign in first!!");
             return;
         }
         console.log(currUser);
-        if(seat_container.classList.contains("reserved")){
-            delete_reservation(seat, date, selected_lab, time_slot);
-            seat_container.classList.remove("reserved");
-        }
-        else{
-            reserve_seat(seat, selected_lab, time_slot);
-            seat_container.classList.add("reserved");
-        }
 
-        display_user_reservations();
+        const state = interact_seat(seat_container, currUser, seat, date,
+                                    selected_lab, time_slot);
+        switch (state) {
+            case reserve_state:
+                reserve_seat(seat, selected_lab, time_slot);
+                break;
+            case delete_state:
+                delete_reservation(seat, date, selected_lab, time_slot);
+                break;
+        }
+        // if(seat_container.classList.contains("reserved")){
+        //
+        //     // seat_container.classList.remove("reserved");
+        // }
+        // else{
+        // }
+
+
     };
 
-    const sendJSON = {
-        seat_id: seat.seat_id,
-        email: currUser,
-        date: date,
-        time_slot: time_slot,
-        lab: selected_lab
-    };
 
-    $.get('/checkReservation', sendJSON, (result, status) => {
-        console.log(result);
-        if (result.seat_id === seat.seat_id &&
-            result.email === currUser &&
-            result.date === date &&
-            result.time_slot === time_slot &&
-            result.lab === selected_lab
-        ) {
-            seat_container.classList.add("reserved");
-        }
-    });
-/*
-    if(seat.reservations.some(reservation =>
-        reservation.date === date &&
-        reservation.time_slot === time_slot &&
-        reservation.lab === selected_lab
-    ))
-        seat_container.classList.add("reserved");*/
+
+    // const sendJSON = {
+    //     seat_id: seat.seat_id,
+    //     email: currUser,
+    //     date: date,
+    //     time_slot: time_slot,
+    //     lab: selected_lab
+    // };
+    //
+
+    // if(seat.reservations.some(reservation =>
+    //     reservation.date === date &&
+    //     reservation.time_slot === time_slot &&
+    //     reservation.lab === selected_lab
+    // ))
+    //     seat_container.classList.add("reserved");
 }
 
 function reserve_seat(seat, lab, time_slot){
-    seats[seat.seat_id].reservations.push(new Reservation(seat.seat_id, currUser, lab, current_date, time_slot));
+    // seats[seat.seat_id].reservations.push(new Reservation(seat.seat_id, currUser, lab, current_date, time_slot));
 
     const sendJSON = {
             seat_id: seat.seat_id,
             user: currUser,
             lab: selected_lab,
-            date: current_date,
+            date_reserved: new Date(),
+            reservation_date: current_date,
             time_slot: time_slot
     };
 
     $.post('/makeReservation', sendJSON, (result, status) => {
+        console.log("--reserve_seat()--");
         console.log('Status:', status);
-        console.log('Result:', result);
+        console.log(result);
+
+        if (result == null) {
+            alert("Failed to reserve Seat " + seat.seat_id + ".");
+            return false;
+        }
     });
     alert("Seat " + seat.seat_id + " has been reserved");
+    return true;
 }
 
 function delete_reservation(seat, date, lab, time_slot){
-    seat.reservations.splice(seat.reservations.findIndex(reservation =>
-        reservation.date === date &&
-        reservation.lab === lab &&
-        reservation.time_slot === time_slot), 1);
+    // seat.reservations.splice(seat.reservations.findIndex(reservation =>
+    //     reservation.date === date &&
+    //     reservation.lab === lab &&
+    //     reservation.time_slot === time_slot), 1);
 
     const sendJSON = {
         seat_id: seat.seat_id,
@@ -226,12 +274,20 @@ function delete_reservation(seat, date, lab, time_slot){
     });
 }
 
-function display_user_reservations(){
+async function display_user_reservations(){
     document.getElementById("user-res-container").innerHTML = "";
-    var user_reservations = filter_reservations(currUser).slice();
+    var user_reservations = (await filter_reservations(currUser)).slice();
 
-    for(var i = 0; i < user_reservations.length; i++)
-        display_user_reservation(user_reservations[i]);
+    // for(var i = 0; i < user_reservations.length; i++)
+    // $.get("/listReservations", {}, function(result, status) {
+    //     console.log(result);
+    // });
+    console.log("display_user_reservations()");
+    console.log(user_reservations);
+
+    for (const reservations of user_reservations)
+        display_user_reservation(reservations);
+        // display_user_reservation(user_reservations[i]);
 }
 
 function display_user_reservation(reservation){
@@ -245,25 +301,41 @@ function display_user_reservation(reservation){
     container.append(date);
     container.append(time_slot);
     container.append(seat_id);
+
     document.getElementById("user-res-container").append(container);
     document.getElementById("user-res-container").append(document.createElement("br"));
 
+    console.log("display_user_reservation()");
+    console.log(reservation);
+
     seat_id.innerHTML = "Seat " + reservation.seat_id;
     lab.innerHTML = "Laboratory " + reservation.lab.toUpperCase();
-    date.innerHTML = format_date(new Date(reservation.date));
+    if (reservation.date != null)
+        date.innerHTML = format_date(new Date(reservation.date));
+
+    if (reservation.reservation_date != null)
+        date.innerHTML = format_date(new Date(reservation.reservation_date));
     time_slot.innerHTML = reservation.time_slot;
 }
 
-function filter_reservations(user){
+async function filter_reservations(user){
     var filtered_array = [];
 
-    seats.forEach(seat => {
-        if(seat.reservations)
-            seat.reservations.forEach(reservation => {
-               if(reservation.user === user)
-                   filtered_array.push(reservation);
-            });
+    // seats.forEach(seat => {
+    //     if(seat.reservations)
+    //         seat.reservations.forEach(reservation => {
+    //            if(reservation.user === user)
+    //                filtered_array.push(reservation);
+    //         });
+    // });
+
+    await $.get("/listReservations", {user: user}, function(result, status) {
+        for (const data of result) {
+            filtered_array.push(data);
+        }
     });
 
+    console.log("filter_reservations()");
+    console.log(filtered_array);
     return filtered_array;
 }

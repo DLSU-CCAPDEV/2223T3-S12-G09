@@ -334,6 +334,25 @@ button.view {
     cursor: pointer;
 }*/
 
+/*-----------------------------  View Reserve   ------------------------*/
+#view-div {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+    border-radius: 7px;
+}
+
+.view-content {
+    display:grid;
+    grid-template-columns: auto auto;
+}
+
+.view-remove .view-close{
+    cursor: pointer;
+}
+
 /*------------------------  Index Showcase Content   -------------------*/
 
 .lab_1 img, .lab_2 img, .lab_3 img {
