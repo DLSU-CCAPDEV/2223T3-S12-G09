@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
     btn_register.onclick = function() {
         modal_register.style.display = "block";
     }
-
+ 
     span_register.onclick = function(event) {
         modal_register.style.display = "none";
         document.getElementById("register_acc").reset();

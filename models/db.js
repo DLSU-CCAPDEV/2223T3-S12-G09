@@ -22,7 +22,7 @@ const database = {
 
     insertOne: async function(model, doc) {
         return await model.create(doc);
-    },
+    }, 
 
     insertMany: async function(model, docs) {
         return await model.insertMany(docs);
@@ -54,4 +54,6 @@ const database = {
 
 }
 
+//module.exports = {database, mongoose};
 module.exports = database;
+
