@@ -250,7 +250,28 @@ function delete_reservation(seat, date, lab, time_slot){
     //     reservation.lab === lab &&
     //     reservation.time_slot === time_slot), 1);
 
-    // alert("Seat " + seat.seat_id + " reservation has been removed");
+    const sendJSON = {
+        seat_id: seat.seat_id,
+        user: currUser,
+        lab: selected_lab,
+        date: current_date,
+        time_slot: time_slot
+    };
+
+    $.ajax({
+       url: 'deleteReservation',
+       type: 'DELETE',
+       data: sendJSON,
+
+       success: function(sendJSON){
+           console.log(sendJSON);
+           alert("Seat " + seat.seat_id + " reservation has been removed");
+       },
+
+        error: function(error){
+           console.log("Error: ", error);
+        }
+    });
 }
 
 async function display_user_reservations(){
