@@ -32,11 +32,7 @@ var AccountSchema = new mongoose.Schema({
     description: {
         type: String,
         default: 'No bio.'
-    },
-    deleted: {
-        type: Boolean,
-        default: false
-    },
+    }
 });
 
 module.exports = mongoose.model('Account', AccountSchema);
