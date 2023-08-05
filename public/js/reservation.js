@@ -72,7 +72,7 @@ function generate_buttons(){
         button.innerHTML = format_date(days[i]);
         button.onclick = function(){
             current_date = days[Array.from(this.parentNode.children).indexOf(this)];
-            alert("Set date to " + current_date.toString());
+            alert("Set date to " + current_date.toJSON());
             display_seats(seats, current_date);
             reset_selected_time_slot();
         };
@@ -141,14 +141,14 @@ function display_seats(seats, date){
         display_seat(seats[i], date, time_slot.options[time_slot.selectedIndex].text);
 }
 
-function display_seat(seat, date, time_slot) {
+async function display_seat(seat, date, time_slot) {
     var seat_container = document.createElement("div");
     document.getElementById("res-seats-container").append(seat_container);
     seat_container.innerHTML = seat.seat_id;
     seat_container.className = "seat-container";
 
     const sendJSON = {
-            seat_id: seat.seat_id.toString(),
+            seat_id: seat.seat_id,
             lab: selected_lab,
             reservation_date: date,
             time_slot: time_slot
@@ -156,81 +156,36 @@ function display_seat(seat, date, time_slot) {
     console.log("display_seat()");
     console.log(sendJSON);
 
-    $.get('/checkReservation', sendJSON, (result, status) => {
-        // console.log("AJAX Get result: ");
-        // console.log(result.reservation_date);
-        // const res_date = result.reservation_date;
-        const res_date = new Date(result.reservation_date);
-        console.log(res_date);
-        console.log(date);
+    await $.get('/checkReservation', sendJSON, (result, status) => {
         if (result.seat_id == seat.seat_id.toString() &&
-            res_date == date &&
+            result.reservation_date == date.toJSON() &&
             result.time_slot == time_slot &&
-            result.lab == selected_lab
-        ) {
+            result.lab == selected_lab) {
             seat_container.classList.add("reserved");
         }
     });
 
-    seat_container.onclick = function(){
-        if (currUser == null) {
-            alert("Sign in first!!");
-            return;
-        }
+    seat_container.onclick = function(event){
         console.log(currUser);
 
-        const state = interact_seat(seat_container, currUser, seat, date,
-                                    selected_lab, time_slot);
-        switch (state) {
-            case reserve_state:
-                reserve_seat(seat, selected_lab, time_slot);
-                break;
-            case delete_state:
-                delete_reservation(seat, date, selected_lab, time_slot);
-                break;
-        }
-        // if(seat_container.classList.contains("reserved")){
-        //
-        //     // seat_container.classList.remove("reserved");
-        // }
-        // else{
-        // }
-
-
+        interact_seat(this, "john_joseph_giron@dlsu.edu.ph", seat, date,
+                      selected_lab, time_slot, event);
     };
-
-
-
-    // const sendJSON = {
-    //     seat_id: seat.seat_id,
-    //     email: currUser,
-    //     date: date,
-    //     time_slot: time_slot,
-    //     lab: selected_lab
-    // };
-    //
-
-    // if(seat.reservations.some(reservation =>
-    //     reservation.date === date &&
-    //     reservation.time_slot === time_slot &&
-    //     reservation.lab === selected_lab
-    // ))
-    //     seat_container.classList.add("reserved");
 }
 
-function reserve_seat(seat, lab, time_slot){
+async function reserve_seat(seat, lab, time_slot){
     // seats[seat.seat_id].reservations.push(new Reservation(seat.seat_id, currUser, lab, current_date, time_slot));
 
     const sendJSON = {
             seat_id: seat.seat_id,
-            user: currUser,
+            user: "john_joseph_giron@dlsu.edu.ph",
             lab: selected_lab,
             date_reserved: new Date(),
             reservation_date: current_date,
             time_slot: time_slot
     };
-
-    $.post('/makeReservation', sendJSON, (result, status) => {
+    console.log(sendJSON);
+    await $.post('/makeReservation', sendJSON, (result, status) => {
         console.log("--reserve_seat()--");
         console.log('Status:', status);
         console.log(result);
@@ -239,8 +194,11 @@ function reserve_seat(seat, lab, time_slot){
             alert("Failed to reserve Seat " + seat.seat_id + ".");
             return false;
         }
+        else {
+            alert("Seat " + seat.seat_id + " has been reserved");
+            display_user_reservations()
+        }
     });
-    alert("Seat " + seat.seat_id + " has been reserved");
     return true;
 }
 
@@ -252,7 +210,7 @@ function delete_reservation(seat, date, lab, time_slot){
 
     const sendJSON = {
         seat_id: seat.seat_id,
-        user: currUser,
+        user: "john_joseph_giron@dlsu.edu.ph",
         lab: selected_lab,
         date: current_date,
         time_slot: time_slot
@@ -266,6 +224,7 @@ function delete_reservation(seat, date, lab, time_slot){
        success: function(sendJSON){
            console.log(sendJSON);
            alert("Seat " + seat.seat_id + " reservation has been removed");
+           display_user_reservations()
        },
 
         error: function(error){
