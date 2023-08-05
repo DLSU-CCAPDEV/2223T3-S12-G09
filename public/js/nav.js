@@ -10,7 +10,8 @@ const links = [
     new Links("/", "Home", "_self"),
     new Links("/labs", "Reserve", "_blank"),
     new Links("/signup", "Sign Up", "_blank"),
-    new Links("/login", "Login", "_blank")
+    new Links("/login", "Login", "_blank"),
+    new Links("/about", "About", "_blank")
 ];
 
 /*

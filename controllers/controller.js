@@ -5,6 +5,10 @@ const controller = {
 
     getIndex: function (req, res) {
         res.render('index');
+    },
+
+    getAbout: function (req, res) {
+        res.render('about');
     }
 }
 

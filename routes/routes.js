@@ -11,6 +11,7 @@ const app = express();
 
 app.get('/', controllers.getIndex);
 app.get('/labs', labControllers.getLabs);
+app.get('/about', controllers.getAbout);
 app.get('/checkReservation', reserveControllers.checkReservation);
 app.get('/listReservations', reserveControllers.listReservations);
 app.post('/makeReservation', reserveControllers.makeReservation);
