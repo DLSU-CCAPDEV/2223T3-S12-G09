@@ -22,8 +22,9 @@ app.get('/signup', signupController.getSignUp);
 app.post('/signup', validation.signupValidation(), signupController.postSignUp);
 //app.post('/signup', signupController.postSignUp);
 
-app.get('/success', successController.getSuccess);
+//app.get('/success', successController.getSuccess);
 
+app.get('/login', loginController.getLogin);
 app.post('/login', loginController.postLogIn);
 
 module.exports = app;

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{> head}}
+</head>
+<body>
+{{> header}}
+
+<form id="login" method="post">
+    <input type="email" id="email" name="email" placeholder="Enter your email"><br>
+    <input type="password" id="password" name="password" placeholder="Enter your password"><br>
+    <input type="submit" value="Login" id="submit">
+</form>
+<p id="error" class="error">{{error}}</p>
+</body>
+</html>
