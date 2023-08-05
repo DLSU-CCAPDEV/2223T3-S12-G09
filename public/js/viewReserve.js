@@ -1,23 +1,34 @@
 console.log("viewReserve.js");
 
+const $viewReserve = $("<div id='view-div'></div>");
+const $viewTop= $("<div class='view-content' id='view-top'></div>");
+const $viewBottom = $("<div class='view-content' id='view-bottom'></div>");
+let $seatContainer;
+
+const $cancelButton = $("<button id='cancel-button'>Cancel</button>")
+const $reserveButton = $("<button id='reserve-button'>Reserve</button>")
+const $deleteButton = $("<button id='delete-button'>Delete</button>")
+
 // States for interacting the seat
 const cancel_state = 0;
 const reserve_state= 1;
 const delete_state = 2;
 
-$viewReserve = $("<div id='view-div'></div>");
-$viewTop= $("<div class='view-content'></div>");
-$viewBottom = $("<div class='view-content'></div>");
+popupState = cancel_state;
 
-$viewReserve.append($viewTop, $viewBottom);
+async function interact_seat(seat_container, user, seat, date, lab,
+                       time_slot, event) {
+    $seatContainer = $(seat_container);
+    let output = "";
+    if ($viewReserve.find($viewTop) != null ||
+        $viewReserve.find($viewBottom) != null) {
+        $viewTop.empty();
+        $viewBottom.empty();
+        $viewReserve.empty();
 
-const bottomHTML =
-    "<button class='view-button view-focused'>Cancel</button>" +
-    "<button class='view-button'>Remove</button>";
-$viewBottom.append($(bottomHTML));
-
-function interact_seat(seat_container, user, seat, date, lab, time_slot) {
-    let state = cancel_state;
+        $viewReserve.css("left", event.clientX);
+        $viewReserve.css("top", event.clientY);
+    }
 
     // Request data from server
     const sendJSON = {
@@ -32,57 +43,80 @@ function interact_seat(seat_container, user, seat, date, lab, time_slot) {
     console.log("--interact_seat()--");
     console.log(sendJSON);
 
-    $.get("/checkReservation", sendJSON, function(result) {
+    await $.get("/checkReservation", sendJSON, function(result) {
         if (result) {
-            state = delete_state;
+            $("<p>Email: {receivedJSON.user}</p>" +
+                "<p>Date of Reservation: {receivedJSON.reservation_date}</p>" +
+                "<p>Time: {receivedJSON.time_slot}</p>")
+            popupState = delete_state;
         }
         else {
-            state = reserve_state;
+            popupState = reserve_state;
         }
 
         receivedJSON = result;
     });
+    console.log(receivedJSON);
+    console.log(popupState);
+
+    output += "<p>" + receivedJSON["user"] + "</p>";
+    output += "<p>Reserved on</p>";
+    output += "<p>" + format_date(new Date(receivedJSON["date_reserved"])) + "</p>";
+    console.log(output);
 
     // Popup that shit
-    seat_container.append($viewReserve);
-    // Display the data
-    const $cancelButton = $("<button id='cancel-button'>Cancel</button>")
-    const $reserveButton = $("<button id='reserve-button'>Reserve</button>")
-    const $deleteButton = $("<button id='delete-button'>Delete</button>")
+    $seatContainer.append($viewReserve);
 
-    switch (state) {
+    // Display the data
+    switch (popupState) {
         case reserve_state:
             $viewBottom.append($reserveButton);
+            $viewReserve.append($viewBottom);
             break;
         case delete_state:
-            $viewTop.append($("<p>Email: {receivedJSON.user}</p>" +
-                "<p>Date of Reservation: {receivedJSON.reservation_date}</p>" +
-                "<p>Time: {receivedJSON.time_slot}</p>"
-            ));
+            $viewTop.append($(output));
             $viewBottom.append($deleteButton);
+            $viewReserve.append($viewTop, $viewBottom);
             break;
     }
 
     $viewBottom.append($cancelButton);
 
-    $cancelButton.click(function() {
-        state = cancel_state;
+    $viewReserve.click(function (e) {
+        e.stopPropagation();
+    });
+
+    $cancelButton.click(function(e) {
+        e.stopPropagation();
+        popupState = cancel_state;
         removePopup();
     });
 
-    $reserveButton.click(function() {
-        state = reserve_state;
+    $reserveButton.click(function(e) {
+        e.stopPropagation();
+        popupState = reserve_state;
+
+        reserve_seat(seat, lab, time_slot);
         removePopup();
     })
 
-    $deleteButton.click(function() {
-        state = delete_state;
+    $deleteButton.click(function(e) {
+        e.stopPropagation();
+        popupState = delete_state;
         removePopup();
     })
 
-    function removePopup() {
-        $viewReserve.remove();
-    }
-
-    return state;
+    $(document).ready(function() {
+        $("body").click(function() {
+            popupState = cancel_state;
+            removePopup();
+        })
+    });
 }
+
+function removePopup() {
+    console.log("I CLOSE");
+    $viewReserve.remove();
+}
+
+
