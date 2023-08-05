@@ -7,7 +7,16 @@ const User = require('../models/AccountModel.js');
 
 const signupController = {
     getSignUp: function(req, res){
-        res.render('signup');
+        var details = {}
+
+        if(req.session.username){
+            details.flag = true;
+            details.username = req.session.username;
+            res.redirect('/');
+        } else {
+            details.flag = false;
+            res.render('signup', details);
+        }
     },
 
     checkUsername: async function(req, res){

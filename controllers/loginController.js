@@ -4,7 +4,16 @@ const User = require("../models/AccountModel.js");
 
 const loginController = {
     getLogin: function(req, res){
-        res.render('login');
+        var details = {};
+
+        if(req.session.username){
+            details.flag = true;
+            details.username = req.session.username;
+            res.redirect('/');
+        } else{
+            details.flag = false;
+            res.render('login', details);
+        }
     },
 
     postLogIn: async function (req, res) {
