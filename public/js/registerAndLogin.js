@@ -12,13 +12,36 @@ var acc_profpicArray = [
 
 $(document).ready(function(){
     function isFilled(){
+        var fname = validator.trim($('#fname').val());
+        var lname = validator.trim($('#lname').val());
+        var username = validator.trim($('#username').val());
         var email = validator.trim($('#email').val());
         var pw = validator.trim($('#password').val());
-
+        var fname_empty = validator.isEmpty(fname);
+        var lname_empty = validator.isEmpty(lname);
+        var username_empty = validator.isEmpty(username);
         var email_empty = validator.isEmpty(email);
         var pw_empty = validator.isEmpty(pw);
 
-        return !email_empty && !pw_empty;
+        return !fname_empty && !lname_empty && !username_empty && !email_empty && !pw_empty;
+    }
+
+    function isValidUsername(field, callback){
+        var email = validator.trim($('#username').val());
+
+        $.get('/checkUsername', {username: username}, function(result){
+            if(result.username !== username){
+                if(field.is($('#username')))
+                    $('#username').text('');
+
+                return callback(true);
+            } else{
+                if(field.is($('#username')))
+                    $('#usernameError').text('Username already exists.');
+
+                return callback(false);
+            }
+        });
     }
 
     function isValidEmail(field, callback){
@@ -77,6 +100,18 @@ $(document).ready(function(){
                 $('#signup').prop('disabled', true);
         });
     }
+
+    $('#fname').keyup(function(){
+        validateField($('#fname'), 'First Name', $('#fnameError'));
+    });
+
+    $('#lname').keyup(function(){
+        validateField($('#lname'), 'Last Name', $('#lnameError'));
+    });
+
+    $('#username').keyup(function(){
+        validateField($('#username'), 'Username', $('#usernameError'));
+    });
 
     $('#email').keyup(function(){
         validateField($('#email'), 'Email', $('#emailError'));

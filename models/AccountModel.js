@@ -1,10 +1,6 @@
 var mongoose = require('mongoose');
 
 var AccountSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true
-    },/*
     fname: {
         type: String,
         required: true
@@ -12,29 +8,33 @@ var AccountSchema = new mongoose.Schema({
     lname: {
         type: String,
         required: true
-    },*/
-    description: {
+    },
+    username: {
         type: String,
-        //required: true,
-        default: "No description."
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
     },
     password: {
         type: String,
         required: true
     },
-    pfpURL: {
-        type: String,
-        //required: true,
-        default: "https://cdn.vectorstock.com/i/preview-1x/70/84/default-avatar-profile-icon-symbol-for-website-vector-46547084.jpg"
-    },
     type: {
         type: String,
-        //required: true,
-        default: "Student"
+        default: 'Student'
+    },
+    pfpURL: {
+        type: String,
+        default: null
+    },
+    description: {
+        type: String,
+        default: null
     },
     deleted: {
         type: Boolean,
-        //required: true
         default: false
     },
 });

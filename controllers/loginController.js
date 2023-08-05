@@ -8,35 +8,33 @@ const loginController = {
     },
 
     postLogIn: async function (req, res) {
-        var email = req.body.email;
+        var username = req.body.username;
         var password = req.body.password;
 
-        var result = await db.findOne(User, {email: email}, "");
+        var result = await db.findOne(User, {username: username}, "");
 
         if(result){
             var user = {
+                username: result.username,
                 email: result.email,
-                description: result.description,
-                pfpURL: result.pfpURL,
                 type: result.type
             };
 
             bcrypt.compare(password, result.password, function(err, equal){
                 if(equal){
+                    req.session.username = user.username,
                     req.session.email = user.email;
-                    req.session.description = user.description;
-                    req.session.pfpURL = user.pfpURL;
                     req.session.type = user.type;
                     console.log("session email: " + req.session.email); //remove later
-                    res.redirect('/profile/' + user.email);
+                    res.redirect('/profile/' + user.username);
                 }else{
                     console.log("password incorrect"); //remove later
-                    var details = {error: "Email and/or Password is incorrect."};
+                    var details = {error: "Username and/or Password is incorrect."};
                     res.render("login", details);
                 }
             });
         } else{
-            var details = {error: "Email and/or Password is incorrect."};
+            var details = {error: "Username and/or Password is incorrect."};
             res.render("login", details);
         }
     }

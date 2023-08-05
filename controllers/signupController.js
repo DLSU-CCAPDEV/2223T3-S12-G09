@@ -10,6 +10,12 @@ const signupController = {
         res.render('signup');
     },
 
+    checkUsername: async function(req, res){
+        var email = req.query.username;
+        var result = await db.findOne(User, {username: username}, 'username');
+        res.send(result);
+    },
+
     checkEmail: async function(req, res){
         var email = req.query.email;
         var result = await db.findOne(User, {email: email}, 'email');
@@ -30,11 +36,17 @@ const signupController = {
 
             res.render('signup', details);
         } else{
+            var fname = req.body.fname;
+            var lname = req.body.lname;
+            var username = req.body.username;
             var email = req.body.email;
             var password = req.body.password;
 
             bcrypt.hash(password, saltRounds, async function (err, hash) {
                 var user = {
+                    fname: fname,
+                    lname: lname,
+                    username: username,
                     email: email,
                     password: hash
                 }
