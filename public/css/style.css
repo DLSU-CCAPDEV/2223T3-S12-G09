@@ -2,7 +2,6 @@
 .error{
     color: red;
     font-size: 0.75rem;
-    margin-left: 5%;
 }
 
 /* Temp */
@@ -64,6 +63,22 @@ body{
     padding: 35px 150px;
     font-family: Arial, sans-serif;
     color: #262626;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+code {
+    background-color: #f0f0f0;
+    padding: 3px 10px;
+    border: 1px #d4d4d4 solid;
+    border-radius: 3px;
+}
+
+td, th{
+    padding: 0.5em 2em;
+    border: lightgray 1px solid;
 }
 
 #header{
@@ -217,12 +232,12 @@ button.view {
     border: 4px solid #E3E3E3;
 }
 
-.modal input[type=email], input[type=password], input[type=text]{
+/*.modal input[type=email], input[type=password], input[type=text]{
     padding: 5px 10px;
     border: #e5e5e5 solid 2px;
     border-radius: 3px;
     background: rgba(229, 229, 229, 0.15);
-}
+}*/
 
 .modal input[type=radio]{
     margin-right: 15px;
@@ -342,9 +357,16 @@ button.view {
     border: 1px solid #888;
     width: 20%;
     border-radius: 7px;
+    cursor: default;
+    position: fixed;
 }
 
-.view-content {
+#view-top {
+    color: black;
+    text-align: left;
+}
+
+#view-bottom {
     display:grid;
     grid-template-columns: auto auto;
 }
