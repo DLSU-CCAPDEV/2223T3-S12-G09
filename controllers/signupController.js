@@ -11,7 +11,7 @@ const signupController = {
     },
 
     checkUsername: async function(req, res){
-        var email = req.query.username;
+        var username = req.query.username;
         var result = await db.findOne(User, {username: username}, 'username');
         res.send(result);
     },
