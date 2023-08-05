@@ -3,6 +3,9 @@ console.log("viewReserve.js");
 const $viewReserve = $("<div id='view-div'></div>");
 const $viewTop= $("<div class='view-content' id='view-top'></div>");
 const $viewBottom = $("<div class='view-content' id='view-bottom'></div>");
+
+$viewReserve.append($viewTop, $viewBottom);
+
 let $seatContainer;
 
 const $cancelButton = $("<button id='cancel-button'>Cancel</button>")
@@ -14,11 +17,11 @@ const cancel_state = 0;
 const reserve_state= 1;
 const delete_state = 2;
 
-popupState = cancel_state;
 
 async function interact_seat(seat_container, user, seat, date, lab,
                        time_slot, event) {
     let output = "";
+    let popupState = cancel_state;
     const header = "<h2>Seat " + seat.seat_id + "</h2>";
     const details =
         "<p class='seat-details'>" + format_date(date) + "</p>" +
@@ -26,6 +29,8 @@ async function interact_seat(seat_container, user, seat, date, lab,
         "<p class='seat-details'>Time: " + time_slot + "</p>";
 
     $seatContainer = $(seat_container);
+
+
     if ($viewReserve.find($viewTop) != null ||
         $viewReserve.find($viewBottom) != null) {
         $viewTop.empty();
@@ -100,7 +105,6 @@ async function interact_seat(seat_container, user, seat, date, lab,
 
     $reserveButton.click(function(e) {
         e.stopPropagation();
-        popupState = reserve_state;
 
         reserve_seat(seat, lab, time_slot);
         removePopup();
@@ -108,13 +112,11 @@ async function interact_seat(seat_container, user, seat, date, lab,
 
     $deleteButton.click(function(e) {
         e.stopPropagation();
-        popupState = delete_state;
         removePopup();
     })
 
     $(document).ready(function() {
         $("body").click(function() {
-            popupState = cancel_state;
             removePopup();
         })
     });
@@ -122,6 +124,12 @@ async function interact_seat(seat_container, user, seat, date, lab,
 
 function removePopup() {
     console.log("I CLOSE");
+    $viewTop.empty();
+    $viewBottom.empty();
+    $viewReserve.empty();
+
+    $viewTop.remove();
+    $viewBottom.remove();
     $viewReserve.remove();
 }
 
