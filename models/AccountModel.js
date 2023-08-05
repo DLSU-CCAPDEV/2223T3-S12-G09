@@ -31,7 +31,7 @@ var AccountSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        default: null
+        default: 'No bio.'
     },
     deleted: {
         type: Boolean,
