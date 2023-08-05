@@ -18,8 +18,14 @@ popupState = cancel_state;
 
 async function interact_seat(seat_container, user, seat, date, lab,
                        time_slot, event) {
-    $seatContainer = $(seat_container);
     let output = "";
+    const header = "<h2>Seat " + seat.seat_id + "</h2>";
+    const details =
+        "<p class='seat-details'>" + format_date(date) + "</p>" +
+        "<p class='seat-details'>in Laboratory " + lab.toUpperCase() + "</p>" +
+        "<p class='seat-details'>Time: " + time_slot + "</p>";
+
+    $seatContainer = $(seat_container);
     if ($viewReserve.find($viewTop) != null ||
         $viewReserve.find($viewBottom) != null) {
         $viewTop.empty();
@@ -57,8 +63,7 @@ async function interact_seat(seat_container, user, seat, date, lab,
         receivedJSON = result;
     });
     console.log(receivedJSON);
-    console.log(popupState);
-
+    console.log(popupState);;
     output += "<p>" + receivedJSON["user"] + "</p>";
     output += "<p>Reserved on</p>";
     output += "<p>" + format_date(new Date(receivedJSON["date_reserved"])) + "</p>";
@@ -68,19 +73,20 @@ async function interact_seat(seat_container, user, seat, date, lab,
     $seatContainer.append($viewReserve);
 
     // Display the data
+    $viewTop.append($(header));
     switch (popupState) {
         case reserve_state:
+            $viewTop.append($(details));
             $viewBottom.append($reserveButton);
-            $viewReserve.append($viewBottom);
             break;
         case delete_state:
             $viewTop.append($(output));
             $viewBottom.append($deleteButton);
-            $viewReserve.append($viewTop, $viewBottom);
             break;
     }
-
     $viewBottom.append($cancelButton);
+
+    $viewReserve.append($viewTop, $viewBottom);
 
     $viewReserve.click(function (e) {
         e.stopPropagation();
