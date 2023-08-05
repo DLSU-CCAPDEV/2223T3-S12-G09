@@ -5,6 +5,7 @@ const signupController = require('../controllers/signupController.js');
 const loginController = require("../controllers/loginController.js");
 const accountController = require("../controllers/accountController.js");
 const logoutController = require("../controllers/logoutController.js");
+const deleteController = require("../controllers/deleteController.js");
 
 const express = require('express');
 const validation = require('../helpers/validation.js');
@@ -29,5 +30,7 @@ app.post('/login', loginController.postLogIn);
 app.get('/profile/:username', accountController.getProfile);
 
 app.get('/logout', logoutController.getLogOut);
+
+app.delete('/delete',  deleteController.deleteAccount);//++
 
 module.exports = app;
