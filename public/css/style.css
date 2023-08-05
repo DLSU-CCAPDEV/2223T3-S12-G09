@@ -358,9 +358,16 @@ button.view {
     border: 1px solid #888;
     width: 20%;
     border-radius: 7px;
+    cursor: default;
+    position: fixed;
 }
 
-.view-content {
+#view-top {
+    color: black;
+    text-align: left;
+}
+
+#view-bottom {
     display:grid;
     grid-template-columns: auto auto;
 }
