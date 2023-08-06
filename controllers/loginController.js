@@ -4,39 +4,49 @@ const User = require("../models/AccountModel.js");
 
 const loginController = {
     getLogin: function(req, res){
-        res.render('login');
+        var details = {};
+
+        if(req.session.username){
+            details.flag = true;
+            details.username = req.session.username;
+            res.redirect('/');
+        } else{
+            details.flag = false;
+            res.render('login', details);
+        }
     },
 
     postLogIn: async function (req, res) {
-        var email = req.body.email;
+        var username = req.body.username;
         var password = req.body.password;
-
-        var result = await db.findOne(User, {email: email}, "");
+        var result = await db.findOne(User, {username: username}, "");
 
         if(result){
             var user = {
-                email: result.email,
-                description: result.description,
-                pfpURL: result.pfpURL,
+                username: result.username,
                 type: result.type
             };
 
             bcrypt.compare(password, result.password, function(err, equal){
                 if(equal){
-                    req.session.email = user.email;
-                    req.session.description = user.description;
-                    req.session.pfpURL = user.pfpURL;
+                    req.session.username = user.username;
                     req.session.type = user.type;
-                    console.log("session email: " + req.session.email); //remove later
-                    res.redirect('/profile/' + user.email);
-                }else{
-                    console.log("password incorrect"); //remove later
-                    var details = {error: "Email and/or Password is incorrect."};
+                    res.redirect('/');
+                } else{
+                    var details = {
+                        flag: false,
+                        error: "Username and/or Password is incorrect."
+                    };
+
                     res.render("login", details);
                 }
             });
         } else{
-            var details = {error: "Email and/or Password is incorrect."};
+            var details = {
+                flag: false,
+                error: "Username and/or Password is incorrect."
+            };
+
             res.render("login", details);
         }
     }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{> head}}
+
+    <title>{{username}} | Profile</title>
+</head>
+
+<body>
+{{> header flag=flag username=username}}
+
+<div>
+    <div>
+        <span>{{username}}</span>
+    </div>
+    <div>
+        <span>{{fname}} {{lname}}</span>
+    </div>
+    <div>
+        <span>{{description}}</span>
+    </div>
+    <div>
+        <form>
+            <button>Edit Profile</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

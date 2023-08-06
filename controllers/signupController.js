@@ -7,7 +7,22 @@ const User = require('../models/AccountModel.js');
 
 const signupController = {
     getSignUp: function(req, res){
-        res.render('signup');
+        var details = {}
+
+        if(req.session.username){
+            details.flag = true;
+            details.username = req.session.username;
+            res.redirect('/');
+        } else {
+            details.flag = false;
+            res.render('signup', details);
+        }
+    },
+
+    checkUsername: async function(req, res){
+        var username = req.query.username;
+        var result = await db.findOne(User, {username: username}, 'username');
+        res.send(result);
     },
 
     checkEmail: async function(req, res){
@@ -30,11 +45,17 @@ const signupController = {
 
             res.render('signup', details);
         } else{
+            var fname = req.body.fname;
+            var lname = req.body.lname;
+            var username = req.body.username;
             var email = req.body.email;
             var password = req.body.password;
 
             bcrypt.hash(password, saltRounds, async function (err, hash) {
                 var user = {
+                    fname: fname,
+                    lname: lname,
+                    username: username,
                     email: email,
                     password: hash
                 }
