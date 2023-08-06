@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-    {{> head}}
+    <head>
+        {{> head}}
 
-    <title>{{username}} | Profile</title>
-</head>
+        <title>{{username}} | Profile</title>
+        <script src="/js/profileReservation.js"></script>
+    </head>
 
-<body>
-{{> header flag=flag username=username}}
+    <body onload="listTables('{{username_url}}')">
+        {{> header flag=flag username=username}}
 
-<div>
-    <div>
-        <span>{{username}}</span>
-    </div>
-    <div>
-        <span>{{fname}} {{lname}}</span>
-    </div>
-    <div>
-        <span>{{description}}</span>
-    </div>
-</div>
-</body>
+        <div>
+            <div>
+                <span>{{username_url}}</span>
+            </div>
+            <div>
+                <span>{{fname}} {{lname}}</span>
+            </div>
+            <div>
+                <span>{{description}}</span>
+            </div>
+        </div>
+
+        {{> reservationList}}
+    </body>
 </html>

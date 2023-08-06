@@ -8,11 +8,6 @@ const accountController = {
         // var projection = 'fname lname username description';
         var details = Session.connectSession(req, res);
 
-        // if (req.session.username) {
-        //     details.flag = true;
-        //     details.username = true;
-        // } else
-        //     details.flag = false;
 
         // var result = await db.findOne(User, query, projection);
         var result = await db.findOne(User, query);
@@ -20,7 +15,7 @@ const accountController = {
         if(result !== null){
             details.fname = result.fname;
             details.lname = result.lname;
-            details.username = result.username;
+            details.username_url = result.username;
             details.description = result.description;
 
             res.render('profile', details);
