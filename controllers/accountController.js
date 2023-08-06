@@ -23,7 +23,7 @@ const accountController = {
 
             res.render('profile', details);
         } else
-            res.render('error', details);
+            res.redirect('/');
     }
 }
 
