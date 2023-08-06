@@ -11,6 +11,7 @@ $(document).ready(function(event) {
     });
 
     $("#reservation-form").submit(function(event) {
+        const lab = $("#lab").val();
         const dateReserved = $("#date-reserved").val();
         const reservationDate = $("#reservation-date").val();
         const user = $("#user-reservation").val();
@@ -21,7 +22,8 @@ $(document).ready(function(event) {
         }
 
         preventEmpty(() =>
-             (dateReserved == "" &&
+             (lab == "" &&
+             dateReserved == "" &&
              reservationDate == "" &&
              user == "")
         , event);
