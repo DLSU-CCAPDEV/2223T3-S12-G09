@@ -14,11 +14,11 @@ x - done
 [x] Reserve
 [x] Reserve for a student
 [x] Remove reservation
-[ ] Edit reservation
+[x] Edit reservation
 [x] See reservation
 [x] View / Edit user profile
 [x] Delete user account
-[ ] Search for users / free slots
+[x] Search for users / free slots
 [ ] General
   [ ] Good UI and UX
 </pre>
