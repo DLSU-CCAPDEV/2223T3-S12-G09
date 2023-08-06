@@ -11,7 +11,7 @@ const reserveController = {
     listReservations: async function (req, res) {
         console.log(req);
         var result = await db.findMany(Reservation, req.query);
-        console.log("listReservations(): ");
+        // console.log("listReservations(): ");
         // console.log(req.query);
         console.log(result);
         res.send(result);
