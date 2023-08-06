@@ -1,23 +1,22 @@
-<div id="res-container">
-    <div id="res-buttons">
-        <div id="res-labs">
-            <button id="lab-a">Laboratory A</button>
-            <button id="lab-b">Laboratory B</button>
-            <button id="lab-c">Laboratory C</button>
-        </div>
-        <div id="res-days"></div>
-        <div id="res-time-slots">
-            <label for="time-slots">Time Slot: </label>
-            <select name="time-slots" id="time-slots"></select>
-        </div>
-    </div>
-    <div id="res-another-container">
-        <div id="res-seats-container"></div>
-        <div id="active-reservations">
-            {{!--<div>
-                <span>User Reservations</span>
+<div class="body-container">
+    <div id="res-container">
+        <h2>Reserve</h2>
+        <div id="res-buttons">
+            <div id="res-days"></div>
+            <div class="labs-slots-container">
+                <div id="res-labs">
+                    <button id="lab-a" class="lab-btn active">Laboratory A</button>
+                    <button id="lab-b" class="lab-btn">Laboratory B</button>
+                    <button id="lab-c" class="lab-btn">Laboratory C</button>
+                </div>
+                <div id="res-time-slots">
+                    <label for="time-slots">Time Slot: </label>
+                    <select name="time-slots" id="time-slots"></select>
+                </div>
             </div>
-            <div id="user-res-container"></div>--}}
+        </div>
+        <div id="res-another-container">
+            <div id="res-seats-container"></div>
         </div>
     </div>
 </div>

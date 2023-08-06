@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <title>Laboratory | Availability</title>
-        {{> head}}
-        <link rel="stylesheet" type="text/css" href="/css/reservation.css">
-        <link rel="stylesheet" type="text/css" href="/css/popup.css">
-        <script src="js/viewReserve.js"></script>
-    </head>
-    <body>
+<head>
 
-        {{> header flag=flag username=username}}
-        <div id="error" style="font-color:red;"></div>
-        {{>reservation }}
+    {{> head}}
 
-    </body>
+    <title>Reserve | Lab Reservation</title>
+    <link rel="stylesheet" type="text/css" href="/css/labs.css">
+    <script src="js/viewReserve.js"></script>
+</head>
+<body>
+
+{{> header flag=flag username=username}}
+
+{{>reservation }}
+
+</body>
 </html>
-
-
