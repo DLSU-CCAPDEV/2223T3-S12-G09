@@ -23,14 +23,11 @@ app.get('/checkEmail', signupController.checkEmail);
 app.get('/checkUsername', signupController.checkUsername);
 app.get('/signup', signupController.getSignUp);
 app.post('/signup', validation.signupValidation(), signupController.postSignUp);
-<<<<<<< HEAD
 //app.post('/signup', signupController.postSignUp);
 app.get('/getAccount', function(req, res) {
     req.send(req.session.username);
 });
 //app.get('/success', successController.getSuccess);
-=======
->>>>>>> main
 
 app.get('/login', loginController.getLogin);
 app.post('/login', loginController.postLogIn);

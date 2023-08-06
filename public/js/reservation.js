@@ -11,7 +11,7 @@ function Seat(seat_id){
 
 var currUser;
 
-await $.get('/getAccount', function(result) {currUser = result.user});
+$.get('/getAccount', function(result) {currUser = result.user});
 
 alert(currUser);
 
