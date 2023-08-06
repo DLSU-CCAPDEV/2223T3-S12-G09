@@ -27,7 +27,6 @@ const deleteController = {
                         if(err) throw err;
                         res.redirect('/');
                     });
-                    res.redirect('/');
                 }
                 else {
                     console.log("Error deleting account.");
@@ -45,7 +44,6 @@ const deleteController = {
                     if(err) throw err; 
                     res.redirect('/');
                 });
-                res.redirect('/');
             }
             else{
                 console.log("Error deleting account.");
