@@ -4,19 +4,82 @@
     <head>
         <title>Laboratory | Search</title>
         {{> head}}
-        <script src="search.js"></script>
+        <script src="js/search.js"></script>
     </head>
-    <body>
-        {{> header}}
-
+    <body onload="open_form(event, '{{state}}-form')">
+        {{> header flag=flag username=username}}
         <section>
         <h1>Search</h1>
-        <form>
-            <input type="search" name="search" id="search">
-            <input type="submit" name="submit" id="submit">
+        <div class="tab">
+            <button onclick="open_form(event, 'user-form')">
+                Users
+            </button>
+            <button onclick="open_form(event, 'reservation-form')">
+                Reservations
+            </button>
+        </div>
+        <form id="user-form" class="tabcontent" method="post">
+            <label>Search "all" to query all accounts</label>
+            <div style="display:flex;">
+                <input type="search" name="search-user" id="user-text"
+                       style="flex-grow: 1;">
+                <input type="submit" name="submit" id="user-submit"
+                       value="Search">
+            </div>
+            <input type="hidden" name="state" value="user">
+            <table id="user-table" class="user-table">
+                {{#each user_result}}
+                <tr>
+                    <th>Username</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>{{username}}</td>
+                    <td>{{fname}}</td>
+                    <td>{{lname}}</td>
+                    <td>{{description}}</td>
+                </tr>
+                {{/each}}
+            </table>
+            </section>
         </form>
-        </section>
-        
-        <script src="/js/registerAndLogin.js"></script>
+
+        <form id="reservation-form" method="post" class="tabcontent">
+            <label for="user-reservation">User: </label>
+            <input type="search" name="user" id="user-reservation">
+            <select name="lab" id="lab">
+                <option value="a">Laboratory A</option>
+                <option value="b">Laboratory B</option>
+                <option value="c">Laboratory C</option>
+            </select>
+            <label for="reservation-date">Date of Reservation: </label>
+            <input type="date" name="reservation-date" id="reservation-date"
+                   title="Date that the user set in reservation.">
+            <label for="reservation-date">Date reserved: </label>
+            <input type="date" name="date-reserved" id="date-reserved"
+                   title="Date when the user made a reservation.">
+            <input type="hidden" name="state" value="reservation">
+            <input type="submit" name="submit" value="Search">
+            <table id="reservation-table" class="user-table">
+            {{#each reservation_result}}
+            <tr>
+                <th>Seat #</th>
+                <th>Username</th>
+                <th>Date Reserved</th>
+                <th>Date of Reservation</th>
+                <th>Time</th>
+            </tr>
+            <tr>
+                <td>{{seat_id}}</td>
+                <td>{{user}}</td>
+                <td>{{date_reserved}}</td>
+                <td>{{reservation_date}}</td>
+                <td>{{time_slot}}</td>
+            </tr>
+            {{/each}}
+            </table>
+        </form>
     </body>
 </html>
