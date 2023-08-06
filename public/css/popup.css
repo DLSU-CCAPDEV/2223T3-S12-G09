@@ -1,0 +1,13 @@
+#view-div {
+    position: fixed;
+    background-color: #f3f3f3;
+    border: solid 1px black;
+    border-radius: 10px;
+
+    width: 200px;
+    padding: 1em;
+
+    cursor: default;
+
+    color: black;
+}
