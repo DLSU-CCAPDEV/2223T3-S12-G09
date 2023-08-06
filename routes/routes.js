@@ -32,11 +32,15 @@ app.post('/signup', validation.signupValidation(), signupController.postSignUp);
 app.get('/login', loginController.getLogin);
 app.post('/login', loginController.postLogIn);
 
+app.get('/getAccount', function(req, res) {
+    res.send(req.session.username);
+});
+
 app.get('/profile/:username', accountController.getProfile);
 
 app.get('/logout', logoutController.getLogOut);
 
-app.delete('/delete',  deleteController.deleteAccount);//++
+app.delete('/delete',  deleteController.deleteAccount);
 
 app.get('/edit-profile', editProfileController.getEditProfile);
 app.post('/edit-profile', editProfileController.editProfile);

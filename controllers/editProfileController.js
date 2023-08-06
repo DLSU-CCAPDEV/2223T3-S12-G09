@@ -17,10 +17,10 @@ const editProfileController = {
         var pfpURL = req.body.pfpURL;
         var description = req.body.description;
 
-        if(pfpURL !== null)
+        if(pfpURL === '')
             pfpURL = 'https://d2w9rnfcy7mm78.cloudfront.net/8040974/original_ff4f1f43d7b72cc31d2eb5b0827ff1ac.png?1595022778?bc=0';
 
-        if(description !== null)
+        if(description === '')
             description = 'No bio.';
 
         var result = await db.updateOne(User, {username: req.session.username}, {pfpURL: pfpURL, description: description});
