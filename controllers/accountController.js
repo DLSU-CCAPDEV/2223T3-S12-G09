@@ -1,17 +1,18 @@
 const db = require('../models/db.js');
 const User = require('../models/AccountModel.js');
+const Session = require('./sessionController.js');
 
 const accountController = {
     getProfile: async function (req, res) {
         var query = {username: req.params.username};
         var projection = 'fname lname username description';
-        var details = {};
+        var details = Session.connectSession(req, res);
 
-        if (req.session.username) {
-            details.flag = true;
-            details.username = true;
-        } else
-            details.flag = false;
+        // if (req.session.username) {
+        //     details.flag = true;
+        //     details.username = true;
+        // } else
+        //     details.flag = false;
 
         var result = await db.findOne(User, query, projection);
 

@@ -1,15 +1,23 @@
 const db = require('../models/db.js');
 const Reservation = require('../models/ReservationModel.js');
 const Account = require('../models/AccountModel.js');
+const Session = require('./sessionController.js');
+
 
 const searchController = {
     getSearch: function (req, res) {
+        var details = Session.connectSession(req, res);
+
         res.render('search-users', {
-            state:"user"
+            state:"user",
+            username: details.username,
+            flag: details.flag,
         });
     },
     listAccounts: async function (req, res) {
+        var details = Session.connectSession(req, res);;
         var state = req.body.state;
+
         // console.log(req.body);
         switch (state) {
             case "user":
@@ -30,7 +38,9 @@ const searchController = {
 
                 res.render("search-users", {
                     user_result: userResult,
-                    state: "user"
+                    state: "user",
+                    username: details.username,
+                    flag: details.flag,
                 });
                 break;
 
@@ -86,7 +96,9 @@ const searchController = {
                                       reservationQuery);
                 res.render("search-users", {
                     reservation_result: reservationResult,
-                    state: "reservation"
+                    state: "reservation",
+                    username: details.username,
+                    flag: details.flag,
                 });
                 break;
         }
