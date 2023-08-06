@@ -1,10 +1,12 @@
 const listReservations = [];
 var currentReservations;
+var currUser;
+var sessUser;
 
 class Reservations {
     constructor(id, edit, deleteButton, seat_id, lab, date_reserved,
                 reservation_date, time_slot) {
-        console.log("hello");
+        // console.log("hello");
         this.id = id;
         this.edit = edit;
         this.deleteButton = deleteButton;
@@ -16,16 +18,36 @@ class Reservations {
     }
 }
 
+$(document).ready(function() {
+    listTables(currUser);
+})
+
+function setUsernames(user_url, user_sess) {
+    currUser = user_url;
+    sessUser = user_sess;
+}
 
 async function listTables(username) {
     await $.get('/listReservations', {user: username}, function(result){
         const $table = $("#reservation-list");
-
+        $table.empty();
+        listReservations.length = 0;
+        $table.append($(
+            "<tr>" +
+                "<th>Laboratory</th>" +
+                "<th>Seat #</th>" +
+                "<th>Date Reserved</th>" +
+                "<th>Date of Reservation</th>" +
+                "<th>Time</th>" +
+                "<th class='no-outline'></th>" +
+                "<th class='no-outline'></th>" +
+            "</tr>"
+        ));
         // for (const reserve of result) {
         for (var i = 0; i < result.length; i++) {
             const reserve = result[i];
 
-            console.log(reserve);
+            // console.log(reserve);
 
             const reservationDate = new Date(reserve.reservation_date);
             const reservationDateStr = format_date(reservationDate);
@@ -60,8 +82,12 @@ async function listTables(username) {
             $deleteCell.append($deleteButton);
             $editCell.append($editButton);
             $tr.append($lab, $seatNo, $dateReserved,
-                       $dateReservation, $timeslot,
-                       $editCell, $deleteCell);
+                       $dateReservation, $timeslot);
+
+            if (currUser == sessUser) {
+                $tr.append($editCell, $deleteCell);
+            }
+
             $table.append($tr);
 
             listReservations.push(
@@ -74,16 +100,21 @@ async function listTables(username) {
             );
         }
     });
-    console.log(listReservations);
+    // console.log(listReservations);
 
     // for (const editButton of listReservations) {
     for (var i = 0; i < listReservations.length; i++) {
-        const editButton = listReservations[i];
-        const button = $(editButton.edit);
+        const reserveItem = listReservations[i];
+        const $editButton = $(reserveItem.edit);
+        const $deleteButton = $(reserveItem.deleteButton);
 
-        button.click(function() {
+        $editButton.click(function() {
             // console.log(editButton.id);
-            editReserve(editButton.id);
+            editReserve(reserveItem.id);
+        })
+
+        $deleteButton.click(function() {
+            deleteReserve(reserveItem.id);
         })
     }
 }
@@ -97,25 +128,35 @@ function format_date(date){
 }
 
 function editReserve(index) {
-    const reserve = listReservations[index];
-    const date = new Date(reserve.reservation_date);
+    currentReservations = listReservations[index];
+    const date = new Date(currentReservations.reservation_date);
     const dateStr = date.getFullYear() + "-" +
                     date.getMonth().toString().padStart(2, '0') + "-" +
                     date.getDate().toString().padStart(2, '0');
     $("#edit-div").show();
-    console.log(dateStr);
-    // console.log(date.getFullYear());
-    // console.log(date.getMonth());
-    // console.log(date.getDate());
+    // console.log(dateStr);
 
-    $("#lab").val(reserve.lab).change();
+    $("#seat_id").val(currentReservations.seat_id).change();
+    $("#lab").val(currentReservations.lab).change();
     $("#reservation_date").val(dateStr);
-    $("#time_slot").val(reserve.time_slot);
-
-    // console.log($("#reservation_date").val());
-    // console.log($("#lab").val());
+    $("#time_slot").val(currentReservations.time_slot);
 }
 
+async function deleteReserve(index) {
+    currentReservations = listReservations[index];
+    alert("hello");
+    const sendJSON = {
+        user: sessUser,
+        lab: currentReservations.lab,
+        seat_id: currentReservations.seat_id,
+        date_reserved: currentReservations.date_reserved,
+        reservation_date: currentReservations.reservation_date,
+        time_slot: currentReservations.time_slot
+    };
+    await $.post("/deleteReservation", sendJSON, function (result) {
+        listTables(currUser);
+    });
+}
 
 $("#edit-div").ready(function() {
     // alert("hello");
@@ -128,8 +169,26 @@ $("#edit-div").ready(function() {
         $("#edit-div").hide();
     });
 
-    $("#submit-edit").click(function(event) {
+    $("#submit-edit").click(async function(event) {
+        const sendJSON = {
+            old_lab: currentReservations.lab,
+            old_seat_id: currentReservations.seat_id,
+            old_date_reserved: currentReservations.date_reserved,
+            old_reservation_date: currentReservations.reservation_date,
+            old_time_slot: currentReservations.time_slot,
+
+            new_lab: $("#lab").val(),
+            new_seat_id: $("#seat_id").val(),
+            new_reservation_date: $("#reservation_date").val(),
+            new_time_slot: $("#time_slot").val(),
+        };
+        await $.post("/updateReservation", sendJSON, function (result) {
+            alert("hello");
+            listTables(currUser);
+            $("#edit-div").hide();
+        });
     });
+
     $("#edit-reservation").submit(function(event) {
         event.preventDefault();
     });
@@ -175,5 +234,15 @@ $("#time_slot").ready(function() {
         $option.val(timeStr);
         $option.text(timeStr);
         $time_slots.append($option);
+    }
+});
+
+$("#seat_id").ready(function() {
+    for (var i = 0; i < 36; i ++) {
+        // var option = document.createElement("option");
+        const $option = $("<option></option>");
+        $option.val(i);
+        $option.text("Seat " + i);
+        $("#seat_id").append($option);
     }
 });

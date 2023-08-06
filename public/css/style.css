@@ -226,6 +226,11 @@ button.view {
   border-top: none;
 }
 
+/* Profile Reservation */
+.no-outline {
+    border-style: none;
+}
+
 /*------------------------  MODAL LOGIN AND REGISTER -------------------*/
 
 .modal {

@@ -21,7 +21,8 @@ app.post('/listAccounts', searchControllers.listAccounts);
 app.get('/checkReservation', reserveControllers.checkReservation);
 app.get('/listReservations', reserveControllers.listReservations);
 app.post('/makeReservation', reserveControllers.makeReservation);
-app.delete('/deleteReservation', reserveControllers.deleteReservation);
+app.post('/updateReservation', reserveControllers.updateReservation);
+app.post('/deleteReservation', reserveControllers.deleteReservation);
 
 app.get('/checkEmail', signupController.checkEmail);
 app.get('/checkUsername', signupController.checkUsername);

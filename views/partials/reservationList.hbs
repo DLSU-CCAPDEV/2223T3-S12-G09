@@ -1,16 +1,8 @@
 <table id="reservation-list">
-    <tr>
-        <th>Laboratory</th>
-        <th>Seat #</th>
-        <th>Date Reserved</th>
-        <th>Date of Reservation</th>
-        <th>Time</th>
-        <th class='no-outline'></th>
-        <th class='no-outline'></th>
-    </tr>
+
 </table>
 
-<div id="edit-div" class="display: none">
+<div id="edit-div" style="display: none;">
     <h3>Edit reservation: </h3>
     <form id="edit-reservation">
         <label>Laboratory: </label>
@@ -18,6 +10,11 @@
             <option value="a">Laboratory A</option>
             <option value="b">Laboratory B</option>
             <option value="c">Laboratory C</option>
+        </select>
+        <br>
+
+        <label>Seat #: </label>
+        <select id="seat_id" name="seat_id">
         </select>
         <br>
 
