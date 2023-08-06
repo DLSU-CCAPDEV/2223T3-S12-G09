@@ -20,13 +20,16 @@ const deleteController = {
             if(isDeletedRes){
                 console.log("Account resrevations deleted");
                 var isDeletedAcc = await db.deleteOne(User, {email: user.email});
+
                 if(isDeletedAcc){
                     console.log("Account deleted");
                     req.session.destroy(function(err){
                         if(err) throw err;
+                        res.redirect('/');
                     });
                     res.redirect('/');
-                }else{
+                }
+                else {
                     console.log("Error deleting account.");
                 }
             }
@@ -42,7 +45,9 @@ const deleteController = {
                     if(err) throw err; 
                     res.redirect('/');
                 });
-            }else{
+                res.redirect('/');
+            }
+            else{
                 console.log("Error deleting account.");
             }
         }   
