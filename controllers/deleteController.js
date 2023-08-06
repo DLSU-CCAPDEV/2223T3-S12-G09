@@ -15,24 +15,26 @@ const deleteController = {
 
         var check = await db.findOne(reservations, {user: user.email}, "");
 
-        if(check){
-        var isDeletedRes = await db.deleteMany(reservations, {user: user.email});
-        if(isDeletedRes){
-            console.log("Account resrevations deleted");
-            var isDeletedAcc = await db.deleteOne(User, {email: user.email});
-            if(isDeletedAcc){
-                console.log("Account deleted");
-                req.session.destroy(function(err){
-                    if(err) throw err; 
+        if (check) {
+            var isDeletedRes = await db.deleteMany(reservations, {user: user.email});
+            if(isDeletedRes){
+                console.log("Account resrevations deleted");
+                var isDeletedAcc = await db.deleteOne(User, {email: user.email});
+                if(isDeletedAcc){
+                    console.log("Account deleted");
+                    req.session.destroy(function(err){
+                        if(err) throw err;
+                    });
                     res.redirect('/');
-                });
-            }else{
-                console.log("Error deleting account.");
+                }else{
+                    console.log("Error deleting account.");
+                }
             }
-        }else{
-            console.log("Error deleting account reservations.");
+            else{
+                console.log("Error deleting account reservations.");
+            }
         }
-        }else{
+        else {
             var isDeletedAcc = await db.deleteOne(User, {email: user.email});
             if(isDeletedAcc){
                 console.log("Account deleted");
