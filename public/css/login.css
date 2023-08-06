@@ -18,18 +18,12 @@
     font-weight: 300;
 }
 
-.body-container input[type="text"], input[type="email"], input[type="password"]{
+.body-container input[type="text"], input[type="password"]{
     border: solid 1px rgba(128, 128, 128, 0.85);
     background-color: rgba(238, 238, 238, 0.25);
     height: 25px;
+    margin-bottom: 10px;
     width: 100%;
-}
-
-.error{
-    color: red;
-    font-weight: 300;
-    font-size: small;
-    margin: 10px 0;
 }
 
 .button-wrapper{
@@ -48,8 +42,9 @@
     width: 50%;
 }
 
-.button-wrapper button:disabled{
-    background-color: lightgray;
-    color: gray;
-    cursor: not-allowed;
+.error{
+    color: red;
+    font-weight: 300;
+    font-size: small;
+    margin: 10px 0;
 }
