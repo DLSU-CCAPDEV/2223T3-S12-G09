@@ -1,46 +1,32 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <title>Laboratory | Home</title>
-        {{> head}}
-    </head>
-    <body>
-        {{> header flag=flag username=username}}
+<head>
+    {{> head}}
 
-        <div id="showcase">
-            <div class="container-design">
-                <div class="showcase-content">
-                    <h2>LABORATORIES</h2>
-                    <p class="lead">Welcome to our laboratories! Make a reservation to use one of our laboratories for your endeavors!</p>
-                    <!--<a href="#" class="btn">Read More</a>-->
+    <title>Home | Lab Reservation</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+{{> header flag=flag username=username}}
+
+<div>
+    <div class="body-container">
+        <div class="body-header">
+            <span>Computer Laboratories</span>
+        </div>
+        <div class="body-content">
+            <div class="body-image"></div>
+            <div class="body-card">
+                <div class="body-card-description">
+                    <span>Step into our dynamic computer laboratory, where innovation meets technology. Experience the latest hardware and software, including high-performance workstations and powerful servers.</span>
                 </div>
+                <form action="/labs">
+                    <button>Make a Reservation</button>
+                </form>
             </div>
         </div>
-
-        <section>
-            <div id="available-labs">
-                <div class="container-design">
-                    <div id="lab1" class="lab-box">
-                        <div class="overlay">
-                            <h2>Chemistry Lab</h2>
-                            <p class="lead">Discover a modern chemistry lab equipped with advanced technology and equipment. Our laboratory provides a safe and precise environment for groundbreaking research, offering cutting-edge analytical instruments and synthesis setups. Explore the fascinating world of chemical reactions, analyze compounds, and conduct innovative experiments in our well-equipped chemistry lab.</p>
-                        </div>
-                    </div>
-                    <div id="lab2" class="lab-box">
-                        <div class="overlay">
-                            <h2>Computer Lab</h2>
-                            <p class="lead">Step into our dynamic computer laboratory, where innovation meets technology. Experience the latest hardware and software, including high-performance workstations and powerful servers. Whether you're coding, analyzing data, or engaging in complex simulations, our computer lab offers a conducive environment with high-speed internet connectivity for seamless access to resources and collaborative platforms.</p>
-                        </div>
-                    </div>
-                    <div id="lab3" class="lab-box">
-                        <div class="overlay">
-                            <h2>Physics Lab</h2>
-                            <p class="lead">Enter a captivating physics laboratory designed for scientific exploration. Unleash your curiosity with state-of-the-art equipment, including optical benches, laser systems, and advanced electronics. From investigating fundamental principles to conducting precise measurements and testing hypotheses, our physics lab provides a safe environment for hands-on experimentation and discovery. Embark on an exciting journey of scientific inquiry in our well-equipped physics lab.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </body>
+    </div>
+</div>
+</body>
 </html>

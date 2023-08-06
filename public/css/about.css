@@ -1,0 +1,29 @@
+.body-container section{
+    background-color: white;
+    width: 500px;
+    margin: auto;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 2px 2px 7px #bdbdbd;
+}
+
+.body-container h2{
+    font-size: x-large;
+    letter-spacing: 1px;
+}
+
+.body-container table{
+    margin: auto;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.body-container th{
+    font-size: larger;
+    font-weight: 500;
+}
+
+.body-container td{
+    padding-bottom: 5px;
+    vertical-align: baseline;
+}

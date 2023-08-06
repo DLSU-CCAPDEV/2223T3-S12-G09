@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{> head}}
+
+    <title>{{username}} | Edit Profile</title>
+</head>
+
+<body>
+
+{{> header flag=flag username=username}}
+
+<div>
+    <form method="post">
+        <label for="pfpURL">New Profile Picture</label>
+        <input type="text" name="pfpURL" id="pfpURL"><br>
+        <label for="description">New Bio</label>
+        <textarea name="description" id="description"></textarea><br>
+        <button type="submit">Save</button>
+    </form>
+</div>
+</body>
+</html>

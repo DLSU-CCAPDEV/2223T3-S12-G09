@@ -1,15 +1,29 @@
-/* one more temp */
-.error{
-    color: red;
-    font-size: 0.75rem;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body{
+    background-color: #f3f3f3;
+    font-family: Roboto, serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
-/* Temp */
-#res-container{
+.header-container{
+    background-color: black;
+    width: 100%;
+}
+
+.header{
+    align-items: center;
+    color: white;
+    display: flex;
+    flex-direction: row;
     margin: auto;
+    padding: 10px 0;
     width: 75%;
 }
 
+/* <<<<<<< HEAD */
 #res-days{
     display: flex;
     gap: 10px;
@@ -267,272 +281,35 @@ button.view {
     border: none;
     color: #ffffff;
     font-weight: lighter;
+/*=======
+.header-text{
+    font-size: larger;
+    font-weight: 800;
+>>>>>>> main*/
     letter-spacing: 1px;
-    margin-top: 25px;
+    text-transform: uppercase;
 }
 
-.modal input[type=submit]:hover {
-    cursor: pointer;
-}
-
-.modal input[type=submit]:disabled {
-    cursor: not-allowed;
-    color: #A8A8A8;
-    background-color: #E3E3E3;
-    border: 4px solid #E3E3E3;
-}
-
-/*.modal input[type=email], input[type=password], input[type=text]{
-    padding: 5px 10px;
-    border: #e5e5e5 solid 2px;
-    border-radius: 3px;
-    background: rgba(229, 229, 229, 0.15);
-}*/
-
-.modal input[type=radio]{
-    margin-right: 15px;
-}
-
-.modal label{
-    font-size: 0.8rem;
-    margin-right: 5px;
-}
-
-.close{
-    display: block;
-}
-
-.modal-edit {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left:0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-edit-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    top: 200px;
-    border: 1px solid #888;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 400px;
-}
-
-.modal-other {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 80px;
-    left:0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-other-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    border-radius: 10px;
-    width: 80%;
-    height: 80%;
-    overflow-y: auto;
-    max-width: 400px;
-}
-
-.close{
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover{
-    color: #000;
-}
-
-.close:hover, .close:focus{
-    color: black;
+.header a{
+    color: white;
+    font-weight: lighter;
     text-decoration: none;
-    cursor: pointer;
 }
 
-/*.scroll {
-    height: 400px;
-    overflow-y: auto;
-}*/
-/*
-    create new modal for viewing of other profiles
-    close the user profile view
-    add the account email
-*/
-
-/*.close-other-profile{
-    color: #aaaaaa;
-    position: fixed;
-    right: 600px;
-    font-size: 28px;
-    font-weight: bold;
+.nav-ul{
+    display: inline;
+    list-style-type: none;
+    margin-left: auto;
+    padding: 0;
 }
 
-.close-other-profile:hover{
-    color: #000;
+.nav-ul li{
+    display: inline;
+    margin-left: 15px;
 }
 
-.close-other-profile:hover, .close-other-profile:focus{
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}*/
-
-/*-----------------------------  View Reserve   ------------------------*/
-#view-div {
-    background-color: #fefefe;
+.body-container{
     margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 20%;
-    border-radius: 7px;
-    cursor: default;
-    position: fixed;
-}
-
-#view-top {
-    color: black;
-    text-align: left;
-}
-
-#view-bottom {
-    display:grid;
-    grid-template-columns: auto auto;
-}
-
-.view-remove .view-close{
-    cursor: pointer;
-}
-
-/*------------------------  Index Showcase Content   -------------------*/
-
-.lab_1 img, .lab_2 img, .lab_3 img {
-    width: 750px;
-    float: left;
-}
-
-/*
-#showcase {
-    background-image: url("../images/lab\ 1.jpg");
-    background-repeat: no-repeat;
-    height: 550px;
-    background-position: center;
-    background-size: cover;
-    background-color: papayawhip;
-}
-*/
-
-.showcase-content {
-    padding: 100px;
-    padding-right: 170px;
-    color: rgb(56, 56, 56);
-}
-
-.showcase-content h2 {
-    font-size: 60px;
-    line-height: 1.9em;
-}
-
-.btn {
-    display: inline-block;
-    padding: 07px 16px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 03px;
-}
-
-.lead {
-    font-size: 16px;
-    text-align: justify;
-}
-
-.showcase-content p {
-    font-size: 16px;
-    margin-bottom: 20px;
-}
-
-.showcase-content a:hover {
-    background: rgb(255, 255, 248);
-    transition-duration: 0.4s;
-}
-
-#available-labs .lab-box {
-    float: left;
-    width: 25.25%;
-    padding: 45px;
-    text-align: center;
-    margin: 30px;
-}
-
-#available-labs h2 {
-    margin-bottom: 25px;
-}
-
-.container-design h3 {
-    margin-left: 25px;
-}
-
-#lab1 {
-    background-image: url("/css/images/Chemistry_Lab.jpg");
-    background-repeat: no-repeat;
-    height: 550px;
-    background-position: center;
-    background-size: cover;
-    background-color: papayawhip;
-}
-
-#lab2 {
-    background-image: url("/css/images/Computer_lab.jpg");
-    background-repeat: no-repeat;
-    height: 550px;
-    background-position: center;
-    background-size: cover;
-    background-color: papayawhip;
-}
-
-#lab3 {
-    background-image: url("/css/images/Physics_lab.jpg");
-    background-repeat: no-repeat;
-    height: 550px;
-    background-position: center;
-    background-size: cover;
-    background-color: papayawhip;
-}
-
-.overlay {
-    margin: 10px;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-.rounded {
-    background-attachment: fixed;
-    border: 2px solid gray;
-    border-radius: 200px;
-    /*width: 250px;
-    height: 250px;*/
-    /*align-items: center;*/
+    padding: 100px 0;
+    width: 75%;
 }
