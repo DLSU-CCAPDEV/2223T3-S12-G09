@@ -3,10 +3,11 @@
     <head>
         {{> head}}
     <title>{{details.username_url}} | Profile</title>
+    <script src="/js/profileReservation.js"></script>
     </head>
 
     <body onload="setUsernames('{{details.username_url}}', '{{details.username}}')">
-    {{> header flag=details.flag username=details.username}}
+        {{> header flag=details.flag username=details.username}}
 
         <div>
             <div>
