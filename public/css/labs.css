@@ -1,0 +1,120 @@
+#res-container{
+    background-color: white;
+    box-shadow: 2px 2px 7px #bdbdbd;
+    margin: auto;
+    padding: 30px;
+    width: 60%;
+}
+
+.body-container h2{
+    font-size: x-large;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+#res-days{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.labs-slots-container{
+    align-items: baseline;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5%;
+}
+
+#res-labs{
+    display: flex;
+    gap: 8px;
+}
+
+.lab-btn, .day-btn{
+    background-color: lightgray;
+    border: 0;
+    color: gray;
+    cursor: pointer;
+    font-size: small;
+}
+
+.day-btn{
+    flex-basis: 13.5%;
+    padding: 7px;
+}
+
+.lab-btn{
+    padding: 7px;
+    width: 115px;
+}
+
+.active{
+    background-color: black;
+    color: white;
+}
+
+#res-time-slots label{
+    font-size: 15px;
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+#res-time-slots select{
+    font-size: 15px;
+    font-weight: 300;
+    padding: 3px;
+}
+
+#res-seats-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: auto;
+    width: 75%;
+    text-align: center;
+}
+
+.seat-container{
+    background-color: lightgray;
+    border: 0;
+    color: gray;
+    cursor: pointer;
+    flex: 1 0 10%;
+    font-size: small;
+    padding: 10px;
+    vertical-align: center;
+}
+
+.reserved{
+    color: white;
+    background-color: black;
+}
+
+#view-div {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+    border-radius: 7px;
+    cursor: default;
+    position: fixed;
+}
+
+#view-top {
+    color: black;
+    text-align: left;
+}
+
+#view-bottom {
+    display:grid;
+    grid-template-columns: auto auto;
+}
+
+.view-remove .view-close{
+    cursor: pointer;
+}
