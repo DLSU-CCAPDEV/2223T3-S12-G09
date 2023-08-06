@@ -1,0 +1,45 @@
+#res-days{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#res-buttons button{
+    background-color: white;
+    padding: 7px;
+    border: gray solid 1px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+#res-another-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#res-seats-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 45%;
+}
+
+#active-reservations{
+    width: 55%;
+    text-align: center;
+}
+
+.seat-container{
+    border: solid black 1px;
+    padding: 20px;
+    flex: 1 0 15%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.reserved{
+    border-color: red;
+    color: red;
+}
