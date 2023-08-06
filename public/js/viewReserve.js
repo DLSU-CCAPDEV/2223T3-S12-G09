@@ -79,7 +79,9 @@ async function interact_seat(seat_container, user, seat, date, lab,
     switch (popupState) {
         case reserve_state:
             $viewTop.append($(details));
-            $viewBottom.append($reserveButton);
+            if (user != null) {
+                $viewBottom.append($reserveButton);
+            }
             break;
         case delete_state:
             $viewTop.append($(output));
