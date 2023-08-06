@@ -34,7 +34,10 @@ app.get('/login', loginController.getLogin);
 app.post('/login', loginController.postLogIn);
 
 app.get('/getAccount', function(req, res) {
-    res.send(req.session.username);
+    res.send({
+        username: req.session.username,
+        type: req.session.type
+    });
 });
 
 app.get('/profile/:username', accountController.getProfile);
