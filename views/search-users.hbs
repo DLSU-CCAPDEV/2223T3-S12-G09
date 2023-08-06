@@ -66,22 +66,22 @@
             <input type="hidden" name="state" value="reservation">
             <input type="submit" name="submit" value="Search">
             <table id="reservation-table" class="user-table">
-            {{#each reservation_result}}
-            <tr>
-                <th>Seat #</th>
-                <th>Username</th>
-                <th>Date Reserved</th>
-                <th>Date of Reservation</th>
-                <th>Time</th>
-            </tr>
-            <tr>
-                <td>{{seat_id}}</td>
-                <td><a href="/profile/{{user}}">{{user}}</a></td>
-                <td>{{date_reserved}}</td>
-                <td>{{reservation_date}}</td>
-                <td>{{time_slot}}</td>
-            </tr>
-            {{/each}}
+                {{#each reservation_result}}
+                <tr>
+                    <th>Seat #</th>
+                    <th>Username</th>
+                    <th>Date Reserved</th>
+                    <th>Date of Reservation</th>
+                    <th>Time</th>
+                </tr>
+                <tr>
+                    <td>{{seat_id}}</td>
+                    <td><a href="/profile/{{user}}">{{user}}</a></td>
+                    <td>{{date_reserved}}</td>
+                    <td>{{reservation_date}}</td>
+                    <td>{{time_slot}}</td>
+                </tr>
+                {{/each}}
             </table>
         </form>
     </body>
