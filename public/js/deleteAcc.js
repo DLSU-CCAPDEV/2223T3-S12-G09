@@ -3,7 +3,7 @@ $(document).ready(function(){
         event.preventDefault();
 
         if(confirm('Are you sure you want to delete your account? Once deleted it cannot be recovered.')){
-            var username = $('#username').val();4
+            var username = $('#username').val();
             console.log("deleteAcc.js: ", username)
             
             $.ajax({
