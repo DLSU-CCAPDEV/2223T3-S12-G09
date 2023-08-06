@@ -3,22 +3,29 @@
 <head>
     {{> head}}
 
-    <title>{{username}} | Profile</title>
+    <title>{{details.username_url}} | Profile</title>
 </head>
 
 <body>
-{{> header flag=flag username=username}}
+{{> header flag=details.flag username=details.username}}
 
 <div>
     <div>
-        <span>{{username}}</span>
+        <span>{{details.username_url}}</span>
     </div>
     <div>
-        <span>{{fname}} {{lname}}</span>
+        <span>{{details.fname}} {{details.lname}}</span>
     </div>
     <div>
-        <span>{{description}}</span>
+        <span>{{details.description}}</span>
     </div>
+    {{#if isCurrentUser}}
+        <div>
+            <form action="/edit-profile" method="get">
+                <button type="submit">Edit Profile</button>
+            </form>
+        </div>
+    {{/if}}
 </div>
 </body>
 </html>
