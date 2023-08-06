@@ -1,17 +1,19 @@
-<div id="header">
-    <span class="htext">Lab Reservation</span>
-    <ul class="nav-ul" id="menu">
-        <li><a href="/">Home</a></li>
-        <li><a href="/search">Search</a></li>
-        <li><a href="/labs">Reserve</a></li>
-        <li><a href="/about">About</a></li>
-        {{#if flag}}
-            <li><a href="/profile/{{username}}">{{username}}</a></li>
-            <li><a href="/logout">Logout</a></li>
-            <!-- <li><a href="/delete" id="deleteButton">Delete</a></li> -->
-        {{else}}
-            <li><a href="/signup">Sign Up</a></li>
-            <li><a href="/login">Login</a></li>
-        {{/if}}
-    </ul>
+<div class="header-container">
+    <div class="header">
+        <span class="header-text">Lab Reservation</span>
+        <ul class="nav-ul">
+            <li><a href="/">Home</a></li>
+            <li><a href="/labs">Reserve</a></li>
+            <li><a href="/search">Search</a></li>
+            <li><a href="/about">About</a></li>
+            {{#if flag}}
+                <li><a href="/profile/{{username}}">{{username}}</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/delete" id="deleteButton">Delete</a></li>
+            {{else}}
+                <li><a href="/signup">Sign Up</a></li>
+                <li><a href="/login">Login</a></li>
+            {{/if}}
+        </ul>
+    </div>
 </div>

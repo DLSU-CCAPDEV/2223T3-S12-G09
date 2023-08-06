@@ -1,0 +1,45 @@
+.body-header{
+    font-size: xxx-large;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.body-image{
+    background-image: url("images/lab.jpg");
+    background-position: 0 -250px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
+    margin: 25px 0;
+    width: 100%;
+}
+
+.body-card{
+    box-shadow: 2px 2px 7px #bdbdbd;
+    background-color: white;
+    font-weight: 300;
+    left: 0;
+    margin: -75px auto;
+    padding: 25px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 400px;
+}
+
+.body-card-description{
+    padding-bottom: 25px;
+}
+
+.body-card button{
+    background-color: black;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+    text-transform: uppercase;
+}
+
+.body-card button:hover{
+    cursor: pointer;
+}
