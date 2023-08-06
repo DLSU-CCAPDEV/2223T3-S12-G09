@@ -2,7 +2,7 @@
     background-color: white;
     width: 500px;
     margin: auto;
-    padding: 25px;
+    padding: 30px;
     text-align: center;
     box-shadow: 2px 2px 7px #bdbdbd;
 }
@@ -10,6 +10,7 @@
 .body-container h2{
     font-size: x-large;
     letter-spacing: 1px;
+    text-transform: capitalize;
 }
 
 .body-container table{

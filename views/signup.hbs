@@ -3,24 +3,35 @@
 <head>
     {{> head}}
 
+    <link rel="stylesheet" type="text/css" href="/css/signup.css">
     <script src="/js/register.js"></script>
     <script src="/js/validator.min.js"></script>
 </head>
 <body>
 {{> header}}
 
-<form id="register" method="post">
-    <input type="text" name="fname" id="fname" placeholder="Enter your first name" required><br>
-    <p id="fnameError" class="error">{{fnameError}}</p>
-    <input type="text" name="lname" id="lname" placeholder="Enter your last name" required><br>
-    <p id="lnameError" class="error">{{lnameError}}</p>
-    <input type="text" name="username" id="username" placeholder="Enter a username" required><br>
-    <p id="usernameError" class="error">{{usernameError}}</p>
-    <input type="email" name="email" id="email" placeholder="Enter your email" required><br>
-    <p id="emailError" class="error">{{emailError}}</p>
-    <input type="password" name="password" id="password" placeholder="Enter your password" required><br>
-    <p id="passwordError" class="error">{{passwordError}}</p>
-    <input type="submit" value="Register" id="signup" disabled>
-</form>
+<div class="body-container">
+    <form id="register" method="post">
+        <h2>Sign up</h2>
+        <label for="fname">First name</label><br>
+        <input type="text" name="fname" id="fname" required><br>
+        <p id="fnameError" class="error">{{fnameError}}</p>
+        <label for="lname">Last name</label><br>
+        <input type="text" name="lname" id="lname" required><br>
+        <p id="lnameError" class="error">{{lnameError}}</p>
+        <label for="username">Username</label><br>
+        <input type="text" name="username" id="username" required><br>
+        <p id="usernameError" class="error">{{usernameError}}</p>
+        <label for="email">Email</label><br>
+        <input type="email" name="email" id="email" required><br>
+        <p id="emailError" class="error">{{emailError}}</p>
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="password" required><br>
+        <p id="passwordError" class="error">{{passwordError}}</p>
+        <div class="button-wrapper">
+            <button type="submit" id="signup" disabled>Sign up</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>
