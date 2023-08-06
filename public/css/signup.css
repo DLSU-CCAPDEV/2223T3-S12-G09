@@ -1,0 +1,46 @@
+.body-container form{
+    background-color: white;
+    box-shadow: 2px 2px 7px #bdbdbd;
+    margin: auto;
+    padding: 30px;
+    width: 350px;
+}
+
+.body-container h2{
+    font-size: x-large;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.body-container label{
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.body-container input[type="text"], input[type="email"], input[type="password"]{
+    border: solid 1px rgba(128, 128, 128, 0.85);
+    height: 25px;
+    width: 100%;
+}
+
+.button-wrapper{
+    text-align: center;
+}
+
+.button-wrapper button{
+    background-color: black;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px;
+    text-transform: uppercase;
+    width: 50%;
+}
+
+.button-wrapper button:disabled{
+    background-color: lightgray;
+    color: gray;
+    cursor: not-allowed;
+}
