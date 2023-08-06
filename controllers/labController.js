@@ -1,12 +1,8 @@
+const Session = require('./sessionController.js');
+
 const labController = {
     getLabs: function (req, res) {
-        var details = {};
-
-        if(req.session.username) {
-            details.flag = true;
-            details.username = req.session.username;
-        } else
-            details.flag = false;
+        var details = Session.connectSession(req, res);
 
         res.render('labs', details);
     }

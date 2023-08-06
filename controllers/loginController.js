@@ -1,21 +1,30 @@
 const bcrypt = require("bcrypt");
 const db = require("../models/db.js");
 const User = require("../models/AccountModel.js");
+const Session = require('./sessionController.js');
 
 const loginController = {
     getLogin: function(req, res){
-        var details = {};
-
-        if(req.session.username){
-            details.flag = true;
-            details.username = req.session.username;
-            res.redirect('/');
-        } else{
-            details.flag = false;
-            res.render('login', details);
-        }
+        Session.connectSession(req, res,
+            function(details) { // success
+                res.render('/', details);
+            },
+            function(details) { // fail
+                res.render('login', details);
+            }
+        )
     },
 
+    // var details = {};
+        //
+        // if(req.session.username){
+        //     details.flag = true;
+        //     details.username = req.session.username;
+        //     res.redirect('/');
+        // } else{
+        //     details.flag = false;
+        //     res.render('login', details);
+        // }
     postLogIn: async function (req, res) {
         var username = req.body.username;
         var password = req.body.password;

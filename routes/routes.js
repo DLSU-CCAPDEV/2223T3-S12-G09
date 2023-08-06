@@ -1,4 +1,5 @@
 const controllers = require('../controllers/controller.js');
+const searchControllers = require('../controllers/searchController.js');
 const labControllers = require('../controllers/labController.js');
 const reserveControllers = require('../controllers/reserveController.js');
 const signupController = require('../controllers/signupController.js');
@@ -14,6 +15,9 @@ const app = express();
 app.get('/', controllers.getIndex);
 app.get('/labs', labControllers.getLabs);
 app.get('/about', controllers.getAbout);
+app.get('/search', searchControllers.getSearch);
+app.post('/search', searchControllers.listAccounts);
+app.post('/listAccounts', searchControllers.listAccounts);
 app.get('/checkReservation', reserveControllers.checkReservation);
 app.get('/listReservations', reserveControllers.listReservations);
 app.post('/makeReservation', reserveControllers.makeReservation);
