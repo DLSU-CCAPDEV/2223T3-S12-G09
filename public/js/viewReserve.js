@@ -40,7 +40,6 @@ async function interact_seat(seat_container, user, seat, date, lab,
     // Request data from server
     const sendJSON = {
         seat_id: seat.seat_id.toString(),
-        user: user,
         lab: lab,
         reservation_date: date,
         time_slot: time_slot
@@ -52,9 +51,6 @@ async function interact_seat(seat_container, user, seat, date, lab,
 
     await $.get("/checkReservation", sendJSON, function(result) {
         if (result) {
-            $("<p>Email: {receivedJSON.user}</p>" +
-                "<p>Date of Reservation: {receivedJSON.reservation_date}</p>" +
-                "<p>Time: {receivedJSON.time_slot}</p>")
             popupState = delete_state;
         }
         else {
@@ -63,9 +59,14 @@ async function interact_seat(seat_container, user, seat, date, lab,
 
         receivedJSON = result;
     });
+
+    const username = receivedJSON["user"];
+    const link = "/profile/" + user;
     console.log(receivedJSON);
-    console.log(popupState);;
-    output += "<p>" + receivedJSON["user"] + "</p>";
+    console.log(popupState);
+    output += "<p>";
+    output += "<a href='" + link + "'>" + username + "</a>";
+    output += "</p>";
     output += "<p>Reserved on</p>";
     output += "<p>" + format_date(new Date(receivedJSON["date_reserved"])) + "</p>";
     console.log(output);
