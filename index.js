@@ -15,10 +15,11 @@ port = process.env.PORT;
 hostname = process.env.HOSTNAME;
 
 app.set('view engine', 'hbs');
-hbs.registerPartials(__dirname + '/views/partials')
+hbs.registerPartials(__dirname + '/views/partials');
 
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
+// app.use(express.static('public'));
 
 
 

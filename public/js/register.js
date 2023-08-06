@@ -94,8 +94,8 @@ $(document).ready(function(){
     $('#fname').keyup(validateFirstName);
     $('#fname').change(validateFirstName);
 
-    $('#lname').keyup(validateLastName());
-    $('#lname').change(validateLastName());
+    $('#lname').keyup(validateLastName);
+    $('#lname').change(validateLastName);
 
     $('#username').keyup(validateUsername);
     $('#username').change(validateUsername);

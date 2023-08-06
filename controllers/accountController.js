@@ -5,7 +5,7 @@ const Session = require('./sessionController.js');
 const accountController = {
     getProfile: async function (req, res) {
         var query = {username: req.params.username};
-        var projection = 'fname lname username description';
+        // var projection = 'fname lname username description';
         var details = Session.connectSession(req, res);
 
         // if (req.session.username) {
@@ -14,7 +14,8 @@ const accountController = {
         // } else
         //     details.flag = false;
 
-        var result = await db.findOne(User, query, projection);
+        // var result = await db.findOne(User, query, projection);
+        var result = await db.findOne(User, query);
 
         if(result !== null){
             details.fname = result.fname;
