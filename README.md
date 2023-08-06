@@ -3,26 +3,6 @@
 <p><i>We're here to blow minds that haven't blown before.</i></p>
 <br>
 
-Specs checklist
-<pre>
-w - work in progress
-x - done
-[x] View Slot Availability
-[x] Register
-[x] Login
-[x] Logout
-[x] Reserve
-[x] Reserve for a student
-[x] Remove reservation
-[x] Edit reservation
-[x] See reservation
-[x] View / Edit user profile
-[x] Delete user account
-[x] Search for users / free slots
-[ ] General
-  [ ] Good UI and UX
-</pre>
-
 <h2>Prerequisites</h2>
 <p>
 NodeJS must be installed. It provides npm to install necessary modules. If NodeJS isn't installed yet go to its <a href='https://nodejs.org/en/download'>download</a> site.
