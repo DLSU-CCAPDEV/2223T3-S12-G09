@@ -91,23 +91,40 @@ $(document).ready(function(){
         });
     }
 
-    $('#fname').keyup(function(){
+    $('#fname').keyup(validateFirstName);
+    $('#fname').change(validateFirstName);
+
+    $('#lname').keyup(validateLastName());
+    $('#lname').change(validateLastName());
+
+    $('#username').keyup(validateUsername);
+    $('#username').change(validateUsername);
+
+    $('#email').keyup(validateEmail);
+    $('#email').change(validateEmail);
+
+    $('#password').keyup(validatePassword);
+    $('#password').change(validatePassword);
+
+
+    function validateFirstName() {
         validateField($('#fname'), 'First Name', $('#fnameError'));
-    });
+    }
 
-    $('#lname').keyup(function(){
+    function validateLastName(){
         validateField($('#lname'), 'Last Name', $('#lnameError'));
-    });
+    }
 
-    $('#username').keyup(function(){
+    function validateUsername(){
         validateField($('#username'), 'Username', $('#usernameError'));
-    });
+    }
 
-    $('#email').keyup(function(){
+    function validateEmail(){
         validateField($('#email'), 'Email', $('#emailError'));
-    });
+    }
 
-    $('#password').keyup(function () {
+    function validatePassword() {
         validateField($('#password'), 'Password', $('#passwordError'));
-    });
+    }
+
 });
