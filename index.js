@@ -8,6 +8,7 @@ const MongoStore = require('connect-mongo');
 const db = require('./models/db.js');
 
 const app = express();
+const port = 9090;
 
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
@@ -55,7 +56,7 @@ app.use(
     }
 );
 
-app.listen(port, hostname, function(req, res) {
+app.listen(port, function(req, res) {
     console.log(`Server running at: `);
-    console.log(`http://` + hostname + `:` + port);
+    console.log('app listening at port ' + port);
 });
