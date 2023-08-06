@@ -12,7 +12,6 @@ const app = express();
 
 dotenv.config();
 port = process.env.PORT;
-hostname = process.env.HOSTNAME;
 
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
@@ -60,7 +59,6 @@ app.use(
     }
 );
 
-app.listen(port, hostname, function(req, res) {
-    console.log(`Server running at: `);
-    console.log(`http://` + hostname + `:` + port);
+app.listen(port, function(req, res) {
+    console.log('app listening at port ' + port);
 });
