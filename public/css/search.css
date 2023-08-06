@@ -1,11 +1,11 @@
 /* Search user and reservation */
 
-#user-text {
+#user-text, #user-table, #reservation-table {
     width: 100%;
 }
 
-#user-table {
-    width: 100%
+.search-section {
+    padding: 3em;
 }
 
 .tab {
