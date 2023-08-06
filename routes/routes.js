@@ -21,7 +21,9 @@ app.get('/checkEmail', signupController.checkEmail);
 app.get('/signup', signupController.getSignUp);
 app.post('/signup', validation.signupValidation(), signupController.postSignUp);
 //app.post('/signup', signupController.postSignUp);
-
+app.get('/getAccount', function(req, res) {
+    req.send(req.session.username);
+});
 //app.get('/success', successController.getSuccess);
 
 app.get('/login', loginController.getLogin);

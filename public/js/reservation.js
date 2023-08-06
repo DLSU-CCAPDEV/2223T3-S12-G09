@@ -9,6 +9,12 @@ function Seat(seat_id){
     this.reservations = [];
 }
 
+var currUser;
+
+await $.get('/getAccount', function(result) {currUser = result.user});
+
+alert(currUser);
+
 function Reservation(seat_id, user, lab, date_reserved, reservation_date,
                     time_slot){
     this.seat_id = seat_id;
@@ -166,9 +172,7 @@ async function display_seat(seat, date, time_slot) {
     });
 
     seat_container.onclick = function(event){
-        console.log(currUser);
-
-        interact_seat(this, "john_joseph_giron@dlsu.edu.ph", seat, date,
+        interact_seat(this, currUser, seat, date,
                       selected_lab, time_slot, event);
     };
 }
