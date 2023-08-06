@@ -68,6 +68,12 @@ NodeJS must be installed. It provides npm to install necessary modules. If NodeJ
   </li>
 </ol>
 
+<h2>Admin Account Details</h2>
+<p>
+  Username: big.admin99
+  Password: U}xMqpSx37)#*^W
+</p>
+
 <h2>Project Files and Folder Information</h2>
 <ol>
   <li>
