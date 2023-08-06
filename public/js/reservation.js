@@ -9,6 +9,8 @@ function Seat(seat_id){
     this.reservations = [];
 }
 
+var currUser;
+
 function Reservation(seat_id, user, lab, date_reserved, reservation_date,
                     time_slot){
     this.seat_id = seat_id;
@@ -21,6 +23,11 @@ function Reservation(seat_id, user, lab, date_reserved, reservation_date,
 }
 
 $(document).ready(function(){
+    $.get('/getAccount', function(result) {
+        currUser = result
+        alert(currUser);
+    });
+
     generate_buttons();
     generate_time_slots();
     populate_seats(seats);
@@ -166,9 +173,7 @@ async function display_seat(seat, date, time_slot) {
     });
 
     seat_container.onclick = function(event){
-        console.log(currUser);
-
-        interact_seat(this, "john_joseph_giron@dlsu.edu.ph", seat, date,
+        interact_seat(this, currUser, seat, date,
                       selected_lab, time_slot, event);
     };
 }
@@ -178,7 +183,7 @@ async function reserve_seat(seat, lab, time_slot){
 
     const sendJSON = {
             seat_id: seat.seat_id,
-            user: "john_joseph_giron@dlsu.edu.ph",
+            user: currUser,
             lab: selected_lab,
             date_reserved: new Date(),
             reservation_date: current_date,
@@ -210,7 +215,7 @@ function delete_reservation(seat, date, lab, time_slot){
 
     const sendJSON = {
         seat_id: seat.seat_id,
-        user: "john_joseph_giron@dlsu.edu.ph",
+        user: currUser,
         lab: selected_lab,
         date: current_date,
         time_slot: time_slot
