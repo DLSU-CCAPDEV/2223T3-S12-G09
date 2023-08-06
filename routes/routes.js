@@ -39,6 +39,6 @@ app.get('/profile/:username', accountController.getProfile);
 
 app.get('/logout', logoutController.getLogOut);
 
-app.delete('/delete',  deleteController.deleteAccount);//++
+app.delete('/delete',  deleteController.deleteAccount);
 
 module.exports = app;
