@@ -61,7 +61,7 @@ async function interact_seat(seat_container, user, seat, date, lab,
     });
 
     const username = receivedJSON["user"];
-    const link = "/profile/" + user;
+    const link = "/profile/" + username;
     console.log(receivedJSON);
     console.log(popupState);
     output += "<p>";
