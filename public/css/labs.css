@@ -94,6 +94,35 @@
     background-color: black;
 }
 
+.legend{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 15px;
+    gap: 5px;
+}
+
+.legend-reserved{
+    background-color: black;
+    height: 15px;
+    width: 15px;
+}
+
+.legend-available{
+    background-color: lightgray;
+    height: 15px;
+    width: 15px;
+}
+
+.legend span{
+    margin-right: 10px;
+}
+
+.legend-available{
+    background-color: lightgray;
+}
+
 #view-div {
     background-color: white;
     margin: auto;
