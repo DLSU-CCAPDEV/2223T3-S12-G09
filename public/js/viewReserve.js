@@ -83,7 +83,11 @@ async function interact_seat(seat_container, user, seat, date, lab,
             break;
         case delete_state:
             $viewTop.append($(output));
-            $viewBottom.append($deleteButton);
+            if (user == username || currType == "DLSU Technician") {
+            // if (user == username) {
+                // alert(user);
+                $viewBottom.append($deleteButton);
+            }
             break;
     }
     $viewBottom.append($cancelButton);
@@ -109,6 +113,10 @@ async function interact_seat(seat_container, user, seat, date, lab,
 
     $deleteButton.click(function(e) {
         e.stopPropagation();
+        if (user == username || type == "DLSU Technician") {
+        // if (user == username) {
+            delete_reservation(seat, date, lab, time_slot)
+        }
         removePopup();
     })
 
