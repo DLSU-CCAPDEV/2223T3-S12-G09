@@ -1,5 +1,4 @@
 const express = require('express');
-const dotenv = require('dotenv');
 const bodyParser = require('body-parser')
 const routes = require('./routes/routes.js');
 const hbs = require('hbs');
@@ -9,10 +8,6 @@ const MongoStore = require('connect-mongo');
 const db = require('./models/db.js');
 
 const app = express();
-
-dotenv.config();
-port = process.env.PORT;
-hostname = process.env.HOSTNAME;
 
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
