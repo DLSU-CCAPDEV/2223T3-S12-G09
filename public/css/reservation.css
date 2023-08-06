@@ -3,6 +3,9 @@
     gap: 10px;
     margin-bottom: 10px;
 }
+#res-container {
+    padding: 3em;
+}
 
 #res-buttons button{
     background-color: white;
