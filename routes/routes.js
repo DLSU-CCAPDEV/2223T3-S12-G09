@@ -7,6 +7,7 @@ const loginController = require("../controllers/loginController.js");
 const accountController = require("../controllers/accountController.js");
 const logoutController = require("../controllers/logoutController.js");
 const deleteController = require("../controllers/deleteController.js");
+const editProfileController = require("../controllers/editProfileController");
 
 const express = require('express');
 const validation = require('../helpers/validation.js');
@@ -40,5 +41,8 @@ app.get('/profile/:username', accountController.getProfile);
 app.get('/logout', logoutController.getLogOut);
 
 app.delete('/delete',  deleteController.deleteAccount);
+
+app.get('/edit-profile', editProfileController.getEditProfile);
+app.post('/edit-profile', editProfileController.editProfile);
 
 module.exports = app;
