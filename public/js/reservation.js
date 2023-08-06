@@ -173,8 +173,16 @@ async function display_seat(seat, date, time_slot) {
     });
 
     seat_container.onclick = function(event){
-        interact_seat(this, currUser, seat, date,
-                      selected_lab, time_slot, event);
+        if (currUser == ""){
+            $("#error").show();
+            $("#error").text("User not logged in!");
+        }
+        else {
+            $("#error").hide();
+            $("#error").text("");
+            interact_seat(this, currUser, seat, date,
+                          selected_lab, time_slot, event);
+        }
         // display_seats(seats, current_date);
     };
 }
