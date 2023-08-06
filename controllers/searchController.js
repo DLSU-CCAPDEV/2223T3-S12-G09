@@ -48,6 +48,8 @@ const searchController = {
                 const reservationDateData = req.body["reservation-date"];
                 const dateReservedData = req.body["date-reserved"];
 
+
+
                 let reservationDate;
                 let reservationDateEnd;
 
@@ -94,8 +96,24 @@ const searchController = {
                 const reservationResult =
                     await db.findMany(Reservation,
                                       reservationQuery);
+
+                const sendArray = [];
+                for (const reserve of reservationResult) {
+                    sendArray.push({
+                        seat_id: reserve.seat_id,
+                        user: reserve.user,
+                        lab: reserve.lab,
+                        date_reserved: formatDate(
+                            new Date(reserve.date_reserved)
+                        ),
+                        reservation_date: formatDate(
+                            new Date(reserve.reservation_date)
+                        ),
+                        time_slot: reserve.time_slot
+                    });
+                }
                 res.render("search-users", {
-                    reservation_result: reservationResult,
+                    reservation_result: sendArray,
                     state: "reservation",
                     username: details.username,
                     flag: details.flag,
@@ -104,5 +122,13 @@ const searchController = {
         }
     }
 };
+
+function formatDate(date) {
+    var months = [ "January", "February", "March", "April", "May",
+                   "June", "July", "August", "September",
+                   "October", "November", "December" ];
+
+    return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+}
 
 module.exports = searchController;

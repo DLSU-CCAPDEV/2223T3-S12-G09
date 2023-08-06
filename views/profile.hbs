@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-    {{> head}}
+    <head>
+        {{> head}}
+        <title>{{details.username_url}} | Profile</title>
+        <script src="/js/profileReservation.js"></script>
+        <link rel="stylesheet" type="text/css" href="/css/profile-reservation.css">
+    </head>
 
-    <title>{{details.username_url}} | Profile</title>
-</head>
+    <body onload="setUsernames('{{details.username_url}}', '{{details.username}}')">
+        {{> header flag=details.flag username=details.username}}
 
-<body>
-{{> header flag=details.flag username=details.username}}
-
-<div>
-    <div>
-        <img src="{{details.pfpURL}}" alt="profile-picture">
-    </div>
-    <div>
-        <span>{{details.username_url}}</span>
-    </div>
-    <div>
-        <span>{{details.fname}} {{details.lname}}</span>
-    </div>
-    <div>
-        <span>{{details.description}}</span>
-    </div>
-    {{#if isCurrentUser}}
-        <div>
-            <form action="/edit-profile" method="get">
-                <button type="submit">Edit Profile</button>
-            </form>
-        </div>
-    {{/if}}
-    <div>
-        <form action="/delete" method="delete">
-            <input type="submit" value="Delete Profile" id="deleteButton">
-        </form>
-    </div>
-
-</div>
-</body>
+        <main>
+            <div>
+                <img src="{{details.pfpURL}}" alt="profile-picture"
+                     width="150px" height="150px" style="object-fit: cover;">
+            </div>
+            <div>
+                <span>{{details.username_url}}</span>
+            </div>
+            <div>
+                <span>{{details.fname}} {{details.lname}}</span>
+            </div>
+            <div>
+                <span>{{details.description}}</span>
+            </div>
+            {{#if isCurrentUser}}
+                <div>
+                    <form action="/edit-profile" method="get">
+                        <button type="submit">Edit Profile</button>
+                    </form>
+                </div>
+                <div>
+                    <form action="/delete" method="delete">
+                        <input type="submit" value="Delete Profile" id="deleteButton">
+                    </form>
+                </div>
+            {{/if}}
+            <br>
+            {{> reservationList}}
+        </main>
+    </body>
 </html>

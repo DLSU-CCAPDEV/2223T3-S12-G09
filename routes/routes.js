@@ -22,7 +22,8 @@ app.post('/listAccounts', searchControllers.listAccounts);
 app.get('/checkReservation', reserveControllers.checkReservation);
 app.get('/listReservations', reserveControllers.listReservations);
 app.post('/makeReservation', reserveControllers.makeReservation);
-app.delete('/deleteReservation', reserveControllers.deleteReservation);
+app.post('/updateReservation', reserveControllers.updateReservation);
+app.post('/deleteReservation', reserveControllers.deleteReservation);
 
 app.get('/checkEmail', signupController.checkEmail);
 app.get('/checkUsername', signupController.checkUsername);
@@ -33,7 +34,10 @@ app.get('/login', loginController.getLogin);
 app.post('/login', loginController.postLogIn);
 
 app.get('/getAccount', function(req, res) {
-    res.send(req.session.username);
+    res.send({
+        username: req.session.username,
+        type: req.session.type
+    });
 });
 
 app.get('/profile/:username', accountController.getProfile);
