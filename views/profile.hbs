@@ -4,13 +4,13 @@
         {{> head}}
         <title>{{details.username_url}} | Profile</title>
         <script src="/js/profileReservation.js"></script>
-        <link type="text/spreadsheet" href="/css/profile-reservation.css">
+        <link rel="stylesheet" type="text/css" href="/css/profile-reservation.css">
     </head>
 
     <body onload="setUsernames('{{details.username_url}}', '{{details.username}}')">
         {{> header flag=details.flag username=details.username}}
 
-        <div>
+        <main>
             <div>
                 <img src="{{details.pfpURL}}" alt="profile-picture"
                      width="150px" height="150px" style="object-fit: cover;">
@@ -30,14 +30,14 @@
                         <button type="submit">Edit Profile</button>
                     </form>
                 </div>
+                <div>
+                    <form action="/delete" method="delete">
+                        <input type="submit" value="Delete Profile" id="deleteButton">
+                    </form>
+                </div>
             {{/if}}
-            <div>
-                <form action="/delete" method="delete">
-                    <input type="submit" value="Delete Profile" id="deleteButton">
-                </form>
-            </div>
-
-        </div>
-        {{> reservationList}}
+            <br>
+            {{> reservationList}}
+        </main>
     </body>
 </html>
