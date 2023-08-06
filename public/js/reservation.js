@@ -10,6 +10,7 @@ function Seat(seat_id){
 }
 
 var currUser;
+var currType
 
 function Reservation(seat_id, user, lab, date_reserved, reservation_date,
                     time_slot){
@@ -24,7 +25,8 @@ function Reservation(seat_id, user, lab, date_reserved, reservation_date,
 
 $(document).ready(function(){
     $.get('/getAccount', function(result) {
-        currUser = result;
+        currUser = result.username;
+        currType = result.type;
         // alert(currUser);
     });
 
@@ -32,11 +34,7 @@ $(document).ready(function(){
     generate_time_slots();
     populate_seats(seats);
     display_seats(seats, current_date);
-    display_user_reservations();
-    $("#login_ID").click(function() {
-        console.log("logged in");
-        display_user_reservations()
-    });
+    // display_user_reservations();
 
     $("#logout_ID").click(function() {
         document.getElementById("user-res-container").innerHTML = "";
@@ -210,7 +208,7 @@ async function reserve_seat(seat, lab, time_slot){
         }
         else {
             alert("Seat " + seat.seat_id + " has been reserved");
-            display_user_reservations();
+            // display_user_reservations();
             display_seats(seats, current_date);
         }
     });
@@ -239,7 +237,7 @@ function delete_reservation(seat, date, lab, time_slot){
        success: function(sendJSON){
            console.log(sendJSON);
            alert("Seat " + seat.seat_id + " reservation has been removed");
-           display_user_reservations();
+           // display_user_reservations();
            display_seats(seats, current_date);
        },
 
@@ -249,21 +247,21 @@ function delete_reservation(seat, date, lab, time_slot){
     });
 }
 
-async function display_user_reservations(){
-    document.getElementById("user-res-container").innerHTML = "";
-    var user_reservations = (await filter_reservations(currUser)).slice();
-
-    // for(var i = 0; i < user_reservations.length; i++)
-    // $.get("/listReservations", {}, function(result, status) {
-    //     console.log(result);
-    // });
-    console.log("display_user_reservations()");
-    console.log(user_reservations);
-
-    for (const reservations of user_reservations)
-        display_user_reservation(reservations);
-        // display_user_reservation(user_reservations[i]);
-}
+// async function display_user_reservations(){
+//     document.getElementById("user-res-container").innerHTML = "";
+//     var user_reservations = (await filter_reservations(currUser)).slice();
+//
+//     // for(var i = 0; i < user_reservations.length; i++)
+//     // $.get("/listReservations", {}, function(result, status) {
+//     //     console.log(result);
+//     // });
+//     console.log("display_user_reservations()");
+//     console.log(user_reservations);
+//
+//     for (const reservations of user_reservations)
+//         display_user_reservation(reservations);
+//         // display_user_reservation(user_reservations[i]);
+// }
 
 function display_user_reservation(reservation){
     var lab = document.createElement("div");
