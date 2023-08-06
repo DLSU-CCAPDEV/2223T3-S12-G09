@@ -2,17 +2,27 @@
 <html>
 <head>
     {{> head}}
+
+    <title>Login | Lab Reservation</title>
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
 <body>
 {{> header}}
 
-<form id="login" method="post">
-    <input type="text" id="username" name="username" placeholder="Enter your username"><br>
-    <input type="password" id="password" name="password" placeholder="Enter your password"><br>
-    <input type="checkbox" id="rememberMe" name="rememberMe">
-    <label for="rememberMe">Remember Me</label><br>
-    <input type="submit" value="Login" id="submit">
-</form>
+<div class="body-container">
+    <form id="login" method="post">
+        <h2>Login</h2>
+        <label for="username">Username</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Password</label><br>
+        <input type="password" id="password" name="password" required><br>
+        <input type="checkbox" id="rememberMe" name="rememberMe">
+        <label for="rememberMe" class="checkbox-label">Stay logged in</label><br>
+        <div class="button-wrapper">
+            <button type="submit" id="login">Login</button>
+        </div>
+    </form>
+</div>
 <p id="error" class="error">{{error}}</p>
 </body>
 </html>
