@@ -76,8 +76,8 @@ async function listTables(username) {
             $deleteButton.text("Delete");
             $editButton.text("Edit");
 
-            $deleteCell.addClass('no-outline');
-            $editCell.addClass('no-outline');
+            $deleteCell.addClass('no-outline buttons');
+            $editCell.addClass('no-outline buttons');
 
             $deleteCell.append($deleteButton);
             $editCell.append($editButton);
@@ -144,7 +144,6 @@ function editReserve(index) {
 
 async function deleteReserve(index) {
     currentReservations = listReservations[index];
-    alert("hello");
     const sendJSON = {
         user: sessUser,
         lab: currentReservations.lab,
